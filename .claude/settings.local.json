@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:maps.app.goo.gl)",
+      "WebFetch(domain:www.google.com)",
+      "WebFetch(domain:naver.me)",
+      "WebFetch(domain:map.naver.com)",
+      "WebFetch(domain:www.instagram.com)",
+      "Bash(mkdir:*)"
+    ],
+    "deny": []
+  }
+}

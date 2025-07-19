@@ -14,7 +14,7 @@ export default function Header() {
   };
 
   return (
-    <header className="relative bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+    <header className="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
@@ -52,42 +52,52 @@ export default function Header() {
           </div>
         </div>
         
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-sm">
-            <nav className="py-4 space-y-4">
+      </div>
+      
+      {/* Mobile Navigation - Floating Menu */}
+      {isMenuOpen && (
+        <>
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
+            onClick={closeMenu}
+          />
+          
+          {/* Floating Menu */}
+          <div className="fixed top-20 right-4 bg-white rounded-xl shadow-xl border border-gray-100 z-50 md:hidden animate-in slide-in-from-top-2 duration-200">
+            <nav className="py-4 px-6 space-y-3 min-w-[200px]">
               <a 
                 href="#about" 
                 onClick={closeMenu}
-                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-2"
+                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
               >
                 브랜드 스토리
               </a>
               <a 
                 href="#services" 
                 onClick={closeMenu}
-                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-2"
+                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
               >
                 서비스
               </a>
               <a 
                 href="#gallery" 
                 onClick={closeMenu}
-                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-2"
+                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
               >
                 포트폴리오
               </a>
               <a 
                 href="#contact" 
                 onClick={closeMenu}
-                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-2"
+                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
               >
                 문의
               </a>
             </nav>
           </div>
-        )}
-      </div>
+        </>
+      )}
     </header>
   );
 }

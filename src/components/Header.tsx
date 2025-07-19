@@ -1,4 +1,18 @@
+'use client';
+
+import { useState } from 'react';
+
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="relative bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -9,20 +23,70 @@ export default function Header() {
               <span className="text-rose-500 ml-1">Flower</span>
             </div>
           </div>
+          
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
             <a href="#about" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">브랜드 스토리</a>
             <a href="#services" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">서비스</a>
             <a href="#gallery" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">포트폴리오</a>
             <a href="#contact" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">문의</a>
           </nav>
+          
+          {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <button className="text-gray-600 hover:text-rose-500">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+            <button 
+              onClick={toggleMenu}
+              className="text-gray-600 hover:text-rose-500 transition-colors"
+              aria-label="메뉴 열기"
+            >
+              {isMenuOpen ? (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
+        
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-sm">
+            <nav className="py-4 space-y-4">
+              <a 
+                href="#about" 
+                onClick={closeMenu}
+                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-2"
+              >
+                브랜드 스토리
+              </a>
+              <a 
+                href="#services" 
+                onClick={closeMenu}
+                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-2"
+              >
+                서비스
+              </a>
+              <a 
+                href="#gallery" 
+                onClick={closeMenu}
+                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-2"
+              >
+                포트폴리오
+              </a>
+              <a 
+                href="#contact" 
+                onClick={closeMenu}
+                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-2"
+              >
+                문의
+              </a>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );

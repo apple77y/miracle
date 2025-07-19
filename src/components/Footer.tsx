@@ -1,4 +1,6 @@
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+  
   return (
     <footer className="bg-gray-100/50 py-12 border-t border-gray-200/50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,7 +51,7 @@ export default function Footer() {
         
         <div className="mt-8 pt-6 border-t border-gray-200/50">
           <p className="text-xs text-gray-400 text-center font-light tracking-wide">
-            © 2024 Miracle Flower. All rights reserved.
+            © {currentYear} Miracle Flower. All rights reserved.
           </p>
         </div>
       </div>

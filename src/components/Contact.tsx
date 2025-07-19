@@ -80,7 +80,7 @@ export default function Contact() {
           <div className="bg-gray-50 p-6 border border-gray-100">
             <h4 className="text-lg font-medium text-gray-800 mb-4">찾아오기</h4>
             <p className="text-sm text-gray-600 font-light mb-6 leading-relaxed">
-              지하철 분당선 서현역에서 도보 10분 거리에 위치해 있습니다. 
+              지하철 분당선 정자역에서 도보 10분 거리에 위치해 있습니다.
               정확한 길찾기는 네이버 지도를 이용해주세요.
             </p>
             <a href="https://naver.me/GTnuWfmH" 

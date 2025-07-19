@@ -1,22 +1,22 @@
 export default function Gallery() {
   const galleryItems = [
     {
-      image: "/images/wedding-bouquet.jpg",
-      gradient: "linear-gradient(to bottom right, #fdf2f8, #fce7f3)",
-      title: "웨딩 부케",
-      category: "Wedding"
-    },
-    {
       image: "/images/seasonal-bouquet.jpg",
       gradient: "linear-gradient(to bottom right, #fefce8, #fef3c7)",
       title: "시즌 부케",
       category: "Seasonal"
     },
     {
-      image: "/images/potted-plants.jpg",
+      image: "/images/vase-arrangement.jpg",
+      gradient: "linear-gradient(to bottom right, #fdf2f8, #fce7f3)",
+      title: "화병 꽂이",
+      category: "Vase"
+    },
+    {
+      image: "/images/flower-basket.jpg",
       gradient: "linear-gradient(to bottom right, #f0fdf4, #dcfce7)",
-      title: "화분 컬렉션",
-      category: "Plants"
+      title: "꽃바구니",
+      category: "Basket"
     },
     {
       image: "/images/rose-bouquet.jpg",
@@ -31,10 +31,10 @@ export default function Gallery() {
       category: "Event"
     },
     {
-      image: "/images/spring-flowers.jpg",
+      image: "/images/flower-box.jpg",
       gradient: "linear-gradient(to bottom right, #f0fdfa, #ccfbf1)",
-      title: "스프링 플라워",
-      category: "Spring"
+      title: "플라워 박스",
+      category: "Box"
     }
   ];
 
@@ -55,7 +55,6 @@ export default function Gallery() {
                   className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" 
                   style={{backgroundImage: `url('${item.image}'), ${item.gradient}`}}
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300" />
               </div>
               <div className="pt-4 pb-2">
                 <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-1">

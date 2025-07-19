@@ -49,7 +49,7 @@ export default function About() {
             </div>
             <div className="bg-white p-6 border border-gray-100/50">
               <div className="text-2xl font-light text-rose-500 mb-2">500+</div>
-              <p className="text-sm text-gray-600 font-light">만족 고객</p>
+              <p className="text-sm text-gray-600 font-light">주문 고객</p>
               <p className="text-xs text-gray-400 mt-1">누적 서비스 건수</p>
             </div>
           </div>

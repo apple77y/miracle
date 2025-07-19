@@ -1,6 +1,18 @@
 export default function Contact() {
   const contactInfo = [
     {
+      label: "전화번호",
+      value: "0507-1456-0389",
+      icon: "📞",
+      link: "tel:0507-1456-0389"
+    },
+    {
+      label: "이메일",
+      value: "rmr0322@hanmail.net",
+      icon: "✉️",
+      link: "mailto:rmr0322@hanmail.net"
+    },
+    {
       label: "주소",
       value: "경기도 성남시 분당구 황새울로12번길 11-2",
       icon: "📍"
@@ -48,7 +60,13 @@ export default function Contact() {
                 <span className="text-lg">{info.icon}</span>
                 <div>
                   <p className="text-sm font-medium text-gray-800 mb-1">{info.label}</p>
-                  <p className="text-sm text-gray-600 font-light">{info.value}</p>
+                  {info.link ? (
+                    <a href={info.link} className="text-sm text-rose-500 hover:text-rose-600 transition-colors font-light">
+                      {info.value}
+                    </a>
+                  ) : (
+                    <p className="text-sm text-gray-600 font-light">{info.value}</p>
+                  )}
                 </div>
               </div>
             ))}

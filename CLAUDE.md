@@ -40,3 +40,4 @@ This is a Next.js 15 application using the App Router architecture with TypeScri
 - Tailwind classes are utility-first with custom CSS variables
 - No test framework is currently configured
 - ESLint extends `next/core-web-vitals` and `next/typescript`
+- Husky pre-commit hooks run ESLint and TypeScript checks automatically

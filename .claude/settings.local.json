@@ -13,7 +13,12 @@
       "Bash(git add:*)",
       "Bash(ls:*)",
       "Bash(rm:*)",
-      "Bash(npm cache clean:*)"
+      "Bash(npm cache clean:*)",
+      "Bash(node:*)",
+      "Bash(nvm use:*)",
+      "Bash(source:*)",
+      "Bash(npm run dev:*)",
+      "mcp__ide__getDiagnostics"
     ],
     "deny": []
   }

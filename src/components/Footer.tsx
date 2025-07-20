@@ -16,37 +16,6 @@ export default function Footer() {
               꽃 작품으로 소중한 마음을 전해드립니다
             </p>
           </div>
-          
-          {/* Contact */}
-          <div>
-            <h6 className="text-sm font-medium text-gray-800 mb-4 tracking-wide">연락처</h6>
-            <div className="space-y-2 text-sm text-gray-600 font-light">
-              <p>경기도 성남시 분당구 황새울로12번길 11-2</p>
-              <p>화-일 11:00-19:00 (월요일 휴무)</p>
-            </div>
-          </div>
-          
-          {/* Social */}
-          <div>
-            <h6 className="text-sm font-medium text-gray-800 mb-4 tracking-wide">팔로우</h6>
-            <div className="flex space-x-4">
-              <a href="https://www.instagram.com/miracle_flowerstudio/" 
-                 target="_blank" rel="noopener noreferrer"
-                 className="text-xs text-gray-500 hover:text-rose-500 transition-colors tracking-wide">
-                Instagram
-              </a>
-              <a href="https://blog.naver.com/miracle_flower" 
-                 target="_blank" rel="noopener noreferrer"
-                 className="text-xs text-gray-500 hover:text-rose-500 transition-colors tracking-wide">
-                Blog
-              </a>
-              <a href="https://www.youtube.com/@miracle_flowerstudio" 
-                 target="_blank" rel="noopener noreferrer"
-                 className="text-xs text-gray-500 hover:text-rose-500 transition-colors tracking-wide">
-                YouTube
-              </a>
-            </div>
-          </div>
         </div>
         
         <div className="mt-8 pt-6 border-t border-gray-200/50">

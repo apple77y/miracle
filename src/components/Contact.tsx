@@ -99,16 +99,34 @@ export default function Contact() {
             <h4 className="text-lg font-medium text-gray-800 mb-4">찾아오기</h4>
             <p className="text-sm text-gray-600 font-light mb-6 leading-relaxed">
               지하철 분당선 정자역에서 도보 10분 거리에 위치해 있습니다.
-              정확한 길찾기는 네이버 지도를 이용해주세요.
+              정확한 길찾기는 지도를 이용해주세요.
             </p>
-            <a href="https://naver.me/GTnuWfmH" 
-               target="_blank" rel="noopener noreferrer"
-               className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group">
-              네이버 지도
-              <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+            <div className="space-y-3">
+              <a href="https://naver.me/GTnuWfmH" 
+                 target="_blank" rel="noopener noreferrer"
+                 className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group w-full">
+                네이버 지도
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              <a href="https://place.map.kakao.com/86003378" 
+                 target="_blank" rel="noopener noreferrer"
+                 className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group w-full">
+                카카오 지도
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              <a href="https://maps.app.goo.gl/LBKyuJShj3owcW949" 
+                 target="_blank" rel="noopener noreferrer"
+                 className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group w-full">
+                구글 지도
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>

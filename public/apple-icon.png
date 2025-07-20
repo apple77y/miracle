@@ -1,0 +1,20 @@
+<svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+  <!-- Flower petals -->
+  <ellipse cx="90" cy="67.5" rx="16.875" ry="45" fill="#f472b6" transform="rotate(0 90 90)"/>
+  <ellipse cx="90" cy="67.5" rx="16.875" ry="45" fill="#ec4899" transform="rotate(45 90 90)"/>
+  <ellipse cx="90" cy="67.5" rx="16.875" ry="45" fill="#f472b6" transform="rotate(90 90 90)"/>
+  <ellipse cx="90" cy="67.5" rx="16.875" ry="45" fill="#ec4899" transform="rotate(135 90 90)"/>
+  <ellipse cx="90" cy="67.5" rx="16.875" ry="45" fill="#f472b6" transform="rotate(180 90 90)"/>
+  <ellipse cx="90" cy="67.5" rx="16.875" ry="45" fill="#ec4899" transform="rotate(225 90 90)"/>
+  <ellipse cx="90" cy="67.5" rx="16.875" ry="45" fill="#f472b6" transform="rotate(270 90 90)"/>
+  <ellipse cx="90" cy="67.5" rx="16.875" ry="45" fill="#ec4899" transform="rotate(315 90 90)"/>
+  
+  <!-- Flower center -->
+  <circle cx="90" cy="90" r="22.5" fill="#fbbf24"/>
+  
+  <!-- Stem -->
+  <rect x="84.375" y="112.5" width="11.25" height="45" fill="#22c55e"/>
+  
+  <!-- Leaf -->
+  <ellipse cx="67.5" y="135" rx="11.25" ry="22.5" fill="#16a34a" transform="rotate(-30 67.5 135)"/>
+</svg>

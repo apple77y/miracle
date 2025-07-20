@@ -52,7 +52,7 @@ export default function Gallery() {
             <div key={index} className="group cursor-pointer">
               <div className="relative overflow-hidden bg-gray-100 aspect-square">
                 <div 
-                  className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" 
+                  className="w-full h-full bg-cover bg-center transition-transform duration-500 hover:scale-105" 
                   style={{backgroundImage: `url('${item.image}'), ${item.gradient}`}}
                 />
               </div>
@@ -60,7 +60,7 @@ export default function Gallery() {
                 <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-1">
                   {item.category}
                 </p>
-                <h4 className="text-lg font-light text-gray-800 group-hover:text-rose-500 transition-colors">
+                <h4 className="text-lg font-light text-gray-800 hover:text-rose-500 transition-colors">
                   {item.title}
                 </h4>
               </div>
@@ -74,7 +74,7 @@ export default function Gallery() {
              target="_blank" rel="noopener noreferrer"
              className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group">
             Instagram
-            <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 ml-2 hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </a>

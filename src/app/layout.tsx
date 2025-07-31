@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import FloatingConsultButton from "../components/FloatingConsultButton";
+import FloatingConsultButton from "../components/ui/FloatingConsultButton";
 import "./globals.css";
 
 export const metadata: Metadata = {

@@ -1,4 +1,4 @@
-import BackgroundCarousel from './BackgroundCarousel';
+import BackgroundCarousel from '../ui/BackgroundCarousel';
 import Link from 'next/link';
 
 export default function Hero() {

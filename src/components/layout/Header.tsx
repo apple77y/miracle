@@ -19,10 +19,10 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
-            <div className="text-2xl font-light text-gray-800 tracking-wide">
+            <Link href="/" className="text-2xl font-light text-gray-800 tracking-wide hover:opacity-80 transition-opacity">
               <span className="font-medium">Miracle</span>
               <span className="text-rose-500 ml-1">Flower</span>
-            </div>
+            </Link>
           </div>
           
           {/* Desktop Navigation */}

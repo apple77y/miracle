@@ -8,14 +8,16 @@ import Contact from '@/components/sections/Contact';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <>
       <Header />
-      <Hero />
-      <Services />
-      <Gallery />
-      <About />
-      <Contact />
+      <main className="min-h-screen bg-background text-foreground">
+        <Hero />
+        <Services />
+        <Gallery />
+        <About />
+        <Contact />
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }

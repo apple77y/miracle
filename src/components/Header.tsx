@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,10 +27,12 @@ export default function Header() {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <a href="#about" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">브랜드 스토리</a>
-            <a href="#services" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">서비스</a>
-            <a href="#gallery" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">포트폴리오</a>
-            <a href="#contact" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">문의</a>
+            <Link href="/#about" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">브랜드 스토리</Link>
+            <Link href="/#services" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">서비스</Link>
+            <Link href="/#gallery" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">포트폴리오</Link>
+            <Link href="/guide" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">꽃 관리 가이드</Link>
+            <Link href="/occasion" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">이벤트 가이드</Link>
+            <Link href="/#contact" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">문의</Link>
           </nav>
           
           {/* Mobile Menu Button */}
@@ -66,34 +69,48 @@ export default function Header() {
           {/* Floating Menu */}
           <div className="fixed top-20 right-4 bg-white rounded-xl shadow-xl border border-gray-100 z-50 md:hidden animate-in slide-in-from-top-2 duration-200">
             <nav className="py-4 px-6 space-y-3 min-w-[200px]">
-              <a 
-                href="#about" 
+              <Link 
+                href="/#about"
                 onClick={closeMenu}
                 className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
               >
                 브랜드 스토리
-              </a>
-              <a 
-                href="#services" 
+              </Link>
+              <Link 
+                href="/#services"
                 onClick={closeMenu}
                 className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
               >
                 서비스
-              </a>
-              <a 
-                href="#gallery" 
+              </Link>
+              <Link 
+                href="/#gallery"
                 onClick={closeMenu}
                 className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
               >
                 포트폴리오
-              </a>
-              <a 
-                href="#contact" 
+              </Link>
+              <Link 
+                href="/guide" 
+                onClick={closeMenu}
+                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
+              >
+                꽃 관리 가이드
+              </Link>
+              <Link 
+                href="/occasion" 
+                onClick={closeMenu}
+                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
+              >
+                이벤트 가이드
+              </Link>
+              <Link 
+                href="/#contact"
                 onClick={closeMenu}
                 className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
               >
                 문의
-              </a>
+              </Link>
             </nav>
           </div>
         </>

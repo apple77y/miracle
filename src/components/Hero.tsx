@@ -1,4 +1,5 @@
 import BackgroundCarousel from './BackgroundCarousel';
+import Link from 'next/link';
 
 export default function Hero() {
   return (
@@ -45,12 +46,12 @@ export default function Hero() {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#contact" className="bg-rose-500 text-white px-8 py-3 hover:bg-rose-600 transition-all duration-300 font-medium tracking-wide text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+          <Link href="/#contact" className="bg-rose-500 text-white px-8 py-3 hover:bg-rose-600 transition-all duration-300 font-medium tracking-wide text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
             문의하기
-          </a>
-          <a href="#gallery" className="border border-rose-300 text-rose-600 px-8 py-3 hover:bg-rose-50 transition-all duration-300 font-medium tracking-wide text-sm">
+          </Link>
+          <Link href="/#gallery" className="border border-rose-300 text-rose-600 px-8 py-3 hover:bg-rose-50 transition-all duration-300 font-medium tracking-wide text-sm">
             포트폴리오 보기
-          </a>
+          </Link>
         </div>
         
         <div className="mt-16 grid grid-cols-3 gap-8 max-w-md mx-auto text-center">

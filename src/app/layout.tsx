@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Miracle Flower - 미라클 플라워 | 성남 분당 꽃집",
     description: "성남시 분당구에 위치한 미라클 플라워입니다. 신선하고 아름다운 꽃으로 특별한 순간을 만들어드립니다.",
-    url: "https://miracle-flower.com",
+    url: "https://miracle-pi.vercel.app",
     siteName: "Miracle Flower",
     locale: "ko_KR",
     type: "website",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     yahoo: "yahoo-verification-code",
   },
   alternates: {
-    canonical: "https://miracle-flower.com",
+    canonical: "https://miracle-pi.vercel.app",
   },
   icons: {
     icon: [
@@ -87,10 +87,10 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "@id": "https://miracle-flower.com",
+              "@id": "https://miracle-pi.vercel.app",
               "name": "미라클 플라워 (Miracle Flower)",
               "description": "성남시 분당구에 위치한 프리미엄 꽃집. 신선하고 아름다운 꽃으로 특별한 순간을 만들어드립니다.",
-              "url": "https://miracle-flower.com",
+              "url": "https://miracle-pi.vercel.app",
               "telephone": "+82-507-1456-0389",
               "email": "rmr0322@hanmail.net",
               "address": {
@@ -113,9 +113,9 @@ export default function RootLayout({
               "paymentAccepted": ["Cash", "Credit Card"],
               "currenciesAccepted": "KRW",
               "image": [
-                "https://miracle-flower.com/images/seasonal-bouquet.jpg",
-                "https://miracle-flower.com/images/vase-arrangement.jpg",
-                "https://miracle-flower.com/images/flower-basket.jpg"
+                "https://miracle-pi.vercel.app/images/seasonal-bouquet.jpg",
+                "https://miracle-pi.vercel.app/images/vase-arrangement.jpg",
+                "https://miracle-pi.vercel.app/images/flower-basket.jpg"
               ],
               "sameAs": [
                 "https://www.instagram.com/miracle_flowerstudio/",

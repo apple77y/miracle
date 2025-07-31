@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://miracle-flower.com/sitemap.xml
+Sitemap: https://miracle-pi.vercel.app/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1

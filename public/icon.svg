@@ -1,20 +1,44 @@
 <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-  <!-- Flower petals -->
-  <ellipse cx="16" cy="12" rx="3" ry="8" fill="#f472b6" transform="rotate(0 16 16)"/>
-  <ellipse cx="16" cy="12" rx="3" ry="8" fill="#ec4899" transform="rotate(45 16 16)"/>
-  <ellipse cx="16" cy="12" rx="3" ry="8" fill="#f472b6" transform="rotate(90 16 16)"/>
-  <ellipse cx="16" cy="12" rx="3" ry="8" fill="#ec4899" transform="rotate(135 16 16)"/>
-  <ellipse cx="16" cy="12" rx="3" ry="8" fill="#f472b6" transform="rotate(180 16 16)"/>
-  <ellipse cx="16" cy="12" rx="3" ry="8" fill="#ec4899" transform="rotate(225 16 16)"/>
-  <ellipse cx="16" cy="12" rx="3" ry="8" fill="#f472b6" transform="rotate(270 16 16)"/>
-  <ellipse cx="16" cy="12" rx="3" ry="8" fill="#ec4899" transform="rotate(315 16 16)"/>
+  <defs>
+    <linearGradient id="petalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fce7f3;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f472b6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="centerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef3c7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="stemGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#86efac;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16a34a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle for better visibility -->
+  <circle cx="16" cy="16" r="15" fill="white" opacity="0.9"/>
+  
+  <!-- Main flower petals -->
+  <path d="M16 8 C18 6, 22 8, 20 14 C18 16, 16 14, 16 8Z" fill="url(#petalGradient)" transform="rotate(0 16 16)"/>
+  <path d="M16 8 C18 6, 22 8, 20 14 C18 16, 16 14, 16 8Z" fill="url(#petalGradient)" transform="rotate(45 16 16)"/>
+  <path d="M16 8 C18 6, 22 8, 20 14 C18 16, 16 14, 16 8Z" fill="url(#petalGradient)" transform="rotate(90 16 16)"/>
+  <path d="M16 8 C18 6, 22 8, 20 14 C18 16, 16 14, 16 8Z" fill="url(#petalGradient)" transform="rotate(135 16 16)"/>
+  <path d="M16 8 C18 6, 22 8, 20 14 C18 16, 16 14, 16 8Z" fill="url(#petalGradient)" transform="rotate(180 16 16)"/>
+  <path d="M16 8 C18 6, 22 8, 20 14 C18 16, 16 14, 16 8Z" fill="url(#petalGradient)" transform="rotate(225 16 16)"/>
+  <path d="M16 8 C18 6, 22 8, 20 14 C18 16, 16 14, 16 8Z" fill="url(#petalGradient)" transform="rotate(270 16 16)"/>
+  <path d="M16 8 C18 6, 22 8, 20 14 C18 16, 16 14, 16 8Z" fill="url(#petalGradient)" transform="rotate(315 16 16)"/>
   
   <!-- Flower center -->
-  <circle cx="16" cy="16" r="4" fill="#fbbf24"/>
+  <circle cx="16" cy="16" r="3.5" fill="url(#centerGradient)"/>
+  <circle cx="16" cy="16" r="1.5" fill="#fbbf24"/>
   
   <!-- Stem -->
-  <rect x="15" y="20" width="2" height="8" fill="#22c55e"/>
+  <rect x="15.2" y="19" width="1.6" height="8" fill="url(#stemGradient)" rx="0.8"/>
   
-  <!-- Leaf -->
-  <ellipse cx="12" cy="24" rx="2" ry="4" fill="#16a34a" transform="rotate(-30 12 24)"/>
+  <!-- Leaves -->
+  <ellipse cx="13" cy="23" rx="1.5" ry="3" fill="url(#stemGradient)" transform="rotate(-25 13 23)"/>
+  <ellipse cx="19" cy="25" rx="1.2" ry="2.5" fill="url(#stemGradient)" transform="rotate(30 19 25)"/>
+  
+  <!-- Letter M for Miracle -->
+  <text x="16" y="29" text-anchor="middle" font-family="serif" font-size="6" font-weight="bold" fill="#4b5563">M</text>
 </svg>

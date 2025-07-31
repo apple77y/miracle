@@ -59,6 +59,9 @@ export const metadata: Metadata = {
     yandex: "yandex-verification-code",
     yahoo: "yahoo-verification-code",
   },
+  other: {
+    "naver-site-verification": "4b6679762238a11e4b68367323ceb6a21e184e8f",
+  },
   alternates: {
     canonical: "https://miracle-pi.vercel.app",
   },

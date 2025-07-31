@@ -1,6 +1,9 @@
+import BackgroundCarousel from './BackgroundCarousel';
+
 export default function Hero() {
   return (
-    <section className="relative py-24 px-4 bg-gradient-to-br from-rose-50 via-white to-pink-50 overflow-hidden">
+    <section className="relative py-24 px-4 overflow-hidden">
+      <BackgroundCarousel />
       {/* Decorative Elements */}
       <div className="absolute top-10 left-10 w-20 h-20 bg-rose-100 rounded-full opacity-30 animate-pulse"></div>
       <div className="absolute top-32 right-16 w-16 h-16 bg-pink-100 rounded-full opacity-40"></div>

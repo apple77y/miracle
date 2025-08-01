@@ -24,7 +24,14 @@ export default function BackgroundMusic() {
     
     return () => {
       if (audioRef.current) {
-        audioRef.current.pause();
+        try {
+          audioRef.current.pause();
+          audioRef.current.currentTime = 0;
+          audioRef.current.src = '';
+          audioRef.current.load();
+        } catch (error) {
+          console.log('Audio cleanup error:', error);
+        }
       }
     };
   }, [volume]);
@@ -46,7 +53,20 @@ export default function BackgroundMusic() {
     // Small delay to ensure audio element is ready
     const timer = setTimeout(autoPlay, 1000);
     
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      // Additional cleanup when component unmounts
+      if (audioRef.current) {
+        try {
+          audioRef.current.pause();
+          audioRef.current.currentTime = 0;
+          audioRef.current.src = '';
+          audioRef.current.load();
+        } catch (error) {
+          console.log('Audio cleanup error:', error);
+        }
+      }
+    };
   }, []);
 
   const togglePlay = async () => {
@@ -57,14 +77,19 @@ export default function BackgroundMusic() {
         audioRef.current.pause();
         setIsPlaying(false);
       } else {
+        // Ensure audio is properly loaded before playing
+        if (audioRef.current.readyState < 2) {
+          audioRef.current.load();
+        }
         audioRef.current.currentTime = 0;
         await audioRef.current.play();
         setIsPlaying(true);
       }
     } catch (error) {
       console.error('Audio playback failed:', error);
-      // Fallback message
-      alert('음악 재생에 실패했습니다. 브라우저 설정이나 네트워크 문제일 수 있습니다.');
+      setIsPlaying(false);
+      // More graceful error handling
+      console.log('음악 재생에 실패했습니다. 브라우저 설정이나 네트워크 문제일 수 있습니다.');
     }
   };
 

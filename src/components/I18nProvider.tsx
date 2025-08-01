@@ -52,10 +52,18 @@ export default function I18nProvider({ children }: I18nProviderProps) {
 
   const handleSetLocale = (newLocale: Locale) => {
     setLocale(newLocale);
-    localStorage.setItem('locale', newLocale);
-    
-    // Update HTML lang attribute
-    document.documentElement.lang = newLocale;
+    try {
+      localStorage.setItem('locale', newLocale);
+      
+      // Update HTML lang attribute with delay to avoid conflicts
+      setTimeout(() => {
+        if (document.documentElement) {
+          document.documentElement.lang = newLocale;
+        }
+      }, 50);
+    } catch (error) {
+      console.log('Locale update error:', error);
+    }
   };
 
   return (

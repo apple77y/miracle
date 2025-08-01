@@ -54,22 +54,24 @@ export default function Gallery() {
           <p className="text-gray-600 font-light">{intl.formatMessage({ id: 'gallery.subtitle' })}</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {galleryItems.map((item, index) => (
-            <div key={index} className="group cursor-pointer">
-              <div className="relative overflow-hidden bg-gray-100 aspect-square">
+            <div key={index} className="group cursor-pointer hover-lift">
+              <div className="relative overflow-hidden rounded-3xl shadow-botanical border border-white/50 aspect-[4/5] bg-gradient-to-br from-sage/5 to-dusty-rose/5">
                 <div 
-                  className="w-full h-full bg-cover bg-center transition-transform duration-500 hover:scale-105" 
+                  className="w-full h-full bg-cover bg-center transition-all duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" 
                   style={{backgroundImage: `url('${item.image}'), ${item.gradient}`}}
                 />
-              </div>
-              <div className="pt-4 pb-2">
-                <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-1">
-                  {item.category}
-                </p>
-                <h4 className="text-lg font-light text-gray-800 hover:text-rose-500 transition-colors">
-                  {intl.formatMessage({ id: item.titleKey })}
-                </h4>
+                
+                {/* Elegant overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Category badge */}
+                <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full border border-sage/10">
+                  <p className="text-xs text-sage-dark uppercase tracking-widest font-elegant-medium">
+                    {item.category}
+                  </p>
+                </div>
               </div>
             </div>
           ))}

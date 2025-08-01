@@ -1,21 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fefdfb;
+  --foreground: #2d2926;
   --card: #ffffff;
-  --card-foreground: #171717;
-  --primary: #10b981;
+  --card-foreground: #2d2926;
+  --primary: #d4a574;
   --primary-foreground: #ffffff;
-  --secondary: #f3f4f6;
-  --secondary-foreground: #374151;
-  --muted: #f9fafb;
-  --muted-foreground: #6b7280;
-  --accent: #f3f4f6;
-  --accent-foreground: #374151;
-  --border: #e5e7eb;
-  --input: #f9fafb;
-  --ring: #10b981;
+  --secondary: #f7f5f3;
+  --secondary-foreground: #6b5b4f;
+  --muted: #faf9f7;
+  --muted-foreground: #8b7355;
+  --accent: #f1ede8;
+  --accent-foreground: #6b5b4f;
+  --border: #ebe7e0;
+  --input: #faf9f7;
+  --ring: #d4a574;
+  --sage: #9caf88;
+  --sage-light: #b8c9a4;
+  --sage-dark: #7a9465;
+  --dusty-rose: #d4a5a5;
+  --dusty-rose-light: #e8c4c4;
+  --dusty-rose-dark: #b8858a;
+  --cream: #f5f2ed;
+  --warm-white: #fefdfb;
+  --terracotta: #c7956b;
+  --lavender: #b8a9d4;
+  --lavender-light: #d4c9e8;
 }
 
 @theme inline {
@@ -34,27 +45,49 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-sage: var(--sage);
+  --color-sage-light: var(--sage-light);
+  --color-sage-dark: var(--sage-dark);
+  --color-dusty-rose: var(--dusty-rose);
+  --color-dusty-rose-light: var(--dusty-rose-light);
+  --color-dusty-rose-dark: var(--dusty-rose-dark);
+  --color-cream: var(--cream);
+  --color-warm-white: var(--warm-white);
+  --color-terracotta: var(--terracotta);
+  --color-lavender: var(--lavender);
+  --color-lavender-light: var(--lavender-light);
   --font-sans: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans CJK KR", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #fafafa;
-    --card: #111111;
-    --card-foreground: #fafafa;
-    --primary: #10b981;
-    --primary-foreground: #ffffff;
-    --secondary: #1f2937;
-    --secondary-foreground: #d1d5db;
-    --muted: #1f2937;
-    --muted-foreground: #9ca3af;
-    --accent: #1f2937;
-    --accent-foreground: #d1d5db;
-    --border: #374151;
-    --input: #1f2937;
-    --ring: #10b981;
+    --background: #1a1613;
+    --foreground: #f5f2ed;
+    --card: #2d2926;
+    --card-foreground: #f5f2ed;
+    --primary: #d4a574;
+    --primary-foreground: #1a1613;
+    --secondary: #2d2926;
+    --secondary-foreground: #c7b299;
+    --muted: #2d2926;
+    --muted-foreground: #8b7355;
+    --accent: #2d2926;
+    --accent-foreground: #c7b299;
+    --border: #3d342c;
+    --input: #2d2926;
+    --ring: #d4a574;
+    --sage: #7a9465;
+    --sage-light: #9caf88;
+    --sage-dark: #5a6b47;
+    --dusty-rose: #b8858a;
+    --dusty-rose-light: #d4a5a5;
+    --dusty-rose-dark: #9a6e73;
+    --cream: #2d2926;
+    --warm-white: #1a1613;
+    --terracotta: #a67850;
+    --lavender: #9b8bb8;
+    --lavender-light: #b8a9d4;
   }
 }
 
@@ -63,4 +96,72 @@ body {
   color: var(--foreground);
   font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans CJK KR", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+/* Elegant botanical gradients */
+.gradient-botanical {
+  background: linear-gradient(135deg, #f5f2ed 0%, #faf9f7 50%, #f1ede8 100%);
+}
+
+.gradient-sage {
+  background: linear-gradient(135deg, #b8c9a4 0%, #9caf88 50%, #7a9465 100%);
+}
+
+.gradient-dusty-rose {
+  background: linear-gradient(135deg, #e8c4c4 0%, #d4a5a5 50%, #b8858a 100%);
+}
+
+.gradient-warm {
+  background: linear-gradient(135deg, #fefdfb 0%, #f5f2ed 50%, #ebe7e0 100%);
+}
+
+/* Typography improvements */
+.font-elegant {
+  font-weight: 300;
+  letter-spacing: 0.025em;
+  line-height: 1.4;
+}
+
+.font-elegant-medium {
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  line-height: 1.5;
+}
+
+.font-elegant-bold {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+}
+
+/* Subtle shadows for depth */
+.shadow-botanical {
+  box-shadow: 0 4px 20px -2px rgba(156, 175, 136, 0.1), 0 2px 8px -2px rgba(156, 175, 136, 0.05);
+}
+
+.shadow-warm {
+  box-shadow: 0 4px 20px -2px rgba(212, 165, 116, 0.08), 0 2px 8px -2px rgba(212, 165, 116, 0.04);
+}
+
+/* Elegant hover effects */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px -4px rgba(156, 175, 136, 0.15), 0 4px 16px -4px rgba(156, 175, 136, 0.1);
+}
+
+/* Elegant animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(2deg); }
+  66% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }

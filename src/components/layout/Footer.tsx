@@ -1,4 +1,9 @@
+'use client';
+
+import { useIntl } from 'react-intl';
+
 export default function Footer() {
+  const intl = useIntl();
   const currentYear = new Date().getFullYear();
   
   return (
@@ -11,16 +16,15 @@ export default function Footer() {
               <span className="font-medium">Miracle</span>
               <span className="text-rose-500 ml-1">Flower</span>
             </div>
-            <p className="text-sm text-gray-600 font-light leading-relaxed">
-              성남시 분당구에서 정성스럽게 만든<br />
-              꽃 작품으로 소중한 마음을 전해드립니다
+            <p className="text-sm text-gray-600 font-light leading-relaxed whitespace-pre-line">
+              {intl.formatMessage({ id: 'footer.description' })}
             </p>
           </div>
         </div>
         
         <div className="mt-8 pt-6 border-t border-gray-200/50">
           <p className="text-xs text-gray-400 text-center font-light tracking-wide">
-            © {currentYear} Miracle Flower. All rights reserved.
+            © {currentYear} Miracle Flower. {intl.formatMessage({ id: 'footer.copyright' })}
           </p>
         </div>
       </div>

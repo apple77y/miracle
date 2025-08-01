@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useIntl } from 'react-intl';
 
 export default function Header() {
+  const intl = useIntl();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -27,12 +29,24 @@ export default function Header() {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <Link href="/#about" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">브랜드 스토리</Link>
-            <Link href="/#services" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">서비스</Link>
-            <Link href="/#gallery" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">포트폴리오</Link>
-            <Link href="/guide" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">꽃 관리 가이드</Link>
-            <Link href="/occasion" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">이벤트 가이드</Link>
-            <Link href="/#contact" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">문의</Link>
+            <Link href="/#about" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">
+              {intl.formatMessage({ id: 'header.brandStory' })}
+            </Link>
+            <Link href="/#services" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">
+              {intl.formatMessage({ id: 'header.services' })}
+            </Link>
+            <Link href="/#gallery" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">
+              {intl.formatMessage({ id: 'header.portfolio' })}
+            </Link>
+            <Link href="/guide" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">
+              {intl.formatMessage({ id: 'header.flowerGuide' })}
+            </Link>
+            <Link href="/occasion" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">
+              {intl.formatMessage({ id: 'header.eventGuide' })}
+            </Link>
+            <Link href="/#contact" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">
+              {intl.formatMessage({ id: 'header.contact' })}
+            </Link>
           </nav>
           
           {/* Mobile Menu Button */}
@@ -74,42 +88,42 @@ export default function Header() {
                 onClick={closeMenu}
                 className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
               >
-                브랜드 스토리
+                {intl.formatMessage({ id: 'header.brandStory' })}
               </Link>
               <Link 
                 href="/#services"
                 onClick={closeMenu}
                 className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
               >
-                서비스
+                {intl.formatMessage({ id: 'header.services' })}
               </Link>
               <Link 
                 href="/#gallery"
                 onClick={closeMenu}
                 className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
               >
-                포트폴리오
+                {intl.formatMessage({ id: 'header.portfolio' })}
               </Link>
               <Link 
                 href="/guide" 
                 onClick={closeMenu}
                 className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
               >
-                꽃 관리 가이드
+                {intl.formatMessage({ id: 'header.flowerGuide' })}
               </Link>
               <Link 
                 href="/occasion" 
                 onClick={closeMenu}
                 className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
               >
-                이벤트 가이드
+                {intl.formatMessage({ id: 'header.eventGuide' })}
               </Link>
               <Link 
                 href="/#contact"
                 onClick={closeMenu}
                 className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
               >
-                문의
+                {intl.formatMessage({ id: 'header.contact' })}
               </Link>
             </nav>
           </div>

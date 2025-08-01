@@ -1,39 +1,44 @@
+'use client';
+
+import { useIntl } from 'react-intl';
+
 export default function Gallery() {
+  const intl = useIntl();
   const galleryItems = [
     {
       image: "/images/seasonal-bouquet.jpg",
       gradient: "linear-gradient(to bottom right, #fefce8, #fef3c7)",
-      title: "시즌 부케",
+      titleKey: "gallery.seasonal.title",
       category: "Seasonal"
     },
     {
       image: "/images/vase-arrangement.jpg",
       gradient: "linear-gradient(to bottom right, #fdf2f8, #fce7f3)",
-      title: "화병 꽂이",
+      titleKey: "gallery.vase.title",
       category: "Vase"
     },
     {
       image: "/images/flower-basket.jpg",
       gradient: "linear-gradient(to bottom right, #f0fdf4, #dcfce7)",
-      title: "꽃바구니",
+      titleKey: "gallery.basket.title",
       category: "Basket"
     },
     {
       image: "/images/rose-bouquet.jpg",
       gradient: "linear-gradient(to bottom right, #fef2f2, #fecaca)",
-      title: "로즈 컬렉션",
+      titleKey: "gallery.rose.title",
       category: "Rose"
     },
     {
       image: "/images/event-decoration.jpg",
       gradient: "linear-gradient(to bottom right, #faf5ff, #e9d5ff)",
-      title: "이벤트 데코",
+      titleKey: "gallery.event.title",
       category: "Event"
     },
     {
       image: "/images/flower-box.jpg",
       gradient: "linear-gradient(to bottom right, #f0fdfa, #ccfbf1)",
-      title: "플라워 박스",
+      titleKey: "gallery.box.title",
       category: "Box"
     }
   ];
@@ -42,9 +47,11 @@ export default function Gallery() {
     <section id="gallery" className="py-20 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h3 className="text-3xl font-light text-gray-800 mb-3 tracking-tight">포트폴리오</h3>
+          <h3 className="text-3xl font-light text-gray-800 mb-3 tracking-tight">
+            {intl.formatMessage({ id: 'gallery.title' })}
+          </h3>
           <div className="w-12 h-px bg-rose-300 mx-auto mb-4"></div>
-          <p className="text-gray-600 font-light">미라클 플라워의 섬세한 작품들</p>
+          <p className="text-gray-600 font-light">{intl.formatMessage({ id: 'gallery.subtitle' })}</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -61,7 +68,7 @@ export default function Gallery() {
                   {item.category}
                 </p>
                 <h4 className="text-lg font-light text-gray-800 hover:text-rose-500 transition-colors">
-                  {item.title}
+                  {intl.formatMessage({ id: item.titleKey })}
                 </h4>
               </div>
             </div>
@@ -69,7 +76,7 @@ export default function Gallery() {
         </div>
 
         <div className="text-center mt-16">
-          <p className="text-gray-600 font-light mb-6">더 많은 작품을 확인해보세요</p>
+          <p className="text-gray-600 font-light mb-6">{intl.formatMessage({ id: 'gallery.moreWorks' })}</p>
           <a href="https://www.instagram.com/miracle_flowerstudio/" 
              target="_blank" rel="noopener noreferrer"
              className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group">

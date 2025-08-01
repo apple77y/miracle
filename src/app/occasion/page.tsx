@@ -1,134 +1,242 @@
+'use client';
+
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-
-export const metadata = {
-  title: "이벤트·기념일 가이드 | Miracle Flower - 미라클 플라워",
-  description: "생일, 기념일, 결혼식, 졸업식 등 특별한 날에 어울리는 꽃 추천과 선택 가이드를 제공합니다.",
-};
-
-const occasionGuides = [
-  {
-    id: 1,
-    category: "생일 & 기념일",
-    icon: "🎂",
-    occasions: [
-      {
-        event: "생일 선물",
-        flowers: ["장미 부케", "혼합 꽃다발", "화분 선물"],
-        colors: ["빨강", "분홍", "노랑"],
-        tips: "상대방이 좋아하는 색상을 고려하세요"
-      },
-      {
-        event: "연인 기념일",
-        flowers: ["빨간 장미", "핑크 장미", "로즈 박스"],
-        colors: ["빨강", "분홍", "화이트"],
-        tips: "장미 개수에 의미를 담아보세요 (12송이, 100송이 등)"
-      },
-      {
-        event: "결혼기념일",
-        flowers: ["백합", "장미와 백합 혼합", "우아한 꽃다발"],
-        colors: ["화이트", "크림", "연분홍"],
-        tips: "우아하고 고급스러운 느낌의 꽃을 선택하세요",
-      }
-    ]
-  },
-  {
-    id: 2,
-    category: "졸업 & 입학",
-    icon: "🎓",
-    occasions: [
-      {
-        event: "졸업식",
-        flowers: ["해바라기", "거베라", "꽃다발+풍선세트"],
-        colors: ["노랑", "주황", "밝은 색상"],
-        tips: "밝고 희망찬 느낌의 꽃을 선택하세요",
-      },
-      {
-        event: "입학식",
-        flowers: ["튤립", "프리지아", "스프레이장미"],
-        colors: ["파스텔 톤", "화이트", "연분홍"],
-        tips: "새로운 시작을 의미하는 봄꽃이 좋습니다",
-      },
-      {
-        event: "취업 축하",
-        flowers: ["백합", "장미", "고급 꽃다발"],
-        colors: ["화이트", "연보라", "블루"],
-        tips: "성숙하고 전문적인 이미지의 꽃을 선택하세요",
-      }
-    ]
-  },
-  {
-    id: 3,
-    category: "결혼식",
-    icon: "💒",
-    occasions: [
-      {
-        event: "웨딩 부케",
-        flowers: ["장미", "백합", "작약", "유칼립투스"],
-        colors: ["화이트", "아이보리", "블러쉬 핑크"],
-        tips: "드레스와 웨딩 테마에 맞춰 선택하세요",
-      },
-      {
-        event: "부토니어",
-        flowers: ["장미", "카네이션", "리시안셔스"],
-        colors: ["부케와 매칭되는 색상"],
-        tips: "신랑 정장 색상과 조화를 이루도록 하세요",
-      },
-      {
-        event: "웨딩 장식",
-        flowers: ["대형 꽃꽂이", "테이블 센터피스", "아치 장식"],
-        colors: ["웨딩 테마 컬러"],
-        tips: "전체적인 웨딩홀 분위기와 통일감을 주세요",
-      }
-    ]
-  },
-  {
-    id: 4,
-    category: "개업 & 축하",
-    icon: "🎊",
-    occasions: [
-      {
-        event: "개업 축하",
-        flowers: ["개업 화환", "관엽식물", "꽃바구니"],
-        colors: ["빨강", "노랑", "화려한 색상"],
-        tips: "풍요와 번영을 의미하는 꽃을 선택하세요",
-      },
-      {
-        event: "승진 축하",
-        flowers: ["고급 꽃다발", "화분 선물", "꽃바구니"],
-        colors: ["진한 색상", "고급스러운 톤"],
-        tips: "품격 있고 격조 높은 느낌을 연출하세요",
-      },
-      {
-        event: "집들이",
-        flowers: ["공기정화 식물", "관엽식물", "작은 화분"],
-        colors: ["초록", "화이트", "자연스러운 색"],
-        tips: "오래도록 키울 수 있는 식물을 선택하세요",
-      }
-    ]
-  },
-  {
-    id: 5,
-    category: "위로 & 추모",
-    icon: "🕊️",
-    occasions: [
-      {
-        event: "장례식 조화",
-        flowers: ["국화", "백합", "카네이션"],
-        colors: ["화이트", "노랑", "연보라"],
-        tips: "조용하고 차분한 색상으로 선택하세요",
-      },
-      {
-        event: "위로 꽃다발",
-        flowers: ["백합", "국화", "카네이션"],
-        colors: ["화이트", "연분홍", "연보라"],
-        tips: "너무 화려하지 않은 은은한 색상이 좋습니다",
-      }
-    ]
-  }
-];
+import { useIntl } from 'react-intl';
 
 export default function OccasionPage() {
+  const intl = useIntl();
+
+  const occasionGuides = [
+    {
+      id: 1,
+      category: intl.formatMessage({ id: 'occasion.birthday.category' }),
+      icon: "🎂",
+      occasions: [
+        {
+          event: intl.formatMessage({ id: 'occasion.birthday.gift' }),
+          flowers: [
+            intl.formatMessage({ id: 'occasion.flowers.roseBouquet' }),
+            intl.formatMessage({ id: 'occasion.flowers.mixedBouquet' }),
+            intl.formatMessage({ id: 'occasion.flowers.potGift' })
+          ],
+          colors: [
+            intl.formatMessage({ id: 'occasion.colors.red' }),
+            intl.formatMessage({ id: 'occasion.colors.pink' }),
+            intl.formatMessage({ id: 'occasion.colors.yellow' })
+          ],
+          tips: intl.formatMessage({ id: 'occasion.tips.birthday' })
+        },
+        {
+          event: intl.formatMessage({ id: 'occasion.birthday.anniversary' }),
+          flowers: [
+            intl.formatMessage({ id: 'occasion.flowers.redRose' }),
+            intl.formatMessage({ id: 'occasion.flowers.pinkRose' }),
+            intl.formatMessage({ id: 'occasion.flowers.roseBox' })
+          ],
+          colors: [
+            intl.formatMessage({ id: 'occasion.colors.red' }),
+            intl.formatMessage({ id: 'occasion.colors.pink' }),
+            intl.formatMessage({ id: 'occasion.colors.white' })
+          ],
+          tips: intl.formatMessage({ id: 'occasion.tips.anniversary' })
+        },
+        {
+          event: intl.formatMessage({ id: 'occasion.birthday.marriage' }),
+          flowers: [
+            intl.formatMessage({ id: 'occasion.flowers.lily' }),
+            intl.formatMessage({ id: 'occasion.flowers.roseLilyMix' }),
+            intl.formatMessage({ id: 'occasion.flowers.elegantBouquet' })
+          ],
+          colors: [
+            intl.formatMessage({ id: 'occasion.colors.white' }),
+            intl.formatMessage({ id: 'occasion.colors.cream' }),
+            intl.formatMessage({ id: 'occasion.colors.lightPink' })
+          ],
+          tips: intl.formatMessage({ id: 'occasion.tips.marriage' })
+        }
+      ]
+    },
+    {
+      id: 2,
+      category: intl.formatMessage({ id: 'occasion.graduation.category' }),
+      icon: "🎓",
+      occasions: [
+        {
+          event: intl.formatMessage({ id: 'occasion.graduation.ceremony' }),
+          flowers: [
+            intl.formatMessage({ id: 'occasion.flowers.sunflower' }),
+            intl.formatMessage({ id: 'occasion.flowers.gerbera' }),
+            intl.formatMessage({ id: 'occasion.flowers.bouquetBalloonSet' })
+          ],
+          colors: [
+            intl.formatMessage({ id: 'occasion.colors.yellow' }),
+            intl.formatMessage({ id: 'occasion.colors.orange' }),
+            intl.formatMessage({ id: 'occasion.colors.brightColors' })
+          ],
+          tips: intl.formatMessage({ id: 'occasion.tips.graduation' })
+        },
+        {
+          event: intl.formatMessage({ id: 'occasion.graduation.entrance' }),
+          flowers: [
+            intl.formatMessage({ id: 'occasion.flowers.tulip' }),
+            intl.formatMessage({ id: 'occasion.flowers.freesia' }),
+            intl.formatMessage({ id: 'occasion.flowers.sprayRose' })
+          ],
+          colors: [
+            intl.formatMessage({ id: 'occasion.colors.pastelTone' }),
+            intl.formatMessage({ id: 'occasion.colors.white' }),
+            intl.formatMessage({ id: 'occasion.colors.lightPink' })
+          ],
+          tips: intl.formatMessage({ id: 'occasion.tips.entrance' })
+        },
+        {
+          event: intl.formatMessage({ id: 'occasion.graduation.job' }),
+          flowers: [
+            intl.formatMessage({ id: 'occasion.flowers.lily' }),
+            intl.formatMessage({ id: 'occasion.flowers.rose' }),
+            intl.formatMessage({ id: 'occasion.flowers.premiumBouquet' })
+          ],
+          colors: [
+            intl.formatMessage({ id: 'occasion.colors.white' }),
+            intl.formatMessage({ id: 'occasion.colors.lightPurple' }),
+            intl.formatMessage({ id: 'occasion.colors.blue' })
+          ],
+          tips: intl.formatMessage({ id: 'occasion.tips.job' })
+        }
+      ]
+    },
+    {
+      id: 3,
+      category: intl.formatMessage({ id: 'occasion.wedding.category' }),
+      icon: "💒",
+      occasions: [
+        {
+          event: intl.formatMessage({ id: 'occasion.wedding.bouquet' }),
+          flowers: [
+            intl.formatMessage({ id: 'occasion.flowers.rose' }),
+            intl.formatMessage({ id: 'occasion.flowers.lily' }),
+            intl.formatMessage({ id: 'occasion.flowers.peony' }),
+            intl.formatMessage({ id: 'occasion.flowers.eucalyptus' })
+          ],
+          colors: [
+            intl.formatMessage({ id: 'occasion.colors.white' }),
+            intl.formatMessage({ id: 'occasion.colors.ivory' }),
+            intl.formatMessage({ id: 'occasion.colors.blushPink' })
+          ],
+          tips: intl.formatMessage({ id: 'occasion.tips.weddingBouquet' })
+        },
+        {
+          event: intl.formatMessage({ id: 'occasion.wedding.boutonniere' }),
+          flowers: [
+            intl.formatMessage({ id: 'occasion.flowers.rose' }),
+            intl.formatMessage({ id: 'occasion.flowers.carnation' }),
+            intl.formatMessage({ id: 'occasion.flowers.lisianthus' })
+          ],
+          colors: [
+            intl.formatMessage({ id: 'occasion.colors.bouquetMatching' })
+          ],
+          tips: intl.formatMessage({ id: 'occasion.tips.boutonniere' })
+        },
+        {
+          event: intl.formatMessage({ id: 'occasion.wedding.decoration' }),
+          flowers: [
+            intl.formatMessage({ id: 'occasion.flowers.largeArrangement' }),
+            intl.formatMessage({ id: 'occasion.flowers.centerpiece' }),
+            intl.formatMessage({ id: 'occasion.flowers.archDecoration' })
+          ],
+          colors: [
+            intl.formatMessage({ id: 'occasion.colors.weddingTheme' })
+          ],
+          tips: intl.formatMessage({ id: 'occasion.tips.weddingDecoration' })
+        }
+      ]
+    },
+    {
+      id: 4,
+      category: intl.formatMessage({ id: 'occasion.business.category' }),
+      icon: "🎊",
+      occasions: [
+        {
+          event: intl.formatMessage({ id: 'occasion.business.opening' }),
+          flowers: [
+            intl.formatMessage({ id: 'occasion.flowers.openingWreath' }),
+            intl.formatMessage({ id: 'occasion.flowers.foliagePlant' }),
+            intl.formatMessage({ id: 'occasion.flowers.flowerBasket' })
+          ],
+          colors: [
+            intl.formatMessage({ id: 'occasion.colors.red' }),
+            intl.formatMessage({ id: 'occasion.colors.yellow' }),
+            intl.formatMessage({ id: 'occasion.colors.vibrantColors' })
+          ],
+          tips: intl.formatMessage({ id: 'occasion.tips.opening' })
+        },
+        {
+          event: intl.formatMessage({ id: 'occasion.business.promotion' }),
+          flowers: [
+            intl.formatMessage({ id: 'occasion.flowers.premiumBouquet' }),
+            intl.formatMessage({ id: 'occasion.flowers.potGift' }),
+            intl.formatMessage({ id: 'occasion.flowers.flowerBasket' })
+          ],
+          colors: [
+            intl.formatMessage({ id: 'occasion.colors.darkColors' }),
+            intl.formatMessage({ id: 'occasion.colors.luxuryTone' })
+          ],
+          tips: intl.formatMessage({ id: 'occasion.tips.promotion' })
+        },
+        {
+          event: intl.formatMessage({ id: 'occasion.business.housewarming' }),
+          flowers: [
+            intl.formatMessage({ id: 'occasion.flowers.airPurifyingPlant' }),
+            intl.formatMessage({ id: 'occasion.flowers.foliagePlant' }),
+            intl.formatMessage({ id: 'occasion.flowers.smallPot' })
+          ],
+          colors: [
+            intl.formatMessage({ id: 'occasion.colors.green' }),
+            intl.formatMessage({ id: 'occasion.colors.white' }),
+            intl.formatMessage({ id: 'occasion.colors.naturalColors' })
+          ],
+          tips: intl.formatMessage({ id: 'occasion.tips.housewarming' })
+        }
+      ]
+    },
+    {
+      id: 5,
+      category: intl.formatMessage({ id: 'occasion.memorial.category' }),
+      icon: "🕊️",
+      occasions: [
+        {
+          event: intl.formatMessage({ id: 'occasion.memorial.funeral' }),
+          flowers: [
+            intl.formatMessage({ id: 'occasion.flowers.chrysanthemum' }),
+            intl.formatMessage({ id: 'occasion.flowers.lily' }),
+            intl.formatMessage({ id: 'occasion.flowers.carnation' })
+          ],
+          colors: [
+            intl.formatMessage({ id: 'occasion.colors.white' }),
+            intl.formatMessage({ id: 'occasion.colors.yellow' }),
+            intl.formatMessage({ id: 'occasion.colors.lightPurple' })
+          ],
+          tips: intl.formatMessage({ id: 'occasion.tips.funeral' })
+        },
+        {
+          event: intl.formatMessage({ id: 'occasion.memorial.condolence' }),
+          flowers: [
+            intl.formatMessage({ id: 'occasion.flowers.lily' }),
+            intl.formatMessage({ id: 'occasion.flowers.chrysanthemum' }),
+            intl.formatMessage({ id: 'occasion.flowers.carnation' })
+          ],
+          colors: [
+            intl.formatMessage({ id: 'occasion.colors.white' }),
+            intl.formatMessage({ id: 'occasion.colors.lightPink' }),
+            intl.formatMessage({ id: 'occasion.colors.lightPurple' })
+          ],
+          tips: intl.formatMessage({ id: 'occasion.tips.condolence' })
+        }
+      ]
+    }
+  ];
+
   return (
     <>
       <Header />
@@ -136,10 +244,14 @@ export default function OccasionPage() {
       <main className="min-h-screen bg-background text-foreground">
         <div className="container mx-auto px-4 py-12">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold mb-4">이벤트·기념일 가이드</h1>
+            <h1 className="text-4xl font-bold mb-4">{intl.formatMessage({ id: 'occasion.title' })}</h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              특별한 날에 어울리는 꽃을 찾고 계신가요?<br />
-              상황별 맞춤 꽃 추천으로 더욱 의미 있는 순간을 만들어보세요
+              {intl.formatMessage({ id: 'occasion.subtitle' }).split('\n').map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index === 0 && <br />}
+                </span>
+              ))}
             </p>
           </div>
 
@@ -161,7 +273,7 @@ export default function OccasionPage() {
                         
                         <div className="space-y-3 text-sm">
                           <div>
-                            <span className="font-medium">추천 꽃:</span>
+                            <span className="font-medium">{intl.formatMessage({ id: 'occasion.flowers.recommend' })}</span>
                             <div className="mt-1">
                               {occasion.flowers.map((flower, idx) => (
                                 <span key={idx} className="inline-block bg-secondary px-2 py-1 rounded mr-1 mb-1">
@@ -172,7 +284,7 @@ export default function OccasionPage() {
                           </div>
                           
                           <div>
-                            <span className="font-medium">추천 색상:</span>
+                            <span className="font-medium">{intl.formatMessage({ id: 'occasion.colors.recommend' })}</span>
                             <div className="mt-1">
                               {occasion.colors.map((color, idx) => (
                                 <span key={idx} className="inline-block bg-accent px-2 py-1 rounded mr-1 mb-1">
@@ -183,7 +295,7 @@ export default function OccasionPage() {
                           </div>
                           
                           <div className="bg-muted p-3 rounded">
-                            <span className="font-medium">💡 선택 팁:</span>
+                            <span className="font-medium">💡 {intl.formatMessage({ id: 'occasion.tips.selection' })}</span>
                             <p className="mt-1 text-muted-foreground">{occasion.tips}</p>
                           </div>
                           
@@ -197,23 +309,27 @@ export default function OccasionPage() {
           </div>
 
           <div className="mt-16 text-center bg-gradient-to-r from-primary/5 to-secondary/5 rounded-lg p-8">
-            <h3 className="text-2xl font-semibold mb-4">맞춤 상담 서비스</h3>
+            <h3 className="text-2xl font-semibold mb-4">{intl.formatMessage({ id: 'occasion.consultation.title' })}</h3>
             <p className="text-muted-foreground mb-6">
-              특별한 날에 어울리는 꽃을 직접 상담받고 싶으시다면<br />
-              미라클 플라워 전문가와 상담해보세요
+              {intl.formatMessage({ id: 'occasion.consultation.description' }).split('\n').map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index === 0 && <br />}
+                </span>
+              ))}
             </p>
             <div className="flex justify-center gap-4 flex-wrap">
               <a 
                 href="tel:0507-1456-0389" 
                 className="bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
               >
-                📞 전화 상담
+                {intl.formatMessage({ id: 'occasion.consultation.phone' })}
               </a>
               <a 
                 href="mailto:rmr0322@hanmail.net" 
                 className="bg-secondary text-secondary-foreground px-6 py-3 rounded-lg hover:bg-secondary/80 transition-colors"
               >
-                ✉️ 이메일 상담
+                {intl.formatMessage({ id: 'occasion.consultation.email' })}
               </a>
             </div>
           </div>

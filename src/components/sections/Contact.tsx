@@ -27,7 +27,7 @@ export default function Contact() {
     },
     {
       labelKey: "contact.address",
-      value: "경기도 성남시 분당구 황새울로12번길 11-2",
+      valueKey: "contact.addressValue",
       icon: "📍"
     },
     {

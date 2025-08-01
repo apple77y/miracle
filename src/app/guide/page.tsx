@@ -115,13 +115,13 @@ export default function GuidePage() {
                 href="tel:0507-1456-0389" 
                 className="bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
               >
-                {intl.formatMessage({ id: 'guide.contact.phone' })}
+                {intl.formatMessage({ id: 'occasion.consultation.phone' })}
               </a>
               <a 
                 href="mailto:rmr0322@hanmail.net" 
                 className="bg-secondary text-secondary-foreground px-6 py-3 rounded-lg hover:bg-secondary/80 transition-colors"
               >
-                {intl.formatMessage({ id: 'guide.contact.email' })}
+                {intl.formatMessage({ id: 'occasion.consultation.email' })}
               </a>
             </div>
           </div>

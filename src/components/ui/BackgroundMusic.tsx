@@ -7,7 +7,6 @@ export default function BackgroundMusic() {
   const intl = useIntl();
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.3);
-  const [currentTrack, setCurrentTrack] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   // Royalty-free lofi music tracks - actual working URLs
@@ -110,14 +109,9 @@ export default function BackgroundMusic() {
     >
       <audio
         ref={audioRef}
-        src={lofiTracks[currentTrack]?.url}
+        src={lofiTracks[0]?.url}
         loop
         preload="none"
-        onEnded={() => {
-          // Auto play next track when current ends
-          const next = (currentTrack + 1) % lofiTracks.length;
-          setCurrentTrack(next);
-        }}
       />
       
       <div className="flex items-center justify-center w-6 h-6">

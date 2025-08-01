@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import FloatingConsultButton from "../components/ui/FloatingConsultButton";
-import LanguageSwitcher from "../components/ui/LanguageSwitcher";
 import BackgroundMusic from "../components/ui/BackgroundMusic";
 import DynamicLayout from "../components/DynamicLayout";
 import "./globals.css";
@@ -32,7 +31,6 @@ export default function RootLayout({
           <DynamicLayout>
             {children}
             <FloatingConsultButton />
-            <LanguageSwitcher />
             <BackgroundMusic />
           </DynamicLayout>
         </I18nProvider>

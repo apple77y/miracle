@@ -103,7 +103,7 @@ export default function BackgroundMusic() {
   return (
     <button
       onClick={togglePlay}
-      className="fixed bottom-42 right-6 bg-rose-500 hover:bg-rose-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 z-50 group"
+      className="fixed bottom-20 right-6 bg-rose-500 hover:bg-rose-600 text-white rounded-full p-3 md:p-4 shadow-lg hover:shadow-xl transition-all duration-300 z-50 group"
       aria-label={isPlaying ? 'Pause music' : 'Play music'}
       title={isPlaying ? 'Pause music' : 'Play music'}
     >
@@ -114,13 +114,13 @@ export default function BackgroundMusic() {
         preload="none"
       />
       
-      <div className="flex items-center justify-center w-6 h-6">
+      <div className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6">
         {isPlaying ? (
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
             <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
           </svg>
         ) : (
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7L8 5z"/>
           </svg>
         )}

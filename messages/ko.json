@@ -205,5 +205,8 @@
   "occasion.tips.promotion": "품격 있고 격조 높은 느낌을 연출하세요",
   "occasion.tips.housewarming": "오래도록 키울 수 있는 식물을 선택하세요",
   "occasion.tips.funeral": "조용하고 차분한 색상으로 선택하세요",
-  "occasion.tips.condolence": "너무 화려하지 않은 은은한 색상이 좋습니다"
+  "occasion.tips.condolence": "너무 화려하지 않은 은은한 색상이 좋습니다",
+  "ui.musicPlay": "음악재생",
+  "ui.musicPause": "일시정지",
+  "ui.consultation": "상담하기"
 }

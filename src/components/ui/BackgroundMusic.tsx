@@ -1,0 +1,115 @@
+'use client';
+
+import { useState, useRef, useEffect } from 'react';
+import { useIntl } from 'react-intl';
+
+export default function BackgroundMusic() {
+  const intl = useIntl();
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useState(0.3);
+  const [currentTrack, setCurrentTrack] = useState(0);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Royalty-free lofi music tracks - actual working URLs
+  const lofiTracks = [
+    {
+      url: "https://cdn.pixabay.com/audio/2024/04/04/audio_269dc3d36d.mp3" // Pixabay royalty-free
+    }
+  ];
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+    
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
+  }, [volume]);
+
+  // Auto-play when component mounts
+  useEffect(() => {
+    const autoPlay = async () => {
+      if (audioRef.current) {
+        try {
+          await audioRef.current.play();
+          setIsPlaying(true);
+        } catch (error) {
+          console.log('Auto-play failed, user interaction required:', error);
+          // Auto-play failed, but don't show alert - user can manually play
+        }
+      }
+    };
+
+    // Small delay to ensure audio element is ready
+    const timer = setTimeout(autoPlay, 1000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  const togglePlay = async () => {
+    if (!audioRef.current) return;
+
+    try {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        audioRef.current.currentTime = 0;
+        await audioRef.current.play();
+        setIsPlaying(true);
+      }
+    } catch (error) {
+      console.error('Audio playback failed:', error);
+      // Fallback message
+      alert('음악 재생에 실패했습니다. 브라우저 설정이나 네트워크 문제일 수 있습니다.');
+    }
+  };
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(e.target.value);
+    setVolume(newVolume);
+    if (audioRef.current) {
+      audioRef.current.volume = newVolume;
+    }
+  };
+
+  return (
+    <button
+      onClick={togglePlay}
+      className="fixed bottom-42 right-6 bg-rose-500 hover:bg-rose-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 z-50 group"
+      aria-label={isPlaying ? 'Pause music' : 'Play music'}
+      title={isPlaying ? 'Pause music' : 'Play music'}
+    >
+      <audio
+        ref={audioRef}
+        src={lofiTracks[currentTrack]?.url}
+        loop
+        preload="none"
+        onEnded={() => {
+          // Auto play next track when current ends
+          const next = (currentTrack + 1) % lofiTracks.length;
+          setCurrentTrack(next);
+        }}
+      />
+      
+      <div className="flex items-center justify-center w-6 h-6">
+        {isPlaying ? (
+          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+          </svg>
+        ) : (
+          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7L8 5z"/>
+          </svg>
+        )}
+      </div>
+      
+      <span className="absolute right-16 bg-gray-800 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+        {isPlaying ? intl.formatMessage({ id: 'ui.musicPause' }) : intl.formatMessage({ id: 'ui.musicPlay' })}
+      </span>
+    </button>
+  );
+}

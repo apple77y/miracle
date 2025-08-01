@@ -1,6 +1,9 @@
 'use client';
 
+import { useIntl } from 'react-intl';
+
 export default function FloatingConsultButton() {
+  const intl = useIntl();
   const handleClick = () => {
     window.open('https://talk.naver.com/ct/w4s149', '_blank');
   };
@@ -8,8 +11,8 @@ export default function FloatingConsultButton() {
   return (
     <button
       onClick={handleClick}
-      className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 z-50 group"
-      aria-label="상담하기"
+      className="fixed bottom-24 right-6 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 z-50 group"
+      aria-label={intl.formatMessage({ id: 'ui.consultation' })}
     >
       <div className="flex items-center justify-center w-6 h-6">
         <svg
@@ -25,7 +28,7 @@ export default function FloatingConsultButton() {
         </svg>
       </div>
       <span className="absolute right-16 bg-gray-800 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-        상담하기
+        {intl.formatMessage({ id: 'ui.consultation' })}
       </span>
     </button>
   );

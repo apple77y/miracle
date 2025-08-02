@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade } from 'swiper/modules';
+import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 
@@ -43,9 +44,14 @@ export default function BackgroundCarousel() {
         {images.map((image, index) => (
           <SwiperSlide key={index}>
             <div className="relative w-full h-full">
-              <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: `url(${image})` }}
+              <Image
+                src={image}
+                alt={`Background image ${index + 1}`}
+                fill
+                className="object-cover"
+                priority={index === 0}
+                sizes="100vw"
+                quality={85}
               />
               <div className="absolute inset-0 bg-gradient-to-br from-rose-50/90 via-white/85 to-pink-50/90" />
             </div>

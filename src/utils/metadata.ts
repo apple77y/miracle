@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 type Locale = 'ko' | 'en';
 
@@ -102,6 +102,19 @@ export const getMetadata = (locale: Locale = 'ko'): Metadata => {
         { url: "/apple-icon.png", sizes: "180x180", type: "image/png" }
       ],
     },
+    manifest: "/manifest.json",
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: "black-translucent",
+      title: "Miracle",
+    },
+  };
+};
+
+export const getViewport = (): Viewport => {
+  return {
+    themeColor: "#ffffff",
+    userScalable: false,
   };
 };
 

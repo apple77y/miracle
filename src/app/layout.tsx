@@ -6,10 +6,11 @@ import BackgroundMusic from "../components/ui/BackgroundMusic";
 import DynamicLayout from "../components/DynamicLayout";
 import "./globals.css";
 import I18nProvider from "../components/I18nProvider";
-import { getMetadata, getJsonLd } from "../utils/metadata";
+import { getMetadata, getJsonLd, getViewport } from "../utils/metadata";
 
 // Default metadata (Korean) - will be updated dynamically by DynamicLayout
 export const metadata: Metadata = getMetadata('ko');
+export const viewport = getViewport();
 
 export default function RootLayout({
   children,

@@ -1,0 +1,35 @@
+{
+  "name": "Miracle - 꽃과 함께하는 특별한 순간",
+  "short_name": "Miracle",
+  "description": "꽃배달, 이벤트 장식, 맞춤형 꽃 서비스를 제공하는 Miracle 플라워샵",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "lang": "ko",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": [
+    "lifestyle",
+    "shopping"
+  ],
+  "screenshots": []
+}

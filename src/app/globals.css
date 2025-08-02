@@ -169,3 +169,12 @@ body {
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
+
+/* PWA safe area support */
+.header-safe-area {
+  padding-top: env(safe-area-inset-top);
+}
+
+.menu-safe-area {
+  top: calc(5rem + env(safe-area-inset-top));
+}

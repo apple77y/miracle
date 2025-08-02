@@ -17,7 +17,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+    <header className="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50 header-safe-area">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
@@ -81,7 +81,7 @@ export default function Header() {
           />
           
           {/* Floating Menu */}
-          <div className="fixed top-20 right-4 bg-white rounded-xl shadow-xl border border-gray-100 z-50 md:hidden animate-in slide-in-from-top-2 duration-200">
+          <div className="fixed menu-safe-area right-4 bg-white rounded-xl shadow-xl border border-gray-100 z-50 md:hidden animate-in slide-in-from-top-2 duration-200">
             <nav className="py-4 px-6 space-y-3 min-w-[200px]">
               <Link 
                 href="/#about"

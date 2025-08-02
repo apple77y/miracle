@@ -41,12 +41,12 @@ export default function About() {
               <p className="text-xs text-gray-400 mt-1">{intl.formatMessage({ id: 'about.freshFlowersDesc' })}</p>
             </div>
             <div className="bg-white p-6 border border-gray-100/50">
-              <div className="text-2xl font-light text-rose-500 mb-2">5년+</div>
+              <div className="text-2xl font-light text-rose-500 mb-2">{intl.formatMessage({ id: 'about.experienceYears' })}</div>
               <p className="text-sm text-gray-600 font-light">{intl.formatMessage({ id: 'about.experience' })}</p>
               <p className="text-xs text-gray-400 mt-1">{intl.formatMessage({ id: 'about.experienceDesc' })}</p>
             </div>
             <div className="bg-white p-6 border border-gray-100/50">
-              <div className="text-2xl font-light text-rose-500 mb-2">365일</div>
+              <div className="text-2xl font-light text-rose-500 mb-2">{intl.formatMessage({ id: 'about.serviceDays' })}</div>
               <p className="text-sm text-gray-600 font-light">{intl.formatMessage({ id: 'about.service' })}</p>
               <p className="text-xs text-gray-400 mt-1">{intl.formatMessage({ id: 'about.serviceDesc' })}</p>
             </div>

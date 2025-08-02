@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "npm run lint && npm run type-check && next build",
     "export": "next build && next export",
     "start": "next start",
     "serve": "npx serve@latest out",

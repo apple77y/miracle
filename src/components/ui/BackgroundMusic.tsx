@@ -6,7 +6,7 @@ import { useIntl } from 'react-intl';
 export default function BackgroundMusic() {
   const intl = useIntl();
   const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.3);
+  const [volume] = useState(0.3);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   // Royalty-free lofi music tracks - actual working URLs
@@ -17,17 +17,18 @@ export default function BackgroundMusic() {
   ];
 
   useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = volume;
+    const audioElement = audioRef.current;
+    if (audioElement) {
+      audioElement.volume = volume;
     }
     
     return () => {
-      if (audioRef.current) {
+      if (audioElement) {
         try {
-          audioRef.current.pause();
-          audioRef.current.currentTime = 0;
-          audioRef.current.src = '';
-          audioRef.current.load();
+          audioElement.pause();
+          audioElement.currentTime = 0;
+          audioElement.src = '';
+          audioElement.load();
         } catch (error) {
           console.log('Audio cleanup error:', error);
         }
@@ -37,10 +38,12 @@ export default function BackgroundMusic() {
 
   // Auto-play when component mounts
   useEffect(() => {
+    const audioElement = audioRef.current;
+    
     const autoPlay = async () => {
-      if (audioRef.current) {
+      if (audioElement) {
         try {
-          await audioRef.current.play();
+          await audioElement.play();
           setIsPlaying(true);
         } catch (error) {
           console.log('Auto-play failed, user interaction required:', error);
@@ -55,12 +58,12 @@ export default function BackgroundMusic() {
     return () => {
       clearTimeout(timer);
       // Additional cleanup when component unmounts
-      if (audioRef.current) {
+      if (audioElement) {
         try {
-          audioRef.current.pause();
-          audioRef.current.currentTime = 0;
-          audioRef.current.src = '';
-          audioRef.current.load();
+          audioElement.pause();
+          audioElement.currentTime = 0;
+          audioElement.src = '';
+          audioElement.load();
         } catch (error) {
           console.log('Audio cleanup error:', error);
         }
@@ -92,13 +95,6 @@ export default function BackgroundMusic() {
     }
   };
 
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newVolume = parseFloat(e.target.value);
-    setVolume(newVolume);
-    if (audioRef.current) {
-      audioRef.current.volume = newVolume;
-    }
-  };
 
   return (
     <button

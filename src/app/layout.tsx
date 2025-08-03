@@ -31,8 +31,8 @@ export default function RootLayout({
         <I18nProvider>
           <DynamicLayout>
             {children}
-            <FloatingConsultButton />
             <BackgroundMusic />
+            <FloatingConsultButton />
           </DynamicLayout>
         </I18nProvider>
         <Analytics />

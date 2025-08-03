@@ -210,5 +210,9 @@
   "ui.musicPause": "Pause Music",
   "ui.consultation": "Consultation",
   "about.experienceYears": "5+ Years",
-  "about.serviceDays": "365 Days"
+  "about.serviceDays": "365 Days",
+  "pwa.notification.welcome.title": "Welcome to Miracle Flower!",
+  "pwa.notification.welcome.body": "The app has been successfully installed. Discover beautiful floral creations anytime.",
+  "pwa.install.button": "Install App",
+  "pwa.install.prompt": "Add to home screen for more convenient use"
 }

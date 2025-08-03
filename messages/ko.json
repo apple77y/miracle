@@ -210,5 +210,9 @@
   "ui.musicPause": "일시정지",
   "ui.consultation": "상담하기",
   "about.experienceYears": "5년+",
-  "about.serviceDays": "365일"
+  "about.serviceDays": "365일",
+  "pwa.notification.welcome.title": "미라클 플라워에 오신 것을 환영합니다!",
+  "pwa.notification.welcome.body": "앱이 성공적으로 설치되었습니다. 언제든지 아름다운 꽃 작품을 만나보세요.",
+  "pwa.install.button": "앱 설치하기",
+  "pwa.install.prompt": "홈 화면에 추가하여 더 편리하게 이용하세요"
 }

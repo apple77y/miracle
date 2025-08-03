@@ -62,17 +62,24 @@ export default function BottomNavigation() {
 
   useEffect(() => {
     const updateHash = () => {
-      setCurrentHash(window.location.hash);
+      const newHash = window.location.hash;
+      setCurrentHash(newHash);
     };
     
     // 초기 해시 설정
     updateHash();
     
-    // 해시 변경 감지
+    // 해시 변경 감지 - 여러 이벤트 추가
     window.addEventListener('hashchange', updateHash);
+    window.addEventListener('popstate', updateHash);
+    
+    // 주기적으로 해시 체크 (fallback)
+    const interval = setInterval(updateHash, 100);
     
     return () => {
       window.removeEventListener('hashchange', updateHash);
+      window.removeEventListener('popstate', updateHash);
+      clearInterval(interval);
     };
   }, []);
 
@@ -80,11 +87,13 @@ export default function BottomNavigation() {
     // 해시 링크 처리 (/#contact 등)
     if (href.startsWith('/#')) {
       const hash = href.substring(1); // '#contact'
-      return pathname === '/' && currentHash === hash;
+      const isActive = pathname === '/' && currentHash === hash;
+      return isActive;
     }
     // 일반 경로 처리 (홈은 해시가 없을 때만 활성화)
     if (href === '/') {
-      return pathname === '/' && !currentHash;
+      const isActive = pathname === '/' && !currentHash;
+      return isActive;
     }
     // trailing slash 지원 (trailingSlash: true 설정 때문에)
     return pathname === href || pathname === href + '/' || pathname + '/' === href;

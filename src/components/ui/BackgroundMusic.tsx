@@ -2,9 +2,11 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useIntl } from 'react-intl';
+import { useIsPWA } from '../../hooks/useIsPWA';
 
 export default function BackgroundMusic() {
   const intl = useIntl();
+  const isPWA = useIsPWA();
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume] = useState(0.3);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -94,6 +96,10 @@ export default function BackgroundMusic() {
       console.log('음악 재생에 실패했습니다. 브라우저 설정이나 네트워크 문제일 수 있습니다.');
     }
   };
+
+  if (isPWA) {
+    return null;
+  }
 
 
   return (

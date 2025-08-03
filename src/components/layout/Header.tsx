@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import { useIsPWA } from '../../hooks/useIsPWA';
 
 export default function Header() {
   const intl = useIntl();
+  const isPWA = useIsPWA();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -15,6 +17,11 @@ export default function Header() {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
+
+  // PWA 모드에서는 헤더를 숨김
+  if (isPWA) {
+    return null;
+  }
 
   return (
     <header className="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">

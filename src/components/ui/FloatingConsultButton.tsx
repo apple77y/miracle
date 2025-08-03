@@ -1,12 +1,18 @@
 'use client';
 
 import { useIntl } from 'react-intl';
+import { useIsPWA } from '../../hooks/useIsPWA';
 
 export default function FloatingConsultButton() {
   const intl = useIntl();
+  const isPWA = useIsPWA();
   const handleClick = () => {
     window.open('https://talk.naver.com/ct/w4s149', '_blank');
   };
+
+  if (isPWA) {
+    return null;
+  }
 
   return (
     <button

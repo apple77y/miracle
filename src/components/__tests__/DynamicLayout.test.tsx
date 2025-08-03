@@ -1,4 +1,4 @@
-import { render, screen, waitFor, act } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import DynamicLayout from '../DynamicLayout'
 import I18nProvider from '../I18nProvider'
 

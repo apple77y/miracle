@@ -38,6 +38,18 @@ const localStorageMock = {
 }
 global.localStorage = localStorageMock
 
+// Mock navigator.language
+Object.defineProperty(navigator, 'language', {
+  writable: true,
+  value: 'ko-KR',
+})
+
+// Mock document.documentElement.lang
+Object.defineProperty(document.documentElement, 'lang', {
+  writable: true,
+  value: 'ko',
+})
+
 // Mock Audio
 global.Audio = jest.fn().mockImplementation(() => ({
   play: jest.fn().mockResolvedValue(undefined),

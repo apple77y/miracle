@@ -8,7 +8,20 @@ interface IOSNavigator extends Navigator {
 }
 
 export const useIsPWA = () => {
-  const [isPWA, setIsPWA] = useState(false);
+  // 초기값을 서버사이드에서 안전하게 false로 설정
+  const [isPWA, setIsPWA] = useState(() => {
+    // 클라이언트에서만 실행
+    if (typeof window === 'undefined') return false;
+    
+    // 즉시 PWA 상태 체크
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+    const isIOSStandalone = (window.navigator as IOSNavigator).standalone;
+    const isAndroidStandalone = window.matchMedia('(display-mode: standalone)').matches ||
+                                window.matchMedia('(display-mode: fullscreen)').matches ||
+                                window.matchMedia('(display-mode: minimal-ui)').matches;
+    
+    return isStandalone || isIOSStandalone || isAndroidStandalone;
+  });
 
   useEffect(() => {
     const checkPWA = () => {

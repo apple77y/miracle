@@ -45,15 +45,15 @@ export default function Hero() {
           </h2>
         </div>
         
-        <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed font-light whitespace-pre-line">
+        <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed font-light whitespace-pre-line break-words">
           {intl.formatMessage({ id: 'hero.subtitle' })}
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/#contact" className="bg-rose-500 text-white px-8 py-3 hover:bg-rose-600 transition-all duration-300 font-medium tracking-wide text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+          <Link href="/#contact" className="bg-rose-500 text-white px-8 py-3 hover:bg-rose-600 transition-all duration-300 font-medium tracking-wide text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 whitespace-nowrap">
             {intl.formatMessage({ id: 'hero.contactUs' })}
           </Link>
-          <Link href="/#gallery" className="border border-rose-300 text-rose-600 px-8 py-3 hover:bg-rose-50 transition-all duration-300 font-medium tracking-wide text-sm">
+          <Link href="/#gallery" className="border border-rose-300 text-rose-600 px-8 py-3 hover:bg-rose-50 transition-all duration-300 font-medium tracking-wide text-sm whitespace-nowrap">
             {intl.formatMessage({ id: 'hero.viewPortfolio' })}
           </Link>
         </div>

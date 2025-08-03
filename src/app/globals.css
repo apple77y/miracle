@@ -98,6 +98,8 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
   line-height: 1.7;
   letter-spacing: 0.01em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* Elegant botanical gradients */
@@ -183,4 +185,23 @@ body {
   .pwa-hide {
     display: none !important;
   }
+}
+
+/* Korean text line-break optimization */
+.text-korean {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* Button and link text protection */
+.btn-text-nowrap {
+  white-space: nowrap;
+  min-width: fit-content;
+}
+
+/* Better Korean text rendering */
+.korean-text-optimized {
+  word-break: keep-all;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
 }

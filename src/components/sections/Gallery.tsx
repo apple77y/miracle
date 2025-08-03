@@ -81,7 +81,7 @@ export default function Gallery() {
           <p className="text-gray-600 font-light mb-6">{intl.formatMessage({ id: 'gallery.moreWorks' })}</p>
           <a href="https://www.instagram.com/miracle_flowerstudio/" 
              target="_blank" rel="noopener noreferrer"
-             className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group">
+             className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group whitespace-nowrap">
             Instagram
             <svg className="w-4 h-4 ml-2 hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />

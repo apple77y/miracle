@@ -25,7 +25,7 @@ export default function About() {
             
             <div className="mt-8 pt-6 border-t border-gray-100">
               <a href="https://blog.naver.com/miracle_flower" target="_blank" rel="noopener noreferrer" 
-                 className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group">
+                 className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group whitespace-nowrap">
                 {intl.formatMessage({ id: 'about.moreStory' })}
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />

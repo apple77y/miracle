@@ -48,7 +48,7 @@ export default function Services() {
                 <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-4">
                   {intl.formatMessage({ id: service.subtitleKey })}
                 </p>
-                <p className="text-gray-600 leading-relaxed whitespace-pre-line font-light">
+                <p className="text-gray-600 leading-relaxed whitespace-pre-line font-light break-words">
                   {intl.formatMessage({ id: service.descriptionKey })}
                 </p>
               </div>

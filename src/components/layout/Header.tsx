@@ -36,22 +36,22 @@ export default function Header() {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <Link href="/#about" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">
+            <Link href="/#about" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide whitespace-nowrap">
               {intl.formatMessage({ id: 'header.brandStory' })}
             </Link>
-            <Link href="/#services" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">
+            <Link href="/#services" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide whitespace-nowrap">
               {intl.formatMessage({ id: 'header.services' })}
             </Link>
-            <Link href="/#gallery" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">
+            <Link href="/#gallery" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide whitespace-nowrap">
               {intl.formatMessage({ id: 'header.portfolio' })}
             </Link>
-            <Link href="/guide" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">
+            <Link href="/guide" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide whitespace-nowrap">
               {intl.formatMessage({ id: 'header.flowerGuide' })}
             </Link>
-            <Link href="/occasion" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">
+            <Link href="/occasion" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide whitespace-nowrap">
               {intl.formatMessage({ id: 'header.eventGuide' })}
             </Link>
-            <Link href="/#contact" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide">
+            <Link href="/#contact" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide whitespace-nowrap">
               {intl.formatMessage({ id: 'header.contact' })}
             </Link>
           </nav>

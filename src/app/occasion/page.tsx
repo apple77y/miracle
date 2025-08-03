@@ -321,13 +321,13 @@ export default function OccasionPage() {
             <div className="flex justify-center gap-4 flex-wrap">
               <a 
                 href="tel:0507-1456-0389" 
-                className="bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+                className="bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors whitespace-nowrap"
               >
                 {intl.formatMessage({ id: 'occasion.consultation.phone' })}
               </a>
               <a 
                 href="mailto:rmr0322@hanmail.net" 
-                className="bg-secondary text-secondary-foreground px-6 py-3 rounded-lg hover:bg-secondary/80 transition-colors"
+                className="bg-secondary text-secondary-foreground px-6 py-3 rounded-lg hover:bg-secondary/80 transition-colors whitespace-nowrap"
               >
                 {intl.formatMessage({ id: 'occasion.consultation.email' })}
               </a>

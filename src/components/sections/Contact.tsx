@@ -118,7 +118,7 @@ export default function Contact() {
             <div className="space-y-3">
               <a href="https://naver.me/GTnuWfmH" 
                  target="_blank" rel="noopener noreferrer"
-                 className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group w-full">
+                 className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group w-full whitespace-nowrap">
                 {intl.formatMessage({ id: 'contact.naverMap' })}
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -126,7 +126,7 @@ export default function Contact() {
               </a>
               <a href="https://place.map.kakao.com/86003378" 
                  target="_blank" rel="noopener noreferrer"
-                 className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group w-full">
+                 className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group w-full whitespace-nowrap">
                 {intl.formatMessage({ id: 'contact.kakaoMap' })}
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -134,7 +134,7 @@ export default function Contact() {
               </a>
               <a href="https://maps.app.goo.gl/LBKyuJShj3owcW949" 
                  target="_blank" rel="noopener noreferrer"
-                 className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group w-full">
+                 className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group w-full whitespace-nowrap">
                 {intl.formatMessage({ id: 'contact.googleMap' })}
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />

@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className="light">
       <head>
         <script
           type="application/ld+json"
@@ -31,7 +31,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased">
+      <body className="antialiased bg-white text-black" style={{ colorScheme: 'light' }}>
         <PWAThemeColor />
         <PushNotificationManager />
         <BackgroundSyncIndicator />

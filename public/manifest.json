@@ -11,9 +11,9 @@
   "lang": "ko",
   "icons": [
     {
-      "src": "/icon.svg",
+      "src": "/apple-icon.png",
       "sizes": "any",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
@@ -22,9 +22,9 @@
       "type": "image/png"
     },
     {
-      "src": "/favicon.svg",
+      "src": "/android-icon-192x192.png",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/png"
     }
   ],
   "categories": [

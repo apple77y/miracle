@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next'
 export const dynamic = 'force-static'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://miracle-pi.vercel.app'
+  const baseUrl = 'https://miracle-flower.vercel.app'
   const currentDate = new Date()
   
   return [

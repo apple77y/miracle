@@ -32,7 +32,7 @@ export const getMetadata = (locale: Locale = 'ko'): Metadata => {
     : "Beautiful seasonal bouquet from Miracle Flower";
 
   return {
-    metadataBase: new URL('https://miracle-pi.vercel.app'),
+    metadataBase: new URL('https://miracle-flower.vercel.app'),
     title,
     description,
     keywords,
@@ -47,7 +47,7 @@ export const getMetadata = (locale: Locale = 'ko'): Metadata => {
     openGraph: {
       title,
       description,
-      url: "https://miracle-pi.vercel.app",
+      url: "https://miracle-flower.vercel.app",
       siteName: "Miracle Flower",
       locale: isKorean ? "ko_KR" : "en_US",
       type: "website",
@@ -88,11 +88,11 @@ export const getMetadata = (locale: Locale = 'ko'): Metadata => {
       "msapplication-TileColor": "#ffffff",
     },
     alternates: {
-      canonical: "https://miracle-pi.vercel.app",
+      canonical: "https://miracle-flower.vercel.app",
       languages: {
-        'ko': 'https://miracle-pi.vercel.app',
-        'en': 'https://miracle-pi.vercel.app',
-        'x-default': 'https://miracle-pi.vercel.app'
+        'ko': 'https://miracle-flower.vercel.app',
+        'en': 'https://miracle-flower.vercel.app',
+        'x-default': 'https://miracle-flower.vercel.app'
       }
     },
     icons: {
@@ -197,10 +197,10 @@ export const getJsonLd = (locale: Locale = 'ko') => {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://miracle-pi.vercel.app",
+    "@id": "https://miracle-flower.vercel.app",
     "name": name,
     "description": description,
-    "url": "https://miracle-pi.vercel.app",
+    "url": "https://miracle-flower.vercel.app",
     "telephone": "+82-507-1456-0389",
     "email": "rmr0322@hanmail.net",
     "address": {
@@ -223,9 +223,9 @@ export const getJsonLd = (locale: Locale = 'ko') => {
     "paymentAccepted": ["Cash", "Credit Card"],
     "currenciesAccepted": "KRW",
     "image": [
-      "https://miracle-pi.vercel.app/images/seasonal-bouquet.jpg",
-      "https://miracle-pi.vercel.app/images/vase-arrangement.jpg",
-      "https://miracle-pi.vercel.app/images/flower-basket.jpg"
+      "https://miracle-flower.vercel.app/images/seasonal-bouquet.jpg",
+      "https://miracle-flower.vercel.app/images/vase-arrangement.jpg",
+      "https://miracle-flower.vercel.app/images/flower-basket.jpg"
     ],
     "sameAs": [
       "https://www.instagram.com/miracle_flowerstudio/",

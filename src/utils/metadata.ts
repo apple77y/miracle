@@ -129,7 +129,6 @@ export const getMetadata = (locale: Locale = 'ko'): Metadata => {
 
 export const getViewport = (): Viewport => {
   return {
-    themeColor: "#ffffff",
     userScalable: false,
   };
 };

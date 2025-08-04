@@ -4,6 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import FloatingConsultButton from "../components/ui/FloatingConsultButton";
 import BackgroundMusic from "../components/ui/BackgroundMusic";
 import DynamicLayout from "../components/DynamicLayout";
+import PWAThemeColor from "../components/PWAThemeColor";
 import "./globals.css";
 import I18nProvider from "../components/I18nProvider";
 import { getMetadata, getJsonLd, getViewport } from "../utils/metadata";
@@ -28,6 +29,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        <PWAThemeColor />
         <I18nProvider>
           <DynamicLayout>
             {children}

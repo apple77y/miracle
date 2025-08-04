@@ -9,7 +9,6 @@ type NotificationPermission = 'default' | 'granted' | 'denied';
 export default function PushNotificationManager() {
   const isPWA = useIsPWA();
   const [permission, setPermission] = useState<NotificationPermission>('default');
-  const [subscription, setSubscription] = useState<PushSubscription | null>(null);
   const [isSupported, setIsSupported] = useState(false);
 
   useEffect(() => {
@@ -33,8 +32,8 @@ export default function PushNotificationManager() {
     const checkSubscription = async () => {
       try {
         const registration = await navigator.serviceWorker.ready;
-        const existingSubscription = await registration.pushManager.getSubscription();
-        setSubscription(existingSubscription);
+        await registration.pushManager.getSubscription();
+        // 구독 상태는 시각적으로 표시하지 않으므로 상태 업데이트 제거
       } catch (error) {
         console.error('Failed to check push subscription:', error);
       }
@@ -75,10 +74,11 @@ export default function PushNotificationManager() {
         applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
       });
 
-      setSubscription(subscription);
-      
       // 구독 정보를 서버로 전송
       await saveSubscription(subscription);
+      
+      // 환영 알림 즉시 전송
+      await sendWelcomeNotification();
       
       console.log('Push subscription successful:', subscription);
     } catch (error) {
@@ -86,49 +86,51 @@ export default function PushNotificationManager() {
     }
   };
 
-  // 푸시 구독 해제
-  const unsubscribeFromPush = async () => {
-    if (!subscription) return;
-
+  // 환영 알림 전송 (한 번만)
+  const sendWelcomeNotification = async () => {
     try {
-      await subscription.unsubscribe();
-      setSubscription(null);
-      
-      // 서버에서 구독 정보 제거
-      await removeSubscription(subscription);
-      
-      console.log('Push unsubscription successful');
-    } catch (error) {
-      console.error('Failed to unsubscribe from push notifications:', error);
-    }
-  };
-
-  // 테스트 알림 전송
-  const sendTestNotification = async () => {
-    if (!subscription) return;
-
-    try {
-      // 실제 서비스에서는 서버 API를 호출
-      // 여기서는 로컬 테스트용 알림 생성
       if (Notification.permission === 'granted') {
-        const options: NotificationOptions = {
-          body: '새로운 시즌 부케가 준비되었습니다!',
-          icon: '/android-icon-192x192.png',
-          badge: '/apple-icon.png',
-          data: { url: '/' }
-        };
-
-        // vibrate는 일부 브라우저에서만 지원되므로 별도로 처리
-        if ('vibrate' in navigator) {
-          (options as NotificationOptions & { vibrate?: number[] }).vibrate = [200, 100, 200];
+        // 이미 환영 알림을 보냈는지 확인
+        const hasShownWelcome = localStorage.getItem('miracle-welcome-notification-sent');
+        if (hasShownWelcome) {
+          console.log('Welcome notification already sent, skipping...');
+          return;
         }
 
-        new Notification('Miracle Flower 🌸', options);
+        // 짧은 지연 후 환영 알림 표시 (사용자가 구독 완료를 인지할 시간)
+        setTimeout(() => {
+          const options: NotificationOptions = {
+            body: '알림이 활성화되었습니다! 🎉\n새로운 꽃다발 소식과 특별 할인 정보를 놓치지 마세요.',
+            icon: '/android-icon-192x192.png',
+            badge: '/apple-icon.png',
+            tag: 'welcome-notification',
+            requireInteraction: false,
+            silent: false,
+            data: { 
+              type: 'welcome',
+              url: '/',
+              timestamp: Date.now()
+            },
+          };
+
+          // vibrate는 일부 브라우저에서만 지원되므로 별도로 처리
+          if ('vibrate' in navigator) {
+            (options as NotificationOptions & { vibrate?: number[] }).vibrate = [200, 100, 200, 100, 200];
+          }
+
+          new Notification('Miracle Flower에 오신 것을 환영합니다! 🌸', options);
+          
+          // 환영 알림 전송 기록 저장 (한 번만 보내기 위해)
+          localStorage.setItem('miracle-welcome-notification-sent', Date.now().toString());
+          
+          console.log('Welcome notification sent');
+        }, 1000); // 1초 후 전송
       }
     } catch (error) {
-      console.error('Failed to send test notification:', error);
+      console.error('Failed to send welcome notification:', error);
     }
   };
+
 
   // PWA가 아니면 렌더링하지 않음
   if (!isPWA || !isSupported) {
@@ -173,43 +175,6 @@ export default function PushNotificationManager() {
           </div>
         </div>
       )}
-
-      {permission === 'granted' && subscription && (
-        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg shadow-lg border border-green-200 p-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <span className="text-green-600">🔔</span>
-              <span className="text-xs text-green-800 font-medium">
-                알림 활성화됨
-              </span>
-            </div>
-            <div className="flex space-x-1">
-              <button
-                onClick={sendTestNotification}
-                className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded hover:bg-green-200 transition-colors"
-                title="테스트 알림 전송"
-              >
-                테스트
-              </button>
-              <button
-                onClick={unsubscribeFromPush}
-                className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded hover:bg-red-200 transition-colors"
-                title="알림 해제"
-              >
-                해제
-              </button>
-            </div>
-          </div>
-          
-          {/* 간단한 상태 표시 */}
-          <div className="mt-2 pt-2 border-t border-green-200">
-            <div className="flex items-center justify-between text-xs text-green-600">
-              <span>🌸 꽃 소식 알림 준비됨</span>
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
@@ -239,11 +204,3 @@ async function saveSubscription(subscription: PushSubscription): Promise<void> {
   localStorage.setItem('push-subscription', JSON.stringify(subscription.toJSON()));
 }
 
-// 서버에서 구독 정보 제거 (실제 구현 필요)
-async function removeSubscription(subscription: PushSubscription): Promise<void> {
-  // 실제 서비스에서는 서버 API 호출
-  console.log('Removing subscription from server:', subscription.toJSON());
-  
-  // 로컬 스토리지에서 제거
-  localStorage.removeItem('push-subscription');
-}

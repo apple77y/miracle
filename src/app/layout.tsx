@@ -24,12 +24,15 @@ export default function RootLayout({
   return (
     <html lang="ko" className="light">
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(getJsonLd('ko'))
-          }}
-        />
+        {getJsonLd('ko').map((jsonLd, index) => (
+          <script
+            key={index}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(jsonLd)
+            }}
+          />
+        ))}
       </head>
       <body className="antialiased bg-white text-black" style={{ colorScheme: 'light' }}>
         <PWAThemeColor />

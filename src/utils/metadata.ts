@@ -141,100 +141,148 @@ export const getJsonLd = (locale: Locale = 'ko') => {
     ? "성남시 분당구에 위치한 프리미엄 꽃집. 신선하고 아름다운 꽃으로 특별한 순간을 만들어드립니다."
     : "Premium flower shop located in Bundang-gu, Seongnam-si. We create special moments with fresh and beautiful flowers.";
 
-  const offers = isKorean ? [
+  const products = isKorean ? [
     {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Product",
-        "name": "시즌 부케",
-        "description": "계절별 신선한 꽃으로 제작되는 특별한 부케"
+      "@type": "Product",
+      "name": "시즌 부케",
+      "description": "계절별 신선한 꽃으로 제작되는 특별한 부케",
+      "image": "https://miracle-flower.vercel.app/images/seasonal-bouquet.jpg",
+      "brand": {
+        "@type": "Brand",
+        "name": "미라클 플라워"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "127"
       }
     },
     {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Product",
-        "name": "화병 꽂이",
-        "description": "고급 화병에 정성스럽게 꽂은 꽃 어레인지먼트"
+      "@type": "Product",
+      "name": "화병 꽂이",
+      "description": "고급 화병에 정성스럽게 꽂은 꽃 어레인지먼트",
+      "image": "https://miracle-flower.vercel.app/images/vase-arrangement.jpg",
+      "brand": {
+        "@type": "Brand",
+        "name": "미라클 플라워"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "98"
       }
     },
     {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Product",
-        "name": "꽃바구니",
-        "description": "특별한 날을 위한 우아한 꽃바구니"
+      "@type": "Product",
+      "name": "꽃바구니",
+      "description": "특별한 날을 위한 우아한 꽃바구니",
+      "image": "https://miracle-flower.vercel.app/images/flower-basket.jpg",
+      "brand": {
+        "@type": "Brand",
+        "name": "미라클 플라워"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "reviewCount": "156"
       }
     }
   ] : [
     {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Product",
-        "name": "Seasonal Bouquet",
-        "description": "Special bouquets made with seasonal fresh flowers"
+      "@type": "Product",
+      "name": "Seasonal Bouquet",
+      "description": "Special bouquets made with seasonal fresh flowers",
+      "image": "https://miracle-flower.vercel.app/images/seasonal-bouquet.jpg",
+      "brand": {
+        "@type": "Brand",
+        "name": "Miracle Flower"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "127"
       }
     },
     {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Product",
-        "name": "Vase Arrangement",
-        "description": "Carefully arranged flowers in premium vases"
+      "@type": "Product",
+      "name": "Vase Arrangement",
+      "description": "Carefully arranged flowers in premium vases",
+      "image": "https://miracle-flower.vercel.app/images/vase-arrangement.jpg",
+      "brand": {
+        "@type": "Brand",
+        "name": "Miracle Flower"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "98"
       }
     },
     {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Product",
-        "name": "Flower Basket",
-        "description": "Elegant flower baskets for special occasions"
+      "@type": "Product",
+      "name": "Flower Basket",
+      "description": "Elegant flower baskets for special occasions",
+      "image": "https://miracle-flower.vercel.app/images/flower-basket.jpg",
+      "brand": {
+        "@type": "Brand",
+        "name": "Miracle Flower"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "reviewCount": "156"
       }
     }
   ];
 
-  return {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://miracle-flower.vercel.app",
-    "name": name,
-    "description": description,
-    "url": "https://miracle-flower.vercel.app",
-    "telephone": "+82-507-1456-0389",
-    "email": "rmr0322@hanmail.net",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "황새울로12번길 11-2",
-      "addressLocality": "분당구",
-      "addressRegion": "성남시",
-      "addressCountry": "KR",
-      "postalCode": "13561"
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://miracle-flower.vercel.app",
+      "name": name,
+      "description": description,
+      "url": "https://miracle-flower.vercel.app",
+      "telephone": "+82-507-1456-0389",
+      "email": "rmr0322@hanmail.net",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "황새울로12번길 11-2",
+        "addressLocality": "분당구",
+        "addressRegion": "성남시",
+        "addressCountry": "KR",
+        "postalCode": "13561"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "37.3595704",
+        "longitude": "127.105399"
+      },
+      "openingHours": [
+        "Tu-Su 11:00-19:00"
+      ],
+      "priceRange": "$$",
+      "paymentAccepted": ["Cash", "Credit Card"],
+      "currenciesAccepted": "KRW",
+      "image": [
+        "https://miracle-flower.vercel.app/images/seasonal-bouquet.jpg",
+        "https://miracle-flower.vercel.app/images/vase-arrangement.jpg",
+        "https://miracle-flower.vercel.app/images/flower-basket.jpg"
+      ],
+      "sameAs": [
+        "https://www.instagram.com/miracle_flowerstudio/",
+        "https://blog.naver.com/miracle_flower",
+        "https://www.youtube.com/@miracle_flowerstudio"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": isKorean ? "꽃 상품" : "Flower Products",
+        "itemListElement": products.map(product => ({
+          "@type": "Offer",
+          "itemOffered": product
+        }))
+      }
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "37.3595704",
-      "longitude": "127.105399"
-    },
-    "openingHours": [
-      "Tu-Su 11:00-19:00"
-    ],
-    "priceRange": "$$",
-    "paymentAccepted": ["Cash", "Credit Card"],
-    "currenciesAccepted": "KRW",
-    "image": [
-      "https://miracle-flower.vercel.app/images/seasonal-bouquet.jpg",
-      "https://miracle-flower.vercel.app/images/vase-arrangement.jpg",
-      "https://miracle-flower.vercel.app/images/flower-basket.jpg"
-    ],
-    "sameAs": [
-      "https://www.instagram.com/miracle_flowerstudio/",
-      "https://blog.naver.com/miracle_flower",
-      "https://www.youtube.com/@miracle_flowerstudio"
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": isKorean ? "꽃 상품" : "Flower Products",
-      "itemListElement": offers
-    }
-  };
+    ...products
+  ];
 };

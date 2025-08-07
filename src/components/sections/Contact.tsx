@@ -68,7 +68,7 @@ export default function Contact() {
         
         <div className="grid md:grid-cols-3 gap-8">
           {/* Contact Info */}
-          <div className="space-y-6">
+          <div className="bg-gray-50 p-6 border border-gray-100">
             <h4 className="text-lg font-medium text-gray-800 mb-4">{intl.formatMessage({ id: 'contact.storeInfo' })}</h4>
             {contactInfo.map((info, index) => (
               <div key={index} className="flex items-start space-x-4">
@@ -88,7 +88,7 @@ export default function Contact() {
           </div>
           
           {/* Social Links */}
-          <div className="space-y-6">
+          <div className="bg-gray-50 p-6 border border-gray-100">
             <h4 className="text-lg font-medium text-gray-800 mb-4">{intl.formatMessage({ id: 'contact.socialMedia' })}</h4>
             <div className="space-y-4">
               {socialLinks.map((social, index) => (

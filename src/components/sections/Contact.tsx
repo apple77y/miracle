@@ -12,6 +12,17 @@ interface ContactInfo {
 
 export default function Contact() {
   const intl = useIntl();
+  
+  // 매장 위치 정보 (네이버 지도 링크에서 확인된 정보)
+  const storeLocation = {
+    lat: 37.36129117156036,
+    lng: 127.11145035922377,
+    address: '경기도 성남시 분당구 황새울로12번길 11-2',
+    placeId: '1633873676'
+  };
+  
+  // HTTP Referer 인증 방식으로 네이버 Static Map 사용
+  
   const contactInfo: ContactInfo[] = [
     {
       labelKey: "contact.phone",
@@ -112,6 +123,35 @@ export default function Contact() {
           {/* Map */}
           <div className="bg-gray-50 p-6 border border-gray-100">
             <h4 className="text-lg font-medium text-gray-800 mb-4">{intl.formatMessage({ id: 'contact.directions' })}</h4>
+            
+            {/* 네이버 Static Map - HTTP Referer 인증 */}
+            <div className="mb-6">
+              <img 
+                src={`https://maps.apigw.ntruss.com/map-static/v2/raster-cors?w=400&h=200&center=${storeLocation.lng},${storeLocation.lat}&level=15&maptype=basic&format=png&markers=type:t|size:mid|color:red|pos:${storeLocation.lng} ${storeLocation.lat}&X-NCP-APIGW-API-KEY-ID=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
+                alt={intl.formatMessage({ id: 'contact.mapAlt' })}
+                className="w-full h-48 object-cover border border-gray-200 rounded"
+                onError={(e) => {
+                  // 지도 로딩 실패 시 매장 위치 정보 표시
+                  const target = e.target as HTMLImageElement;
+                  const fallbackDiv = document.createElement('div');
+                  fallbackDiv.className = 'w-full h-48 bg-rose-50 border border-rose-100 rounded flex flex-col justify-center items-center p-6';
+                  fallbackDiv.innerHTML = `
+                    <div class="flex items-center space-x-2 mb-3">
+                      <span class="text-rose-500 text-3xl">📍</span>
+                      <span class="font-medium text-gray-800 text-lg">미라클 플라워</span>
+                    </div>
+                    <p class="text-sm text-gray-600 text-center font-light mb-2">${storeLocation.address}</p>
+                    <div class="text-xs text-gray-500 space-y-1">
+                      <p>위도: ${storeLocation.lat}</p>
+                      <p>경도: ${storeLocation.lng}</p>
+                    </div>
+                  `;
+                  target.parentNode?.replaceChild(fallbackDiv, target);
+                }}
+              />
+            </div>
+            
+            
             <p className="text-sm text-gray-600 font-light mb-6 leading-relaxed">
               {intl.formatMessage({ id: 'contact.directionsDesc' })}
             </p>

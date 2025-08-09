@@ -55,10 +55,21 @@ export default function DynamicLayout({ children }: DynamicLayoutProps) {
         }
 
         // Update JSON-LD
-        const jsonLdScript = document.querySelector('script[type="application/ld+json"]');
-        if (jsonLdScript) {
-          jsonLdScript.innerHTML = JSON.stringify(getJsonLd(locale));
-        }
+        const existingJsonLdScripts = document.querySelectorAll('script[type="application/ld+json"]');
+        const jsonLdData = getJsonLd(locale);
+        
+        // Remove existing JSON-LD scripts
+        existingJsonLdScripts.forEach(script => script.remove());
+        
+        // Add new JSON-LD scripts
+        jsonLdData.forEach((jsonLd) => {
+          if (jsonLd && '@context' in jsonLd) {
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.innerHTML = JSON.stringify(jsonLd);
+            document.head.appendChild(script);
+          }
+        });
 
         // Skip hreflang updates to avoid DOM conflicts during routing
         // These will be handled by Next.js Head component if needed

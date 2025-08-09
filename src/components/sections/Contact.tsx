@@ -21,7 +21,43 @@ export default function Contact() {
     placeId: '1633873676'
   };
   
-  // HTTP Referer 인증 방식으로 네이버 Static Map 사용
+  // 네이버 Static Map 설정
+  const mapConfig = {
+    width: 800,
+    height: 400,
+    level: 15,
+    maptype: 'basic',
+    format: 'png',
+    scale: 2,
+    markerSize: 'mid'
+  };
+
+  // 지도 URL 생성 함수
+  const generateMapUrl = () => {
+    const baseUrl = 'https://maps.apigw.ntruss.com/map-static/v2/raster-cors';
+    
+    // 현재 언어에 따른 지도 언어 설정
+    const mapLanguage = intl.locale === 'ko' ? 'ko' : 'en';
+    
+    // 지도 중심을 마커 위치에서 약간 왼쪽으로 이동
+    const mapCenterLng = storeLocation.lng - 0.002;
+    const mapCenterLat = storeLocation.lat + 0.002;
+    
+    const params = new URLSearchParams({
+      w: mapConfig.width.toString(),
+      h: mapConfig.height.toString(),
+      center: `${mapCenterLng},${mapCenterLat}`,
+      level: mapConfig.level.toString(),
+      maptype: mapConfig.maptype,
+      format: mapConfig.format,
+      scale: mapConfig.scale.toString(),
+      lang: mapLanguage,
+      markers: `size:${mapConfig.markerSize}|pos:${storeLocation.lng} ${storeLocation.lat}`,
+      'X-NCP-APIGW-API-KEY-ID': process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID || ''
+    });
+    
+    return `${baseUrl}?${params.toString()}`;
+  };
   
   const contactInfo: ContactInfo[] = [
     {
@@ -129,9 +165,9 @@ export default function Contact() {
             {/* 네이버 Static Map - HTTP Referer 인증 */}
             <div className="mb-6">
               <img 
-                src={`https://maps.apigw.ntruss.com/map-static/v2/raster-cors?w=400&h=200&center=${storeLocation.lng},${storeLocation.lat}&level=15&maptype=basic&format=png&markers=type:t|size:mid|color:red|pos:${storeLocation.lng} ${storeLocation.lat}&X-NCP-APIGW-API-KEY-ID=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
+                src={generateMapUrl()}
                 alt={intl.formatMessage({ id: 'contact.mapAlt' })}
-                className="w-full h-48 object-cover border border-gray-200 rounded"
+                className="w-full h-48 object-cover border border-gray-200 rounded shadow-sm"
                 onError={(e) => {
                   // 지도 로딩 실패 시 매장 위치 정보 표시
                   const target = e.target as HTMLImageElement;

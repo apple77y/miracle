@@ -56,7 +56,7 @@
   --color-terracotta: var(--terracotta);
   --color-lavender: var(--lavender);
   --color-lavender-light: var(--lavender-light);
-  --font-sans: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans CJK KR", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "NanumSquareRound", -apple-system, BlinkMacSystemFont, "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans CJK KR", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
@@ -101,7 +101,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans CJK KR", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "NanumSquareRound", -apple-system, BlinkMacSystemFont, "Malgun Gothic", "Apple SD Gothic Neo", "Noto Sans CJK KR", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
   line-height: 1.7;
   letter-spacing: 0.01em;

@@ -24,6 +24,10 @@ export default function RootLayout({
   return (
     <html lang="ko" className="light">
       <head>
+        <link
+          href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css"
+          rel="stylesheet"
+        />
         {getJsonLd('ko').map((jsonLd, index) => (
           <script
             key={index}

@@ -48,7 +48,7 @@ export default function BackgroundSyncIndicator() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'syncing': return 'text-blue-600';
+      case 'syncing': return 'text-sage';
       case 'success': return 'text-green-600';
       case 'error': return 'text-red-600';
       default: return 'text-gray-600';
@@ -57,16 +57,16 @@ export default function BackgroundSyncIndicator() {
 
   return (
     <div className="fixed top-4 right-4 z-40 max-w-sm">
-      <div className="bg-white rounded-lg shadow-lg border border-blue-200 p-3">
+      <div className="bg-white rounded-lg shadow-lg border border-sage-light p-3">
         <div className="flex items-center space-x-2 mb-2">
           {isSyncing ? (
             <>
-              <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-              <span className="text-sm font-medium text-blue-700">동기화 중...</span>
+              <div className="w-4 h-4 border-2 border-sage border-t-transparent rounded-full animate-spin"></div>
+              <span className="text-sm font-medium text-sage-dark">동기화 중...</span>
             </>
           ) : (
             <>
-              <span className="text-blue-500">📡</span>
+              <span className="text-sage">📡</span>
               <span className="text-sm font-medium text-gray-700">
                 백그라운드 동기화 ({totalPending}개 대기)
               </span>
@@ -123,7 +123,7 @@ export default function BackgroundSyncIndicator() {
           <button
             onClick={requestSync}
             disabled={isSyncing}
-            className="flex-1 text-xs bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex-1 text-xs bg-sage text-white px-3 py-1 rounded hover:bg-sage-dark disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSyncing ? '동기화 중...' : '지금 동기화'}
           </button>

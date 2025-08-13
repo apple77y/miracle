@@ -26,12 +26,13 @@ export default function PWAThemeColor() {
       }
     };
 
+    // 모든 환경에서 테마 색상 적용
     if (isPWA) {
-      // PWA 환경에서는 커스텀 색상 적용
-      setThemeColor('#f43f5e');
+      // PWA 환경에서는 커스텀 색상 적용 - 꽃집을 위한 적절한 색상
+      setThemeColor('#7c8c6e');
     } else {
-      // 일반 웹에서는 theme-color 제거 (브라우저 기본값 사용)
-      removeThemeColor();
+      // 일반 웹에서도 동일한 색상 적용
+      setThemeColor('#7c8c6e');
     }
   }, [isPWA]);
 

@@ -13,7 +13,7 @@ export default function Gallery() {
     },
     {
       image: "/images/vase-arrangement.jpg",
-      gradient: "linear-gradient(to bottom right, #fdf2f8, #fce7f3)",
+      gradient: "linear-gradient(to bottom right, #f0f9ff, #e0f2fe)",
       titleKey: "gallery.vase.title",
       category: "Vase"
     },
@@ -25,7 +25,7 @@ export default function Gallery() {
     },
     {
       image: "/images/rose-bouquet.jpg",
-      gradient: "linear-gradient(to bottom right, #fef2f2, #fecaca)",
+      gradient: "linear-gradient(to bottom right, #eff6ff, #bfdbfe)",
       titleKey: "gallery.rose.title",
       category: "Rose"
     },
@@ -50,14 +50,14 @@ export default function Gallery() {
           <h3 className="text-3xl font-light text-gray-800 mb-3 tracking-tight">
             {intl.formatMessage({ id: 'gallery.title' })}
           </h3>
-          <div className="w-12 h-px bg-rose-300 mx-auto mb-4"></div>
+          <div className="w-12 h-px bg-sage mx-auto mb-4"></div>
           <p className="text-gray-600 font-light">{intl.formatMessage({ id: 'gallery.subtitle' })}</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {galleryItems.map((item, index) => (
             <div key={index} className="group cursor-pointer hover-lift">
-              <div className="relative overflow-hidden rounded-3xl shadow-botanical border border-white/50 aspect-[4/5] bg-gradient-to-br from-sage/5 to-dusty-rose/5">
+              <div className="relative overflow-hidden rounded-3xl shadow-botanical border border-white/50 aspect-[4/5] bg-gradient-to-br from-sage/5 to-navy/5">
                 <div 
                   className="w-full h-full bg-cover bg-center transition-all duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100" 
                   style={{backgroundImage: `url('${item.image}'), ${item.gradient}`}}
@@ -81,7 +81,7 @@ export default function Gallery() {
           <p className="text-gray-600 font-light mb-6">{intl.formatMessage({ id: 'gallery.moreWorks' })}</p>
           <a href="https://www.instagram.com/miracle_flowerstudio/" 
              target="_blank" rel="noopener noreferrer"
-             className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group whitespace-nowrap">
+             className="inline-flex items-center text-sage hover:text-sage-dark transition-colors font-medium text-sm tracking-wide group whitespace-nowrap">
             Instagram
             <svg className="w-4 h-4 ml-2 hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />

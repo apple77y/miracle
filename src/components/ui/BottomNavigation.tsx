@@ -112,8 +112,8 @@ export default function BottomNavigation() {
               href={item.href}
               className={`flex flex-col items-center justify-center px-3 py-2 transition-colors ${
                 isActive 
-                  ? 'text-rose-600' 
-                  : 'text-gray-600 hover:text-rose-500'
+                  ? 'text-sage' 
+                  : 'text-gray-600 hover:text-sage'
               }`}
             >
               <div className="mb-1">{item.icon}</div>

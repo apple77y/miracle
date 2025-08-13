@@ -30,28 +30,28 @@ export default function Header() {
           <div className="flex items-center">
             <Link href="/" className="text-2xl font-light text-gray-800 tracking-wide hover:opacity-80 transition-opacity">
               <span className="font-medium">Miracle</span>
-              <span className="text-rose-500 ml-1">Flower</span>
+              <span className="text-sage ml-1">Flower</span>
             </Link>
           </div>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <Link href="/#about" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide whitespace-nowrap">
+            <Link href="/#about" className="text-sm text-gray-600 hover:text-sage transition-colors font-medium tracking-wide whitespace-nowrap">
               {intl.formatMessage({ id: 'header.brandStory' })}
             </Link>
-            <Link href="/#services" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide whitespace-nowrap">
+            <Link href="/#services" className="text-sm text-gray-600 hover:text-sage transition-colors font-medium tracking-wide whitespace-nowrap">
               {intl.formatMessage({ id: 'header.services' })}
             </Link>
-            <Link href="/#gallery" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide whitespace-nowrap">
+            <Link href="/#gallery" className="text-sm text-gray-600 hover:text-sage transition-colors font-medium tracking-wide whitespace-nowrap">
               {intl.formatMessage({ id: 'header.portfolio' })}
             </Link>
-            <Link href="/guide" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide whitespace-nowrap">
+            <Link href="/guide" className="text-sm text-gray-600 hover:text-sage transition-colors font-medium tracking-wide whitespace-nowrap">
               {intl.formatMessage({ id: 'header.flowerGuide' })}
             </Link>
-            <Link href="/occasion" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide whitespace-nowrap">
+            <Link href="/occasion" className="text-sm text-gray-600 hover:text-sage transition-colors font-medium tracking-wide whitespace-nowrap">
               {intl.formatMessage({ id: 'header.eventGuide' })}
             </Link>
-            <Link href="/#contact" className="text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide whitespace-nowrap">
+            <Link href="/#contact" className="text-sm text-gray-600 hover:text-sage transition-colors font-medium tracking-wide whitespace-nowrap">
               {intl.formatMessage({ id: 'header.contact' })}
             </Link>
           </nav>
@@ -60,7 +60,7 @@ export default function Header() {
           <div className="md:hidden">
             <button 
               onClick={toggleMenu}
-              className="text-gray-600 hover:text-rose-500 transition-colors"
+              className="text-gray-600 hover:text-sage transition-colors"
               aria-label="메뉴 열기"
             >
               {isMenuOpen ? (
@@ -93,42 +93,42 @@ export default function Header() {
               <Link 
                 href="/#about"
                 onClick={closeMenu}
-                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
+                className="block text-sm text-gray-600 hover:text-sage transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-sage-light"
               >
                 {intl.formatMessage({ id: 'header.brandStory' })}
               </Link>
               <Link 
                 href="/#services"
                 onClick={closeMenu}
-                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
+                className="block text-sm text-gray-600 hover:text-sage transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-sage-light"
               >
                 {intl.formatMessage({ id: 'header.services' })}
               </Link>
               <Link 
                 href="/#gallery"
                 onClick={closeMenu}
-                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
+                className="block text-sm text-gray-600 hover:text-sage transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-sage-light"
               >
                 {intl.formatMessage({ id: 'header.portfolio' })}
               </Link>
               <Link 
                 href="/guide" 
                 onClick={closeMenu}
-                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
+                className="block text-sm text-gray-600 hover:text-sage transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-sage-light"
               >
                 {intl.formatMessage({ id: 'header.flowerGuide' })}
               </Link>
               <Link 
                 href="/occasion" 
                 onClick={closeMenu}
-                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
+                className="block text-sm text-gray-600 hover:text-sage transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-sage-light"
               >
                 {intl.formatMessage({ id: 'header.eventGuide' })}
               </Link>
               <Link 
                 href="/#contact"
                 onClick={closeMenu}
-                className="block text-sm text-gray-600 hover:text-rose-500 transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-rose-50"
+                className="block text-sm text-gray-600 hover:text-sage transition-colors font-medium tracking-wide py-3 px-2 rounded-lg hover:bg-sage-light"
               >
                 {intl.formatMessage({ id: 'header.contact' })}
               </Link>

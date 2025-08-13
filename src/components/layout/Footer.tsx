@@ -14,7 +14,7 @@ export default function Footer() {
           <div>
             <div className="text-xl font-light text-gray-800 tracking-wide mb-4">
               <span className="font-medium">Miracle</span>
-              <span className="text-rose-500 ml-1">Flower</span>
+              <span className="text-sage ml-1">Flower</span>
             </div>
             <p className="text-sm text-gray-600 font-light leading-relaxed whitespace-pre-line break-words">
               {intl.formatMessage({ id: 'footer.description' })}

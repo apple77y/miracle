@@ -32,7 +32,7 @@ export default function Services() {
           <h3 className="text-3xl font-light text-gray-800 mb-3 tracking-tight">
             {intl.formatMessage({ id: 'services.title' })}
           </h3>
-          <div className="w-12 h-px bg-rose-300 mx-auto mb-4"></div>
+          <div className="w-12 h-px bg-sage mx-auto mb-4"></div>
           <p className="text-gray-600 font-light">
             {intl.formatMessage({ id: 'services.subtitle' })}
           </p>
@@ -42,7 +42,7 @@ export default function Services() {
           {services.map((service, index) => (
             <div key={index} className="bg-white p-8 hover:shadow-xl transition-all duration-300 group border border-gray-100/50">
               <div className="mb-6">
-                <h4 className="text-xl font-medium text-gray-800 mb-2 group-hover:text-rose-500 transition-colors">
+                <h4 className="text-xl font-medium text-gray-800 mb-2 group-hover:text-sage transition-colors">
                   {intl.formatMessage({ id: service.titleKey })}
                 </h4>
                 <p className="text-xs text-gray-400 uppercase tracking-wider font-medium mb-4">
@@ -56,7 +56,7 @@ export default function Services() {
               <div className="space-y-2">
                 {service.featureKeys.map((featureKey, idx) => (
                   <div key={idx} className="flex items-center">
-                    <div className="w-1 h-1 bg-rose-300 rounded-full mr-3"></div>
+                    <div className="w-1 h-1 bg-sage rounded-full mr-3"></div>
                     <span className="text-sm text-gray-600 font-light">
                       {intl.formatMessage({ id: featureKey })}
                     </span>

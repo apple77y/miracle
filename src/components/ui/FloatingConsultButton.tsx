@@ -17,7 +17,7 @@ export default function FloatingConsultButton() {
   return (
     <button
       onClick={handleClick}
-      className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-3 md:p-4 shadow-lg hover:shadow-xl transition-all duration-300 z-50 group"
+      className="fixed bottom-6 right-6 bg-sage hover:bg-sage-dark text-white rounded-full p-3 md:p-4 shadow-lg hover:shadow-xl transition-all duration-300 z-50 group"
       aria-label={intl.formatMessage({ id: 'ui.consultation' })}
     >
       <div className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6">

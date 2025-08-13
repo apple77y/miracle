@@ -201,7 +201,7 @@ export default function UpdateNotification() {
   if (updateState.refreshing) {
     return (
       <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
-        <div className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-3">
+        <div className="bg-sage text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-3">
           <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
           <span className="text-sm font-medium">새 버전으로 전환 중...</span>
         </div>
@@ -216,7 +216,7 @@ export default function UpdateNotification() {
   if (updateState.isUpdating && !updateState.updateReady) {
     return (
       <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
-        <div className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-3">
+        <div className="bg-sage text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-3">
           <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
           <span className="text-sm font-medium">새 버전 다운로드 중...</span>
         </div>
@@ -240,7 +240,7 @@ export default function UpdateNotification() {
   if (updateState.updateAvailable && updateState.updateReady) {
     return (
       <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 max-w-sm mx-4">
-        <div className="bg-gradient-to-r from-green-500 to-blue-600 text-white rounded-lg shadow-lg p-4">
+        <div className="bg-gradient-to-r from-green-500 to-sage text-white rounded-lg shadow-lg p-4">
           <div className="flex items-start space-x-3">
             <span className="text-2xl">🎉</span>
             <div className="flex-1">

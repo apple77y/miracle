@@ -16,12 +16,15 @@
   --border: #ebe7e0;
   --input: #faf9f7;
   --ring: #d4a574;
-  --sage: #9caf88;
-  --sage-light: #b8c9a4;
-  --sage-dark: #7a9465;
-  --dusty-rose: #d4a5a5;
-  --dusty-rose-light: #e8c4c4;
-  --dusty-rose-dark: #b8858a;
+  --sage: #7c8c6e;
+  --sage-light: #94a388;
+  --sage-dark: #5c6b52;
+  --navy: #5e6b58;
+  --navy-light: #778873;
+  --navy-dark: #4a5644;
+  --dusty-rose: #c9ada7; /* Restored to a soft rose color for flower shop */
+  --dusty-rose-light: #e6d7d2; /* Restored to a soft rose light color */
+  --dusty-rose-dark: #a68a85; /* Restored to a soft rose dark color */
   --cream: #f5f2ed;
   --warm-white: #fefdfb;
   --terracotta: #c7956b;
@@ -48,8 +51,11 @@
   --color-sage: var(--sage);
   --color-sage-light: var(--sage-light);
   --color-sage-dark: var(--sage-dark);
-  --color-dusty-rose: var(--dusty-rose);
-  --color-dusty-rose-light: var(--dusty-rose-light);
+  --color-navy: var(--navy);
+  --color-navy-light: var(--navy-light);
+  --color-navy-dark: var(--navy-dark);
+  --color-dusty-rose: var(--dusty-rose); 
+  --color-dusty-rose-light: var(--dusty-rose-light); 
   --color-dusty-rose-dark: var(--dusty-rose-dark);
   --color-cream: var(--cream);
   --color-warm-white: var(--warm-white);
@@ -79,12 +85,15 @@
     --border: #ebe7e0 !important;
     --input: #faf9f7 !important;
     --ring: #d4a574 !important;
-    --sage: #9caf88 !important;
-    --sage-light: #b8c9a4 !important;
-    --sage-dark: #7a9465 !important;
-    --dusty-rose: #d4a5a5 !important;
-    --dusty-rose-light: #e8c4c4 !important;
-    --dusty-rose-dark: #b8858a !important;
+    --sage: #7c8c6e !important;
+    --sage-light: #94a388 !important;
+    --sage-dark: #5c6b52 !important;
+    --navy: #5e6b58 !important;
+    --navy-light: #778873 !important;
+    --navy-dark: #4a5644 !important;
+    --dusty-rose: #c9ada7 !important; /* Restored to a soft rose color for flower shop */
+    --dusty-rose-light: #e6d7d2 !important; /* Restored to a soft rose light color */
+    --dusty-rose-dark: #a68a85 !important; /* Restored to a soft rose dark color */
     --cream: #f5f2ed !important;
     --warm-white: #fefdfb !important;
     --terracotta: #c7956b !important;
@@ -115,11 +124,16 @@ body {
 }
 
 .gradient-sage {
-  background: linear-gradient(135deg, #b8c9a4 0%, #9caf88 50%, #7a9465 100%);
+  background: linear-gradient(135deg, #94a388 0%, #7c8c6e 50%, #5c6b52 100%);
 }
 
+.gradient-navy {
+  background: linear-gradient(135deg, #778873 0%, #5e6b58 50%, #4a5644 100%);
+}
+
+/* Using sage colors for dusty-rose gradient for consistency */
 .gradient-dusty-rose {
-  background: linear-gradient(135deg, #e8c4c4 0%, #d4a5a5 50%, #b8858a 100%);
+  background: linear-gradient(135deg, #94a388 0%, #7c8c6e 50%, #5c6b52 100%);
 }
 
 .gradient-warm {

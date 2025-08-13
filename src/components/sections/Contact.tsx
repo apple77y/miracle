@@ -109,7 +109,7 @@ export default function Contact() {
           <h3 className="text-3xl font-light text-gray-800 mb-3 tracking-tight">
             {intl.formatMessage({ id: 'contact.title' })}
           </h3>
-          <div className="w-12 h-px bg-rose-300 mx-auto mb-4"></div>
+          <div className="w-12 h-px bg-sage mx-auto mb-4"></div>
           <p className="text-gray-600 font-light">{intl.formatMessage({ id: 'contact.subtitle' })}</p>
         </div>
         
@@ -124,7 +124,7 @@ export default function Contact() {
                   <div>
                     <p className="text-sm font-medium text-gray-800 mb-1">{intl.formatMessage({ id: info.labelKey })}</p>
                     {info.link ? (
-                      <a href={info.link} className="text-sm text-rose-500 hover:text-rose-600 transition-colors font-light">
+                      <a href={info.link} className="text-sm text-sage hover:text-sage-dark transition-colors font-light">
                         {info.valueKey ? intl.formatMessage({ id: info.valueKey }) : info.value}
                       </a>
                     ) : (
@@ -143,12 +143,12 @@ export default function Contact() {
               {socialLinks.map((social, index) => (
                 <a key={index} href={social.url} 
                    target="_blank" rel="noopener noreferrer"
-                   className="flex items-center justify-between p-3 border border-gray-100 hover:border-rose-200 transition-colors group cursor-pointer">
+                   className="flex items-center justify-between p-3 border border-gray-100 hover:border-sage-light transition-colors group cursor-pointer">
                   <div>
                     <p className="text-sm font-medium text-gray-800">{social.name}</p>
                     <p className="text-xs text-gray-500">{social.handle}</p>
                   </div>
-                  <span className="text-rose-500 hover:text-rose-600 transition-colors">
+                  <span className="text-sage hover:text-sage-dark transition-colors">
                     <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
@@ -172,10 +172,10 @@ export default function Contact() {
                   // 지도 로딩 실패 시 매장 위치 정보 표시
                   const target = e.target as HTMLImageElement;
                   const fallbackDiv = document.createElement('div');
-                  fallbackDiv.className = 'w-full h-48 bg-rose-50 border border-rose-100 rounded flex flex-col justify-center items-center p-6';
+                  fallbackDiv.className = 'w-full h-48 bg-sage-light/10 border border-sage-light/30 rounded flex flex-col justify-center items-center p-6';
                   fallbackDiv.innerHTML = `
                     <div class="flex items-center space-x-2 mb-3">
-                      <span class="text-rose-500 text-3xl">📍</span>
+                      <span class="text-sage text-3xl">📍</span>
                       <span class="font-medium text-gray-800 text-lg">미라클 플라워</span>
                     </div>
                     <p class="text-sm text-gray-600 text-center font-light mb-2">${storeLocation.address}</p>
@@ -196,7 +196,7 @@ export default function Contact() {
             <div className="space-y-3">
               <a href="https://naver.me/GTnuWfmH" 
                  target="_blank" rel="noopener noreferrer"
-                 className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group w-full whitespace-nowrap">
+                 className="inline-flex items-center text-sage hover:text-sage-dark transition-colors font-medium text-sm tracking-wide group w-full whitespace-nowrap">
                 {intl.formatMessage({ id: 'contact.naverMap' })}
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -204,7 +204,7 @@ export default function Contact() {
               </a>
               <a href="https://place.map.kakao.com/86003378" 
                  target="_blank" rel="noopener noreferrer"
-                 className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group w-full whitespace-nowrap">
+                 className="inline-flex items-center text-sage hover:text-sage-dark transition-colors font-medium text-sm tracking-wide group w-full whitespace-nowrap">
                 {intl.formatMessage({ id: 'contact.kakaoMap' })}
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -212,7 +212,7 @@ export default function Contact() {
               </a>
               <a href="https://maps.app.goo.gl/LBKyuJShj3owcW949" 
                  target="_blank" rel="noopener noreferrer"
-                 className="inline-flex items-center text-rose-500 hover:text-rose-600 transition-colors font-medium text-sm tracking-wide group w-full whitespace-nowrap">
+                 className="inline-flex items-center text-sage hover:text-sage-dark transition-colors font-medium text-sm tracking-wide group w-full whitespace-nowrap">
                 {intl.formatMessage({ id: 'contact.googleMap' })}
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />

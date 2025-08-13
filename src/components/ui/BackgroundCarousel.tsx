@@ -53,7 +53,7 @@ export default function BackgroundCarousel() {
                 sizes="100vw"
                 quality={85}
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-rose-50/90 via-white/85 to-pink-50/90" />
+              <div className="absolute inset-0 bg-gradient-to-br from-sage-light/30 via-white/40 to-sage/20" />
             </div>
           </SwiperSlide>
         ))}

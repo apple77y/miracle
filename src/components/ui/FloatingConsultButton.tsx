@@ -7,7 +7,25 @@ export default function FloatingConsultButton() {
   const intl = useIntl();
   const isPWA = useIsPWA();
   const handleClick = () => {
-    window.open('https://www.instagram.com/direct/t/100858424646856/', '_blank');
+    // Detect if user is on mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+      // Try Instagram app deep link first, fallback to web version
+      const instagramAppUrl = 'instagram://user?username=miracle_flowerstudio';
+      const instagramWebUrl = 'https://www.instagram.com/miracle_flowerstudio/';
+      
+      // Attempt to open Instagram app
+      window.location.href = instagramAppUrl;
+      
+      // Fallback to web version after a short delay if app doesn't open
+      setTimeout(() => {
+        window.open(instagramWebUrl, '_blank');
+      }, 1500);
+    } else {
+      // Desktop: Use direct message link
+      window.open('https://www.instagram.com/direct/t/100858424646856/', '_blank');
+    }
   };
 
   if (isPWA) {

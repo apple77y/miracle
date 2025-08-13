@@ -93,12 +93,6 @@ export default function Header() {
       {/* Mobile Navigation - Floating Menu */}
       {isMenuOpen && (
         <>
-          {/* Backdrop */}
-          <div 
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
-            onClick={closeMenu}
-          />
-          
           {/* Floating Menu */}
           <div className="fixed top-20 right-4 bg-white rounded-xl shadow-xl border border-gray-100 z-50 md:hidden animate-in slide-in-from-top-2 duration-200">
             <nav className="py-4 px-6 space-y-3 min-w-[200px]">

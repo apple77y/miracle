@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
 import { useIsPWA } from '../../hooks/useIsPWA';
@@ -9,6 +9,18 @@ export default function Header() {
   const intl = useIntl();
   const isPWA = useIsPWA();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // 모바일 메뉴 오픈 시 body 스크롤 방지
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

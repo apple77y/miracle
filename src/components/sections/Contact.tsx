@@ -6,7 +6,6 @@ interface ContactInfo {
   labelKey: string;
   value?: string;
   valueKey?: string;
-  icon: string;
   link?: string;
 }
 
@@ -63,24 +62,20 @@ export default function Contact() {
     {
       labelKey: "contact.phone",
       value: "0507-1456-0389",
-      icon: "📞",
       link: "tel:0507-1456-0389"
     },
     {
       labelKey: "contact.email",
       value: "rmr0322@hanmail.net",
-      icon: "✉️",
       link: "mailto:rmr0322@hanmail.net"
     },
     {
       labelKey: "contact.address",
       valueKey: "contact.addressValue",
-      icon: "📍"
     },
     {
       labelKey: "contact.hours",
       valueKey: "contact.hoursValue",
-      icon: "🕒"
     }
   ];
 

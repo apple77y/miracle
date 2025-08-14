@@ -11,7 +11,6 @@ export default function OccasionPage() {
     {
       id: 1,
       category: intl.formatMessage({ id: 'occasion.birthday.category' }),
-      icon: "🎂",
       occasions: [
         {
           event: intl.formatMessage({ id: 'occasion.birthday.gift' }),
@@ -60,7 +59,6 @@ export default function OccasionPage() {
     {
       id: 2,
       category: intl.formatMessage({ id: 'occasion.graduation.category' }),
-      icon: "🎓",
       occasions: [
         {
           event: intl.formatMessage({ id: 'occasion.graduation.ceremony' }),
@@ -109,7 +107,6 @@ export default function OccasionPage() {
     {
       id: 3,
       category: intl.formatMessage({ id: 'occasion.wedding.category' }),
-      icon: "💒",
       occasions: [
         {
           event: intl.formatMessage({ id: 'occasion.wedding.bouquet' }),
@@ -155,7 +152,6 @@ export default function OccasionPage() {
     {
       id: 4,
       category: intl.formatMessage({ id: 'occasion.business.category' }),
-      icon: "🎊",
       occasions: [
         {
           event: intl.formatMessage({ id: 'occasion.business.opening' }),
@@ -203,7 +199,6 @@ export default function OccasionPage() {
     {
       id: 5,
       category: intl.formatMessage({ id: 'occasion.memorial.category' }),
-      icon: "🕊️",
       occasions: [
         {
           event: intl.formatMessage({ id: 'occasion.memorial.funeral' }),
@@ -258,9 +253,9 @@ export default function OccasionPage() {
           <div className="space-y-12 max-w-6xl mx-auto">
             {occasionGuides.map((category) => (
               <div key={category.id} className="bg-card rounded-lg shadow-lg border overflow-hidden">
-                <div className="bg-primary/10 p-6">
+                <div className="bg-primary/3 p-3">
                   <h2 className="text-2xl font-bold flex items-center gap-3">
-                    <span className="text-3xl">{category.icon}</span>
+                    {/* 아이콘 제거됨 */}
                     {category.category}
                   </h2>
                 </div>

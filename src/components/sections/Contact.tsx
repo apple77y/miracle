@@ -41,7 +41,7 @@ export default function Contact() {
     
     // 지도 중심을 마커 위치에서 약간 왼쪽으로 이동
     const mapCenterLng = storeLocation.lng - 0.002;
-    const mapCenterLat = storeLocation.lat + 0.002;
+    const mapCenterLat = storeLocation.lat + 0.003;
     
     const params = new URLSearchParams({
       w: mapConfig.width.toString(),
@@ -52,7 +52,7 @@ export default function Contact() {
       format: mapConfig.format,
       scale: mapConfig.scale.toString(),
       lang: mapLanguage,
-      markers: `size:${mapConfig.markerSize}|pos:${storeLocation.lng} ${storeLocation.lat}`,
+      markers: `size:${mapConfig.markerSize}|color:blue|pos:${storeLocation.lng} ${storeLocation.lat}`,
       'X-NCP-APIGW-API-KEY-ID': process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID || ''
     });
     

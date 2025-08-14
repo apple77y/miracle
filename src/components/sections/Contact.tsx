@@ -116,7 +116,6 @@ export default function Contact() {
             <div className="space-y-4">
               {contactInfo.map((info, index) => (
                 <div key={index} className="flex items-start space-x-4">
-                  <span className="text-lg">{info.icon}</span>
                   <div>
                     <p className="text-sm font-medium text-gray-800 mb-1">{intl.formatMessage({ id: info.labelKey })}</p>
                     {info.link ? (

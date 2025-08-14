@@ -105,7 +105,7 @@ export default function BackgroundMusic() {
   return (
     <button
       onClick={togglePlay}
-      className="fixed bottom-20 md:bottom-24 right-6 bg-sage hover:bg-sage-dark text-white rounded-full p-3 md:p-4 shadow-lg hover:shadow-xl transition-all duration-300 z-50 group"
+      className="fixed bottom-20 md:bottom-24 right-6 bg-amber-400 hover:bg-amber-500 text-white rounded-full p-3 md:p-4 shadow-lg hover:shadow-xl transition-all duration-300 z-50 group"
       aria-label={isPlaying ? 'Pause music' : 'Play music'}
       title={isPlaying ? 'Pause music' : 'Play music'}
     >

@@ -105,7 +105,8 @@ export default function Contact() {
             {intl.formatMessage({ id: 'contact.title' })}
           </h3>
           <div className="w-12 h-px bg-sage mx-auto mb-4"></div>
-          <p className="text-gray-600 font-light">{intl.formatMessage({ id: 'contact.subtitle' })}</p>
+          <p className="text-gray-600 font-light mb-2">{intl.formatMessage({ id: 'contact.subtitle' })}</p>
+          <p className="text-gray-600 font-light mb-2">{intl.formatMessage({ id: 'contact.paypalDelivery' })}</p>
         </div>
         
         <div className="grid md:grid-cols-3 gap-8">

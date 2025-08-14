@@ -25,12 +25,12 @@ export default function BackgroundCarousel() {
 
   if (!isClient) {
     return (
-      <div className="absolute inset-0 bg-gradient-to-br from-rose-50 via-white to-pink-50" />
+      <section className="w-full h-64 md:h-96 bg-gradient-to-br from-rose-50 via-white to-pink-50" />
     );
   }
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
+    <section className="w-full h-64 md:h-96 overflow-hidden">
       <Swiper
         modules={[Autoplay, EffectFade]}
         effect="fade"
@@ -58,6 +58,6 @@ export default function BackgroundCarousel() {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </section>
   );
 }

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useIntl } from 'react-intl';
+import Image from "next/image";
 
 export default function Hero() {
   const intl = useIntl();
@@ -15,6 +16,13 @@ export default function Hero() {
             </svg>
             {intl.formatMessage({ id: 'hero.location' })}
           </div>
+            <Image
+                src="/images/logo.png"
+                alt="Logo"
+                width={250}
+                height={250}
+                className="mx-auto"
+            />
           <h2 className="text-4xl md:text-5xl font-light text-gray-800 mb-4 leading-tight tracking-tight">
             {intl.formatMessage({ id: 'hero.title' })}
             <br />

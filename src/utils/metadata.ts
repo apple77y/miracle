@@ -53,7 +53,7 @@ export const getMetadata = (locale: Locale = 'ko'): Metadata => {
       type: "website",
       images: [
         {
-          url: "/images/seasonal-bouquet.jpg",
+          url: "/images/logo.png",
           width: 1200,
           height: 630,
           alt: ogImageAlt,
@@ -64,7 +64,7 @@ export const getMetadata = (locale: Locale = 'ko'): Metadata => {
       card: "summary_large_image",
       title,
       description,
-      images: ["/images/seasonal-bouquet.jpg"],
+      images: ["/images/logo.png"],
     },
     robots: {
       index: true,

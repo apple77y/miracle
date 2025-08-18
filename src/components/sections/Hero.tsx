@@ -22,6 +22,7 @@ export default function Hero() {
                 width={250}
                 height={250}
                 className="mx-auto"
+                priority
             />
           <h2 className="text-4xl md:text-5xl font-light text-gray-800 mb-4 leading-tight tracking-tight">
             {intl.formatMessage({ id: 'hero.title' })}

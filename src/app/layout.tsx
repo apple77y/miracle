@@ -13,7 +13,7 @@ import I18nProvider from "../components/I18nProvider";
 import { getMetadata, getJsonLd, getViewport } from "../utils/metadata";
 
 // Default metadata (Korean) - will be updated dynamically by DynamicLayout
-export const metadata: Metadata = getMetadata('ko');
+export const metadata: Metadata = getMetadata("ko");
 export const viewport = getViewport();
 
 export default function RootLayout({
@@ -28,17 +28,23 @@ export default function RootLayout({
           href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css"
           rel="stylesheet"
         />
-        {getJsonLd('ko').map((jsonLd, index) => (
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        {getJsonLd("ko").map((jsonLd, index) => (
           <script
             key={index}
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-              __html: JSON.stringify(jsonLd)
+              __html: JSON.stringify(jsonLd),
             }}
           />
         ))}
       </head>
-      <body className="antialiased bg-white text-black" style={{ colorScheme: 'light' }}>
+      <body
+        className="antialiased bg-white text-black"
+        style={{ colorScheme: "light" }}>
         <PWAThemeColor />
         <PushNotificationManager />
         <BackgroundSyncIndicator />
@@ -52,6 +58,29 @@ export default function RootLayout({
         </I18nProvider>
         <Analytics />
         <SpeedInsights />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              // 맥 트랙패드 핀치줌 방지
+              document.addEventListener('wheel', function (e) {
+                if (e.ctrlKey) e.preventDefault();
+              }, { passive: false });
+
+              // iOS Safari 핀치줌 방지
+              document.addEventListener('gesturestart', e => e.preventDefault());
+              document.addEventListener('gesturechange', e => e.preventDefault());
+              document.addEventListener('gestureend', e => e.preventDefault());
+
+              // 모바일 더블탭 확대 방지
+              let lastTouchEnd = 0;
+              document.addEventListener('touchend', function (e) {
+                let now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) e.preventDefault();
+                lastTouchEnd = now;
+              }, false);
+            `,
+          }}
+        />
       </body>
     </html>
   );

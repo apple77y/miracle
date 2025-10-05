@@ -8,6 +8,7 @@ import PWAThemeColor from "../components/PWAThemeColor";
 import PushNotificationManager from "../components/PushNotificationManager";
 import BackgroundSyncIndicator from "../components/BackgroundSyncIndicator";
 import UpdateNotification from "../components/UpdateNotification";
+import ErrorBoundary from "../components/ErrorBoundary";
 import "./globals.css";
 import I18nProvider from "../components/I18nProvider";
 import { getMetadata, getJsonLd, getViewport } from "../utils/metadata";
@@ -49,13 +50,15 @@ export default function RootLayout({
         <PushNotificationManager />
         <BackgroundSyncIndicator />
         <UpdateNotification />
-        <I18nProvider>
-          <DynamicLayout>
-            {children}
-            <BackgroundMusic />
-            <FloatingConsultButton />
-          </DynamicLayout>
-        </I18nProvider>
+        <ErrorBoundary>
+          <I18nProvider>
+            <DynamicLayout>
+              {children}
+              <BackgroundMusic />
+              <FloatingConsultButton />
+            </DynamicLayout>
+          </I18nProvider>
+        </ErrorBoundary>
         <Analytics />
         <SpeedInsights />
         <script

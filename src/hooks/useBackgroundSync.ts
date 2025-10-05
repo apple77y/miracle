@@ -34,6 +34,8 @@ interface UserPreferences {
   theme: 'light' | 'dark' | 'auto';
 }
 
+import { offlineDB, initOfflineDB } from '../utils/offlineDB';
+
 interface BackgroundSyncState {
   isSupported: boolean;
   pendingOrders: number;
@@ -62,21 +64,32 @@ export const useBackgroundSync = () => {
     }
   });
 
-  // 대기 중인 항목 카운트 로드
+  // 대기 중인 항목 카운트 로드 (IndexedDB 사용)
   const loadPendingCounts = useCallback(async () => {
-    // 실제로는 IndexedDB나 다른 저장소에서 카운트를 가져와야 함
-    // 여기서는 간단히 localStorage 사용
     try {
-      const ordersCount = JSON.parse(localStorage.getItem('pending-orders-count') || '0');
-      const inquiriesCount = JSON.parse(localStorage.getItem('pending-inquiries-count') || '0');
+      const counts = await offlineDB.getPendingCounts();
       
       setSyncState(prev => ({ 
         ...prev, 
-        pendingOrders: ordersCount,
-        pendingInquiries: inquiriesCount
+        pendingOrders: counts.orders,
+        pendingInquiries: counts.inquiries
       }));
     } catch (error) {
-      console.error('Failed to load pending counts:', error);
+      console.error('Failed to load pending counts from IndexedDB:', error);
+      
+      // IndexedDB 실패 시 localStorage로 폴백
+      try {
+        const ordersCount = JSON.parse(localStorage.getItem('pending-orders-count') || '0');
+        const inquiriesCount = JSON.parse(localStorage.getItem('pending-inquiries-count') || '0');
+        
+        setSyncState(prev => ({ 
+          ...prev, 
+          pendingOrders: ordersCount,
+          pendingInquiries: inquiriesCount
+        }));
+      } catch (fallbackError) {
+        console.error('Failed to load pending counts from localStorage:', fallbackError);
+      }
     }
   }, []);
 
@@ -88,7 +101,16 @@ export const useBackgroundSync = () => {
     };
 
     checkSupport();
-  }, []);
+    
+    // IndexedDB 초기화
+    initOfflineDB().then(() => {
+      loadPendingCounts();
+    }).catch(error => {
+      console.error('Failed to initialize offline DB:', error);
+      // IndexedDB 초기화 실패 시에도 기본 카운트 로드 시도
+      loadPendingCounts();
+    });
+  }, [loadPendingCounts]);
 
   useEffect(() => {
     if (!isPWA || !syncState.isSupported) return;
@@ -102,9 +124,10 @@ export const useBackgroundSync = () => {
           setSyncState(prev => ({ 
             ...prev, 
             syncStatus: { ...prev.syncStatus, orders: 'success' },
-            pendingOrders: 0,
             lastSyncTime: Date.now()
           }));
+          // 성공한 데이터 정리 및 카운트 업데이트
+          loadPendingCounts();
           break;
           
         case 'ORDERS_SYNC_ERROR':
@@ -119,9 +142,9 @@ export const useBackgroundSync = () => {
           setSyncState(prev => ({ 
             ...prev, 
             syncStatus: { ...prev.syncStatus, inquiries: 'success' },
-            pendingInquiries: 0,
             lastSyncTime: Date.now()
           }));
+          loadPendingCounts();
           break;
           
         case 'INQUIRIES_SYNC_ERROR':
@@ -154,6 +177,7 @@ export const useBackgroundSync = () => {
             isSyncing: false,
             lastSyncTime: Date.now()
           }));
+          loadPendingCounts();
           break;
           
         case 'GENERAL_SYNC_ERROR':
@@ -167,9 +191,6 @@ export const useBackgroundSync = () => {
     };
 
     navigator.serviceWorker.addEventListener('message', handleMessage);
-    
-    // 초기 대기 항목 카운트 로드
-    loadPendingCounts();
 
     return () => {
       navigator.serviceWorker.removeEventListener('message', handleMessage);
@@ -184,17 +205,31 @@ export const useBackgroundSync = () => {
     }
 
     try {
+      // IndexedDB에 주문 데이터 저장 (타입 캐스팅 불필요)
+      const syncId = await offlineDB.addSyncData('order', orderData);
+
       // Service Worker에 주문 데이터 전송
       if ('serviceWorker' in navigator) {
         const registration = await navigator.serviceWorker.ready;
         
-        // Service Worker에 메시지 전송
         registration.active?.postMessage({
           type: 'STORE_ORDER',
-          payload: orderData
+          payload: { ...orderData, syncId }
         });
         
-        // 대기 카운트 업데이트
+        setSyncState(prev => ({ 
+          ...prev, 
+          pendingOrders: prev.pendingOrders + 1,
+          syncStatus: { ...prev.syncStatus, orders: 'syncing' }
+        }));
+      }
+      
+      return true;
+    } catch (error) {
+      console.error('Failed to add order to sync:', error);
+      
+      // IndexedDB 실패 시 localStorage로 폴백
+      try {
         const currentCount = syncState.pendingOrders;
         const newCount = currentCount + 1;
         localStorage.setItem('pending-orders-count', JSON.stringify(newCount));
@@ -204,12 +239,12 @@ export const useBackgroundSync = () => {
           pendingOrders: newCount,
           syncStatus: { ...prev.syncStatus, orders: 'syncing' }
         }));
+        
+        return true;
+      } catch (fallbackError) {
+        console.error('Fallback storage also failed:', fallbackError);
+        return false;
       }
-      
-      return true;
-    } catch (error) {
-      console.error('Failed to add order to sync:', error);
-      return false;
     }
   }, [syncState.isSupported, syncState.pendingOrders]);
 
@@ -221,14 +256,29 @@ export const useBackgroundSync = () => {
     }
 
     try {
+      const syncId = await offlineDB.addSyncData('inquiry', inquiryData);
+
       if ('serviceWorker' in navigator) {
         const registration = await navigator.serviceWorker.ready;
         
         registration.active?.postMessage({
           type: 'STORE_INQUIRY',
-          payload: inquiryData
+          payload: { ...inquiryData, syncId }
         });
         
+        setSyncState(prev => ({ 
+          ...prev, 
+          pendingInquiries: prev.pendingInquiries + 1,
+          syncStatus: { ...prev.syncStatus, inquiries: 'syncing' }
+        }));
+      }
+      
+      return true;
+    } catch (error) {
+      console.error('Failed to add inquiry to sync:', error);
+      
+      // 폴백 처리
+      try {
         const currentCount = syncState.pendingInquiries;
         const newCount = currentCount + 1;
         localStorage.setItem('pending-inquiries-count', JSON.stringify(newCount));
@@ -238,12 +288,12 @@ export const useBackgroundSync = () => {
           pendingInquiries: newCount,
           syncStatus: { ...prev.syncStatus, inquiries: 'syncing' }
         }));
+        
+        return true;
+      } catch (fallbackError) {
+        console.error('Fallback storage also failed:', fallbackError);
+        return false;
       }
-      
-      return true;
-    } catch (error) {
-      console.error('Failed to add inquiry to sync:', error);
-      return false;
     }
   }, [syncState.isSupported, syncState.pendingInquiries]);
 
@@ -255,12 +305,14 @@ export const useBackgroundSync = () => {
     }
 
     try {
+      const syncId = await offlineDB.addSyncData('preferences', preferences);
+
       if ('serviceWorker' in navigator) {
         const registration = await navigator.serviceWorker.ready;
         
         registration.active?.postMessage({
           type: 'STORE_PREFERENCES',
-          payload: preferences
+          payload: { ...preferences, syncId }
         });
         
         setSyncState(prev => ({ 

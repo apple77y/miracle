@@ -85,4 +85,8 @@ const pwaConfig = {
 
 // Properly apply PWA plugin: pass pwaConfig to withPWA to obtain a wrapper,
 // then apply it to nextConfig.
-export default withPWA(pwaConfig)(nextConfig);
+//export default withPWA(pwaConfig)(nextConfig);
+// Some versions of `next-pwa` typings mismatch with TS; cast to any and
+// preserve the original call shape: first pass pwaConfig to get a wrapper,
+// then apply it to nextConfig.
+export default (withPWA as any)(pwaConfig)(nextConfig);

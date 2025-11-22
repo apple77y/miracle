@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useIsPWA } from '../hooks/useIsPWA';
+import { useIsPWA } from '@/hooks/useIsPWA';
 
 export default function PWAThemeColor() {
   const isPWA = useIsPWA();
@@ -19,12 +19,6 @@ export default function PWAThemeColor() {
       metaThemeColor.setAttribute('content', color);
     };
 
-    const removeThemeColor = () => {
-      const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-      if (metaThemeColor) {
-        metaThemeColor.remove();
-      }
-    };
 
     // 모든 환경에서 테마 색상 적용
     if (isPWA) {

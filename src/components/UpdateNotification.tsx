@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useIsPWA } from '../hooks/useIsPWA';
+import { useIsPWA } from '@/hooks/useIsPWA';
 
 interface UpdateState {
   isSupported: boolean;
@@ -161,7 +161,7 @@ export default function UpdateNotification() {
     };
 
     setupUpdateDetection();
-  }, [isPWA, updateState.isSupported]);
+  }, [isPWA, updateState.isSupported, refreshTimer]);
 
   // 컴포넌트 언마운트 시 타이머 정리
   useEffect(() => {

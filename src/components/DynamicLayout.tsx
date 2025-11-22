@@ -35,26 +35,31 @@ export default function DynamicLayout({ children }: DynamicLayoutProps) {
           ? "성남시 분당구에 위치한 미라클 플라워입니다. 신선하고 아름다운 꽃으로 특별한 순간을 만들어드립니다."
           : "Miracle Flower is located in Bundang-gu, Seongnam-si. We create special moments with fresh and beautiful flowers.";
         
-        const metaDescription = document.querySelector('meta[name="description"]');
+        let metaDescription = document.querySelector('meta[name="description"]') as HTMLMetaElement | null;
+        if (!metaDescription) {
+          // Create meta description if missing (tests / some pages may not have it)
+          metaDescription = document.createElement('meta');
+          metaDescription.setAttribute('name', 'description');
+          document.head.appendChild(metaDescription);
+        }
         if (metaDescription) {
           metaDescription.setAttribute('content', description);
         }
 
         // Update OG tags
-        const ogTitle = document.querySelector('meta[property="og:title"]');
-        if (ogTitle) {
-          ogTitle.setAttribute('content', title);
-        }
+        const ensureMetaProperty = (property: string, content: string) => {
+          let el = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null;
+          if (!el) {
+            el = document.createElement('meta');
+            el.setAttribute('property', property);
+            document.head.appendChild(el);
+          }
+          el.setAttribute('content', content);
+        };
 
-        const ogDescription = document.querySelector('meta[property="og:description"]');
-        if (ogDescription) {
-          ogDescription.setAttribute('content', description);
-        }
-
-        const ogLocale = document.querySelector('meta[property="og:locale"]');
-        if (ogLocale) {
-          ogLocale.setAttribute('content', isKorean ? 'ko_KR' : 'en_US');
-        }
+        ensureMetaProperty('og:title', title);
+        ensureMetaProperty('og:description', description);
+        ensureMetaProperty('og:locale', isKorean ? 'ko_KR' : 'en_US');
 
         // Update JSON-LD
         const existingJsonLdScripts = document.querySelectorAll('script[type="application/ld+json"]');

@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
 import BackgroundCarousel from '../../ui/BackgroundCarousel'
+import Image from 'next/image';
 
 // Mock Next.js Image component
 jest.mock('next/image', () => {
@@ -21,7 +22,7 @@ jest.mock('next/image', () => {
     if (priority) imgProps.priority = 'true'
     if (fill) imgProps['data-fill'] = 'true'
     
-    return <img alt="" {...imgProps} />
+    return <Image alt="" src={imgProps.src as string} {...imgProps} />
   }
   MockImage.displayName = 'MockImage'
   return MockImage

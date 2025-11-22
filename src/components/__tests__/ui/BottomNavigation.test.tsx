@@ -56,8 +56,15 @@ describe('BottomNavigation', () => {
     // Reset usePathname mock
     ;(usePathname as jest.Mock).mockReturnValue('/')
     // Reset window.location
-    delete (window as unknown as { location?: Location }).location
-    ;(window as unknown as { location: { hash: string } }).location = { hash: '' }
+    try {
+      window.location.hash = ''
+    } catch (e) {
+      // In environments where assignment triggers navigation, provide a minimal stub
+      Object.defineProperty(window, 'location', {
+        value: { hash: '' },
+        writable: true,
+      })
+    }
   })
 
   it('should render all navigation items', () => {
@@ -88,28 +95,28 @@ describe('BottomNavigation', () => {
     renderBottomNavigation('/')
     
     const homeLink = screen.getByRole('link', { name: /홈/ })
-    expect(homeLink).toHaveClass('text-rose-600')
+    expect(homeLink).toHaveClass('text-sage')
   })
 
   it('should show guide as active when on guide page', () => {
     renderBottomNavigation('/guide')
     
     const guideLink = screen.getByRole('link', { name: /꽃 관리/ })
-    expect(guideLink).toHaveClass('text-rose-600')
+    expect(guideLink).toHaveClass('text-sage')
   })
 
   it('should show guide as active when on guide page with trailing slash', () => {
     renderBottomNavigation('/guide/')
     
     const guideLink = screen.getByRole('link', { name: /꽃 관리/ })
-    expect(guideLink).toHaveClass('text-rose-600')
+    expect(guideLink).toHaveClass('text-sage')
   })
 
   it('should show occasion as active when on occasion page', () => {
     renderBottomNavigation('/occasion')
     
     const eventLink = screen.getByRole('link', { name: /이벤트/ })
-    expect(eventLink).toHaveClass('text-rose-600')
+    expect(eventLink).toHaveClass('text-sage')
   })
 
 
@@ -175,7 +182,7 @@ describe('BottomNavigation', () => {
     
     const allLinks = screen.getAllByRole('link')
     allLinks.forEach(link => {
-      expect(link).toHaveClass('hover:text-rose-500')
+      expect(link).toHaveClass('hover:text-sage')
     })
   })
 
@@ -190,12 +197,16 @@ describe('BottomNavigation', () => {
 
   describe('Hash detection edge cases', () => {
     it('should handle empty hash correctly for home page', () => {
-      ;(window as unknown as { location: { hash: string } }).location = { hash: '' }
-      
+      try {
+        window.location.hash = ''
+      } catch (e) {
+        Object.defineProperty(window, 'location', { value: { hash: '' }, writable: true })
+      }
+
       renderBottomNavigation('/')
       
       const homeLink = screen.getByRole('link', { name: /홈/ })
-      expect(homeLink).toHaveClass('text-rose-600')
+      expect(homeLink).toHaveClass('text-sage')
     })
 
     it('should render contact link with correct href for hash navigation', () => {

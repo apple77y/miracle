@@ -42,8 +42,8 @@ describe('FloatingConsultButton', () => {
       'fixed',
       'bottom-6',
       'right-6',
-      'bg-blue-600',
-      'hover:bg-blue-700',
+      'bg-amber-400',
+      'hover:bg-amber-500',
       'text-white',
       'rounded-full',
       'p-3',
@@ -71,7 +71,7 @@ describe('FloatingConsultButton', () => {
     const button = screen.getByRole('button')
     await user.click(button)
     
-    expect(mockOpen).toHaveBeenCalledWith('https://talk.naver.com/ct/w4s149', '_blank')
+    expect(mockOpen).toHaveBeenCalledWith('https://www.instagram.com/direct/t/100858424646856/', '_blank')
   })
 
   it('should display tooltip on hover', async () => {
@@ -147,6 +147,6 @@ describe('FloatingConsultButton', () => {
     await user.click(button)
     
     expect(mockOpen).toHaveBeenCalledTimes(3)
-    expect(mockOpen).toHaveBeenCalledWith('https://talk.naver.com/ct/w4s149', '_blank')
+    expect(mockOpen).toHaveBeenCalledWith('https://www.instagram.com/direct/t/100858424646856/', '_blank')
   })
 })

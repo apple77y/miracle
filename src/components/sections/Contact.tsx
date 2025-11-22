@@ -1,6 +1,7 @@
 'use client';
 
 import { useIntl } from 'react-intl';
+import Image from 'next/image';
 
 interface ContactInfo {
   labelKey: string;
@@ -159,27 +160,34 @@ export default function Contact() {
             
             {/* 네이버 Static Map - HTTP Referer 인증 */}
             <div className="mb-6">
-              <img 
+              <Image
                 src={generateMapUrl()}
                 alt={intl.formatMessage({ id: 'contact.mapAlt' })}
                 className="w-full h-48 object-cover border border-gray-200 rounded shadow-sm"
+                width={mapConfig.width}
+                height={mapConfig.height}
                 onError={(e) => {
-                  // 지도 로딩 실패 시 매장 위치 정보 표시
                   const target = e.target as HTMLImageElement;
                   const fallbackDiv = document.createElement('div');
                   fallbackDiv.className = 'w-full h-48 bg-sage-light/10 border border-sage-light/30 rounded flex flex-col justify-center items-center p-6';
                   fallbackDiv.innerHTML = `
                     <div class="flex items-center space-x-2 mb-3">
-                      <span class="text-sage text-3xl">📍</span>
-                      <span class="font-medium text-gray-800 text-lg">미라클 플라워</span>
+                      <span class="text-sage text-3xl">
+                        📍
+                      </span>
+                      <span class="font-medium text-gray-800 text-lg">
+                        미라클 플라워
+                      </span>
                     </div>
-                    <p class="text-sm text-gray-600 text-center font-light mb-2">${storeLocation.address}</p>
-                    <div class="text-xs text-gray-500 space-y-1">
-                      <p>위도: ${storeLocation.lat}</p>
-                      <p>경도: ${storeLocation.lng}</p>
-                    </div>
+                    <p class="text-sm text-gray-600 text-center font-light mb-2">
+                      ${storeLocation.address}
+                    </p>
                   `;
-                  target.parentNode?.replaceChild(fallbackDiv, target);
+
+                  // Replace the failed image element with the fallback UI
+                  if (target && target.parentElement) {
+                    target.parentElement.replaceChild(fallbackDiv, target);
+                  }
                 }}
               />
             </div>

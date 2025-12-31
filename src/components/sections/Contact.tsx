@@ -27,7 +27,7 @@ export default function Contact() {
     height: 400,
     level: 15,
     maptype: 'basic',
-    format: 'png',
+    format: 'png8',
     scale: 2,
     markerSize: 'mid'
   };

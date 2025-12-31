@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "npm run lint && npm run type-check && next build",
+    "build": "npm run lint && npm run type-check && npm run test && next build",
     "export": "next build && next export",
     "start": "next start",
     "serve": "npx serve@latest out",
@@ -13,7 +13,7 @@
     "type-check": "tsc --noEmit",
     "lint-staged": "lint-staged",
     "prepare": "husky",
-    "test": "jest",
+    "test": "NODE_ENV=test jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },

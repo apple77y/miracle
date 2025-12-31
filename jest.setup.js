@@ -100,3 +100,95 @@ global.HTMLAudioElement = jest.fn().mockImplementation(() => {
   Object.defineProperty(mockAudio, 'src', { value: '', writable: true })
   return mockAudio
 })
+
+// Patch jsdom's HTMLMediaElement prototype to avoid "Not implemented" errors during tests
+if (typeof window !== 'undefined' && window.HTMLMediaElement && window.HTMLMediaElement.prototype) {
+  const proto = window.HTMLMediaElement.prototype
+  ;['play', 'pause', 'load'].forEach((fn) => {
+    try {
+      const existing = proto[fn]
+      // If it's not a function or not already a jest mock, override with a mock
+      if (typeof existing !== 'function' || !existing._isMockFunction) {
+        Object.defineProperty(proto, fn, {
+          configurable: true,
+          writable: true,
+          value: fn === 'play' ? jest.fn().mockResolvedValue(undefined) : jest.fn(),
+        })
+      }
+    } catch (e) {
+      // If defining fails for any reason, silently ignore to avoid breaking tests
+      // but log to console for visibility during local development
+      // eslint-disable-next-line no-console
+      console.warn('Could not patch HTMLMediaElement prototype for', fn, e)
+    }
+  })
+}
+
+// As an extra fallback, ensure HTMLAudioElement.prototype methods are mocked directly
+try {
+  if (typeof window !== 'undefined' && window.HTMLAudioElement && window.HTMLAudioElement.prototype) {
+    const proto = window.HTMLAudioElement.prototype
+    ;['play', 'pause', 'load'].forEach((fn) => {
+      try {
+        // Only override if not already a mock
+        if (typeof proto[fn] !== 'function' || !proto[fn]._isMockFunction) {
+          Object.defineProperty(proto, fn, {
+            configurable: true,
+            writable: true,
+            value: fn === 'play' ? jest.fn().mockResolvedValue(undefined) : jest.fn(),
+          })
+        }
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.warn('Could not patch HTMLAudioElement.prototype for', fn, e)
+      }
+    })
+  }
+} catch (e) {
+  // eslint-disable-next-line no-console
+  console.warn('HTMLAudioElement prototype patch failed', e)
+}
+
+// Filter out specific known benign console.error messages to keep test output clean
+const _origConsoleError = console.error.bind(console)
+console.error = (...args) => {
+  try {
+    const first = args[0]
+    const msg = typeof first === 'string' ? first : first && first.message ? first.message : ''
+    if (typeof msg === 'string') {
+      if (
+        msg.includes('Not implemented: HTMLMediaElement.prototype') ||
+        msg.includes('The current testing environment is not configured to support act') ||
+        msg.includes('Auto-play failed, user interaction required')
+      ) {
+        return
+      }
+    }
+  } catch (e) {
+    // ignore
+  }
+  _origConsoleError(...args)
+}
+
+// Ensure we patch the actual prototype used by DOM-created <audio> elements
+try {
+  const sampleAudio = document.createElement('audio')
+  const audioProto = Object.getPrototypeOf(sampleAudio)
+  ;['play', 'pause', 'load'].forEach((fn) => {
+    try {
+      if (typeof audioProto[fn] !== 'function' || !audioProto[fn]._isMockFunction) {
+        Object.defineProperty(audioProto, fn, {
+          configurable: true,
+          writable: true,
+          value: fn === 'play' ? jest.fn().mockResolvedValue(undefined) : jest.fn(),
+        })
+      }
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      _origConsoleError('Could not patch audio prototype for', fn, e)
+    }
+  })
+} catch (e) {
+  // eslint-disable-next-line no-console
+  _origConsoleError('Audio prototype patch failed', e)
+}

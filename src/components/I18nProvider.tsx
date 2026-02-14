@@ -1,7 +1,7 @@
 'use client';
 
 import { IntlProvider } from 'react-intl';
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
 
 // Import messages
 import koMessages from '../../messages/ko.json';
@@ -33,38 +33,34 @@ interface I18nProviderProps {
   children: ReactNode;
 }
 
+const getInitialLocale = (): Locale => {
+  if (typeof window === 'undefined') return 'ko';
+
+  try {
+    const savedLocale = localStorage.getItem('locale');
+    if (savedLocale === 'ko' || savedLocale === 'en') return savedLocale;
+  } catch {
+    // Ignore localStorage read errors and fall back to browser locale.
+  }
+
+  return navigator.language.startsWith('en') ? 'en' : 'ko';
+};
+
 export default function I18nProvider({ children }: I18nProviderProps) {
-  const [locale, setLocale] = useState<Locale>('ko');
-  const [isInitialized, setIsInitialized] = useState(false);
+  const [locale, setLocale] = useState<Locale>(getInitialLocale);
 
-  // Hydration-safe client detection
   useEffect(() => {
-    setIsInitialized(true);
-    const savedLocale = localStorage.getItem('locale') as Locale;
-    const browserLocale = navigator.language.startsWith('en') ? 'en' : 'ko';
-    const clientLocale = savedLocale || browserLocale;
-    
-    if (clientLocale !== 'ko') {
-      setLocale(clientLocale);
-      document.documentElement.lang = clientLocale;
-    }
-  }, []);
+    document.documentElement.lang = locale;
+  }, [locale]);
 
-  const handleSetLocale = (newLocale: Locale) => {
+  const handleSetLocale = useCallback((newLocale: Locale) => {
     setLocale(newLocale);
     try {
       localStorage.setItem('locale', newLocale);
-      
-      // Update HTML lang attribute with delay to avoid conflicts
-      setTimeout(() => {
-        if (document.documentElement) {
-          document.documentElement.lang = newLocale;
-        }
-      }, 50);
     } catch (error) {
       console.log('Locale update error:', error);
     }
-  };
+  }, []);
 
   return (
     <I18nContext.Provider value={{ locale, setLocale: handleSetLocale }}>
@@ -73,7 +69,7 @@ export default function I18nProvider({ children }: I18nProviderProps) {
         locale={locale} 
         defaultLocale="ko"
       >
-        <div className={!isInitialized ? 'opacity-0' : 'opacity-100'} style={{ transition: 'opacity 0.1s' }}>
+        <div className="opacity-100" style={{ transition: 'opacity 0.1s' }}>
           {children}
         </div>
       </IntlProvider>

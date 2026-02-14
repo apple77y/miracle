@@ -3,7 +3,10 @@
 import { useEffect, useState } from 'react';
 
 export default function OfflineClient() {
-  const [isOnline, setIsOnline] = useState(false);
+  const [isOnline, setIsOnline] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return navigator.onLine;
+  });
 
   useEffect(() => {
     const handleOnline = () => {
@@ -17,9 +20,6 @@ export default function OfflineClient() {
     const handleOffline = () => {
       setIsOnline(false);
     };
-
-    // 현재 온라인 상태 확인
-    setIsOnline(navigator.onLine);
 
     // 온라인/오프라인 이벤트 리스너
     window.addEventListener('online', handleOnline);

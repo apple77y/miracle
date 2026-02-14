@@ -188,13 +188,13 @@ describe('DynamicLayout', () => {
       value: 'ko-KR'
     })
     
-    // Ensure script element exists
+    // Ensure unrelated script element exists
     createScript('application/ld+json')
 
     renderDynamicLayout()
 
     await waitFor(() => {
-      const newScript = document.querySelector('script[type="application/ld+json"]')
+      const newScript = document.querySelector('script[data-locale-jsonld="true"]')
       expect(newScript).toBeTruthy()
       expect(newScript?.textContent).toContain('미라클 플라워')
     }, { timeout: 500 })
@@ -239,15 +239,15 @@ describe('DynamicLayout', () => {
     expect(screen.getByText('Test Content')).toBeInTheDocument()
   })
 
-  it('should cleanup timeout on unmount', () => {
-    const clearTimeoutSpy = jest.spyOn(global, 'clearTimeout')
+  it('should cleanup animation frame on unmount', () => {
+    const cancelAnimationFrameSpy = jest.spyOn(global, 'cancelAnimationFrame')
     const { unmount } = renderDynamicLayout()
     
     unmount()
     
-    expect(clearTimeoutSpy).toHaveBeenCalled()
+    expect(cancelAnimationFrameSpy).toHaveBeenCalled()
     
-    clearTimeoutSpy.mockRestore()
+    cancelAnimationFrameSpy.mockRestore()
   })
 
   it('should use requestAnimationFrame for DOM updates', async () => {
@@ -265,15 +265,4 @@ describe('DynamicLayout', () => {
     requestAnimationFrameSpy.mockRestore()
   })
 
-  it('should delay DOM updates to avoid conflicts', async () => {
-    jest.useFakeTimers()
-    const setTimeoutSpy = jest.spyOn(global, 'setTimeout')
-    
-    renderDynamicLayout()
-    
-    expect(setTimeoutSpy).toHaveBeenCalledWith(expect.any(Function), 100)
-    
-    setTimeoutSpy.mockRestore()
-    jest.useRealTimers()
-  })
 })

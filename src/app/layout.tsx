@@ -4,7 +4,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import FloatingConsultButton from "../components/ui/FloatingConsultButton";
 import BackgroundMusic from "../components/ui/BackgroundMusic";
 import DynamicLayout from "../components/DynamicLayout";
-import PWAThemeColor from "../components/PWAThemeColor";
 import ErrorBoundary from "../components/ErrorBoundary";
 import "./globals.css";
 import I18nProvider from "../components/I18nProvider";
@@ -26,14 +25,11 @@ export default function RootLayout({
           href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css"
           rel="stylesheet"
         />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-        />
         {getJsonLd("ko").map((jsonLd, index) => (
           <script
             key={index}
             type="application/ld+json"
+            data-locale-jsonld="true"
             dangerouslySetInnerHTML={{
               __html: JSON.stringify(jsonLd),
             }}
@@ -43,7 +39,6 @@ export default function RootLayout({
       <body
         className="antialiased bg-white text-black"
         style={{ colorScheme: "light" }}>
-        <PWAThemeColor />
         <ErrorBoundary>
           <I18nProvider>
             <DynamicLayout>

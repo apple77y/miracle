@@ -13,16 +13,8 @@ export default function DynamicLayout({ children }: DynamicLayoutProps) {
   const { locale } = useI18n();
 
   useEffect(() => {
-    // 컴포넌트 렌더링 시간 측정 시작
-
-    // Use requestAnimationFrame to avoid conflicts with React rendering
     const updateDOM = () => {
       try {
-        // Update HTML lang attribute
-        if (document.documentElement) {
-          document.documentElement.lang = locale;
-        }
-        
         // Update page title
         const isKorean = locale === 'ko';
         const title = isKorean 
@@ -61,19 +53,18 @@ export default function DynamicLayout({ children }: DynamicLayoutProps) {
         ensureMetaProperty('og:description', description);
         ensureMetaProperty('og:locale', isKorean ? 'ko_KR' : 'en_US');
 
-        // Update JSON-LD
-        const existingJsonLdScripts = document.querySelectorAll('script[type="application/ld+json"]');
+        // Update locale-managed JSON-LD only
+        const existingJsonLdScripts = document.querySelectorAll('script[data-locale-jsonld="true"]');
         const jsonLdData = getJsonLd(locale);
         
-        // Remove existing JSON-LD scripts
         existingJsonLdScripts.forEach(script => script.remove());
         
-        // Add new JSON-LD scripts
         jsonLdData.forEach((jsonLd) => {
           if (jsonLd && '@context' in jsonLd) {
             const script = document.createElement('script');
             script.type = 'application/ld+json';
-            script.innerHTML = JSON.stringify(jsonLd);
+            script.setAttribute('data-locale-jsonld', 'true');
+            script.textContent = JSON.stringify(jsonLd);
             document.head.appendChild(script);
           }
         });
@@ -107,13 +98,10 @@ export default function DynamicLayout({ children }: DynamicLayoutProps) {
       }
     };
 
-    // Delay DOM updates to avoid conflicts with Next.js routing
-    const timeoutId = setTimeout(() => {
-      requestAnimationFrame(updateDOM);
-    }, 100);
+    const rafId = requestAnimationFrame(updateDOM);
 
     return () => {
-      clearTimeout(timeoutId);
+      cancelAnimationFrame(rafId);
     };
   }, [locale]);
 

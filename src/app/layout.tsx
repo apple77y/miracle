@@ -5,9 +5,6 @@ import FloatingConsultButton from "../components/ui/FloatingConsultButton";
 import BackgroundMusic from "../components/ui/BackgroundMusic";
 import DynamicLayout from "../components/DynamicLayout";
 import PWAThemeColor from "../components/PWAThemeColor";
-import PushNotificationManager from "../components/PushNotificationManager";
-import BackgroundSyncIndicator from "../components/BackgroundSyncIndicator";
-import UpdateNotification from "../components/UpdateNotification";
 import ErrorBoundary from "../components/ErrorBoundary";
 import "./globals.css";
 import I18nProvider from "../components/I18nProvider";
@@ -47,9 +44,6 @@ export default function RootLayout({
         className="antialiased bg-white text-black"
         style={{ colorScheme: "light" }}>
         <PWAThemeColor />
-        <PushNotificationManager />
-        <BackgroundSyncIndicator />
-        <UpdateNotification />
         <ErrorBoundary>
           <I18nProvider>
             <DynamicLayout>

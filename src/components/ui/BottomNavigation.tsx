@@ -58,28 +58,22 @@ const navItems: NavItem[] = [
 export default function BottomNavigation() {
   const pathname = usePathname();
   const { locale } = useI18n();
-  const [currentHash, setCurrentHash] = useState('');
+  const [currentHash, setCurrentHash] = useState(() => {
+    if (typeof window === 'undefined') return '';
+    return window.location.hash;
+  });
 
   useEffect(() => {
     const updateHash = () => {
-      const newHash = window.location.hash;
-      setCurrentHash(newHash);
+      setCurrentHash(window.location.hash);
     };
-    
-    // 초기 해시 설정
-    updateHash();
-    
-    // 해시 변경 감지 - 여러 이벤트 추가
+
     window.addEventListener('hashchange', updateHash);
     window.addEventListener('popstate', updateHash);
-    
-    // 주기적으로 해시 체크 (fallback)
-    const interval = setInterval(updateHash, 100);
-    
+
     return () => {
       window.removeEventListener('hashchange', updateHash);
       window.removeEventListener('popstate', updateHash);
-      clearInterval(interval);
     };
   }, []);
 

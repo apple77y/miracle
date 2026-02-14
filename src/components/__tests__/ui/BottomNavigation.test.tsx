@@ -27,13 +27,6 @@ jest.mock('next/link', () => {
 // Mock hash changes and events
 const mockAddEventListener = jest.fn()
 const mockRemoveEventListener = jest.fn()
-const mockClearInterval = jest.fn()
-const mockSetInterval = jest.fn()
-
-beforeAll(() => {
-  global.clearInterval = mockClearInterval
-  global.setInterval = mockSetInterval.mockReturnValue(123) // Mock interval ID
-})
 
 const renderBottomNavigation = (pathname = '/') => {
   (usePathname as jest.Mock).mockReturnValue(pathname)
@@ -58,7 +51,7 @@ describe('BottomNavigation', () => {
     // Reset window.location
     try {
       window.location.hash = ''
-    } catch (e) {
+    } catch {
       // In environments where assignment triggers navigation, provide a minimal stub
       Object.defineProperty(window, 'location', {
         value: { hash: '' },
@@ -125,7 +118,6 @@ describe('BottomNavigation', () => {
     
     // Just check that some event listeners were added
     expect(mockAddEventListener).toHaveBeenCalled()
-    expect(mockSetInterval).toHaveBeenCalled()
   })
 
   it('should remove event listeners on unmount', () => {
@@ -135,7 +127,6 @@ describe('BottomNavigation', () => {
     
     // Just check that cleanup functions were called
     expect(mockRemoveEventListener).toHaveBeenCalled()
-    expect(mockClearInterval).toHaveBeenCalled()
   })
 
   it('should have proper styling classes', () => {
@@ -199,7 +190,7 @@ describe('BottomNavigation', () => {
     it('should handle empty hash correctly for home page', () => {
       try {
         window.location.hash = ''
-      } catch (e) {
+      } catch {
         Object.defineProperty(window, 'location', { value: { hash: '' }, writable: true })
       }
 

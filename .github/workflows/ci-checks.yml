@@ -1,0 +1,80 @@
+name: CI Checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: notify vercel
+        if: always()
+        uses: vercel/repository-dispatch/actions/status@v1
+        with:
+          name: Vercel - miracle: lint
+
+  type-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run type-check
+        run: npm run type-check
+
+      - name: notify vercel
+        if: always()
+        uses: vercel/repository-dispatch/actions/status@v1
+        with:
+          name: Vercel - miracle: type-check
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm test -- --runInBand
+
+      - name: notify vercel
+        if: always()
+        uses: vercel/repository-dispatch/actions/status@v1
+        with:
+          name: Vercel - miracle: test

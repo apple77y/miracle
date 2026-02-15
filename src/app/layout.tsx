@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import FloatingConsultButton from "../components/ui/FloatingConsultButton";
 import BackgroundMusic from "../components/ui/BackgroundMusic";
 import DynamicLayout from "../components/DynamicLayout";
 import ErrorBoundary from "../components/ErrorBoundary";
+import ResourceHints from "../components/ResourceHints";
 import "./globals.css";
 import I18nProvider from "../components/I18nProvider";
 import { getMetadata, getJsonLd, getViewport } from "../utils/metadata";
@@ -21,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="light">
       <head>
+        <ResourceHints />
         <link
           href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css"
           rel="stylesheet"
@@ -50,29 +53,27 @@ export default function RootLayout({
         </ErrorBoundary>
         <Analytics />
         <SpeedInsights />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // 맥 트랙패드 핀치줌 방지
-              document.addEventListener('wheel', function (e) {
-                if (e.ctrlKey) e.preventDefault();
-              }, { passive: false });
+        <Script id="disable-pinch-zoom" strategy="beforeInteractive">
+          {`
+            // 맥 트랙패드 핀치줌 방지
+            document.addEventListener('wheel', function (e) {
+              if (e.ctrlKey) e.preventDefault();
+            }, { passive: false });
 
-              // iOS Safari 핀치줌 방지
-              document.addEventListener('gesturestart', e => e.preventDefault());
-              document.addEventListener('gesturechange', e => e.preventDefault());
-              document.addEventListener('gestureend', e => e.preventDefault());
+            // iOS Safari 핀치줌 방지
+            document.addEventListener('gesturestart', e => e.preventDefault());
+            document.addEventListener('gesturechange', e => e.preventDefault());
+            document.addEventListener('gestureend', e => e.preventDefault());
 
-              // 모바일 더블탭 확대 방지
-              let lastTouchEnd = 0;
-              document.addEventListener('touchend', function (e) {
-                let now = (new Date()).getTime();
-                if (now - lastTouchEnd <= 300) e.preventDefault();
-                lastTouchEnd = now;
-              }, false);
-            `,
-          }}
-        />
+            // 모바일 더블탭 확대 방지
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function (e) {
+              let now = (new Date()).getTime();
+              if (now - lastTouchEnd <= 300) e.preventDefault();
+              lastTouchEnd = now;
+            }, false);
+          `}
+        </Script>
       </body>
     </html>
   );

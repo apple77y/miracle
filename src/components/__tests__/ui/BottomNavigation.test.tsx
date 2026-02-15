@@ -13,11 +13,15 @@ jest.mock('next/navigation', () => ({
 jest.mock('next/link', () => {
   return function MockLink({ children, href, className, ...props }: {
     children?: React.ReactNode;
-    href: string | object;
+    href: string | { pathname?: string; hash?: string };
     className?: string;
-  } & React.AnchorHTMLAttributes<HTMLAnchorElement>) {
+  } & Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>) {
+    const resolvedHref = typeof href === 'string'
+      ? href
+      : `${href.pathname ?? ''}${href.hash ? `#${href.hash}` : ''}` || '#';
+
     return (
-      <a href={typeof href === 'string' ? href : '#'} className={className} {...props}>
+      <a href={resolvedHref} className={className} {...props}>
         {children}
       </a>
     )

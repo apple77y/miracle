@@ -29,7 +29,7 @@ jobs:
         if: always()
         uses: vercel/repository-dispatch/actions/status@v1
         with:
-          name: Vercel - miracle: lint
+          name: "Vercel - miracle: lint"
 
   type-check:
     runs-on: ubuntu-latest
@@ -53,7 +53,7 @@ jobs:
         if: always()
         uses: vercel/repository-dispatch/actions/status@v1
         with:
-          name: Vercel - miracle: type-check
+          name: "Vercel - miracle: type-check"
 
   test:
     runs-on: ubuntu-latest
@@ -77,4 +77,4 @@ jobs:
         if: always()
         uses: vercel/repository-dispatch/actions/status@v1
         with:
-          name: Vercel - miracle: test
+          name: "Vercel - miracle: test"

@@ -1,4 +1,5 @@
 import { renderHook, act } from '@testing-library/react'
+import * as React from 'react'
 import { useIsPWA } from '../useIsPWA'
 
 // Mock window.matchMedia
@@ -200,5 +201,19 @@ describe('useIsPWA', () => {
 
     // Restore window
     global.window = originalWindow
+  })
+
+  it('should provide server snapshot fallback as false', () => {
+    const syncSpy = jest
+      .spyOn(React, 'useSyncExternalStore')
+      .mockImplementation((subscribe, getSnapshot, getServerSnapshot) => {
+        void subscribe
+        void getSnapshot
+        return getServerSnapshot()
+      })
+
+    const { result } = renderHook(() => useIsPWA())
+    expect(result.current).toBe(false)
+    syncSpy.mockRestore()
   })
 })

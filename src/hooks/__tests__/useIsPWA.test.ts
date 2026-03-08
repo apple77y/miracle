@@ -209,7 +209,7 @@ describe('useIsPWA', () => {
       .mockImplementation((subscribe, getSnapshot, getServerSnapshot) => {
         void subscribe
         void getSnapshot
-        return getServerSnapshot()
+        return getServerSnapshot ? getServerSnapshot() : false
       })
 
     const { result } = renderHook(() => useIsPWA())

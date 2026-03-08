@@ -106,6 +106,12 @@ messages/                  # i18n message files (ko/en)
 - **i18n Testing**: Test both Korean and English language variants
 - **Offline Testing**: Disable network in DevTools to verify `/offline`
 
+### Testing Policy (Mandatory)
+- Any functional change (new feature, behavior change, refactor with behavior impact, bug fix) must include or update automated tests in the same PR.
+- A task is not considered complete unless relevant tests are added/updated and `npm test` passes.
+- For UI/content behavior changes, add component/page tests that verify the changed user-visible behavior.
+- For utility/state logic changes, add unit tests that cover normal path and at least one failure/edge path.
+
 ## Content Change Guardrails
 
 - Do not remove or hide core conversion UI (contact CTA, map links, 상담 버튼) without explicit request.

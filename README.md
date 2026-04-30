@@ -82,7 +82,8 @@ npm run test
 
 ## 개발 환경
 
-- Node.js: `.nvmrc` 기준 사용
+- Node.js: `.nvmrc` 기준 사용 (`v24.15.0`)
+- npm: `package.json`의 `packageManager` 기준 사용 (`11.12.1`)
 - 패키지 매니저: npm
 
 ## 배포/CI

@@ -118,12 +118,6 @@ export const getMetadata = (locale: Locale = 'ko'): Metadata => {
         { rel: "icon", url: "/icon.svg", type: "image/svg+xml" }
       ]
     },
-    manifest: "/manifest.json",
-    appleWebApp: {
-      capable: true,
-      statusBarStyle: "default",
-      title: "Miracle",
-    },
   };
 };
 

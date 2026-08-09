@@ -39,7 +39,6 @@
 - 다국어 지원(한국어/영어)
 - SEO 메타데이터 + JSON-LD 구조화 데이터
 - 모바일 하단 네비게이션, 섹션 기반 랜딩 페이지
-- 오프라인 페이지(`/offline`)
 
 ## 프로젝트 구조
 
@@ -50,7 +49,6 @@ src/
     page.tsx
     guide/page.tsx
     occasion/page.tsx
-    offline/page.tsx
     sitemap.ts
   components/
     layout/

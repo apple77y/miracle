@@ -189,25 +189,6 @@ body {
   animation: float 6s ease-in-out infinite;
 }
 
-/* PWA Safe Area Support */
-.safe-area-pb {
-  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
-}
-
-/* PWA Mode Header Hiding */
-@media (display-mode: standalone) {
-  .pwa-hide {
-    display: none !important;
-  }
-}
-
-/* iOS PWA Support */
-@media (display-mode: standalone) and (-webkit-touch-callout: none) {
-  .pwa-hide {
-    display: none !important;
-  }
-}
-
 /* Korean text line-break optimization */
 .text-korean {
   word-break: keep-all;

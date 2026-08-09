@@ -3,7 +3,6 @@ import { IntlProvider } from 'react-intl'
 import Home from '../page'
 import GuidePage from '../guide/page'
 import OccasionPage from '../occasion/page'
-import OfflinePage, { metadata as offlineMetadata } from '../offline/page'
 import koMessages from '../../../messages/ko.json'
 
 jest.mock('next/image', () => ({
@@ -65,11 +64,6 @@ jest.mock('@/components/sections/Contact', () => ({
   default: () => <section data-testid="contact">Contact</section>,
 }))
 
-jest.mock('../../components/OfflineClient', () => ({
-  __esModule: true,
-  default: () => <div data-testid="offline-client">OfflineClient</div>,
-}))
-
 describe('App pages', () => {
   it('renders Home composition with all major sections', () => {
     render(<Home />)
@@ -111,11 +105,4 @@ describe('App pages', () => {
     expect(screen.getByRole('link', { name: koMessages['occasion.consultation.email'] })).toHaveAttribute('href', 'mailto:rmr0322@hanmail.net')
   })
 
-  it('renders OfflinePage and exports metadata', () => {
-    render(<OfflinePage />)
-
-    expect(screen.getByTestId('offline-client')).toBeInTheDocument()
-    expect(offlineMetadata.title).toBe('Offline - Miracle')
-    expect(offlineMetadata.description).toBe('현재 인터넷에 연결되어 있지 않습니다.')
-  })
 })

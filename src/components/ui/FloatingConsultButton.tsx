@@ -1,11 +1,9 @@
 'use client';
 
 import { useIntl } from 'react-intl';
-import { useIsPWA } from '../../hooks/useIsPWA';
 
 export default function FloatingConsultButton() {
   const intl = useIntl();
-  const isPWA = useIsPWA();
   const handleClick = () => {
     // Detect if user is on mobile device
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -27,10 +25,6 @@ export default function FloatingConsultButton() {
       window.open('https://www.instagram.com/direct/t/100858424646856/', '_blank');
     }
   };
-
-  if (isPWA) {
-    return null;
-  }
 
   return (
     <button

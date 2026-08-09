@@ -4,20 +4,6 @@ import { IntlProvider } from 'react-intl'
 import Header from '../../layout/Header'
 import enMessages from '../../../../messages/en.json'
 
-// Mock window.matchMedia for PWA detection
-const createMockMatchMedia = (matches: boolean) => {
-  return jest.fn().mockImplementation((query: string) => ({
-    matches,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(),
-    removeListener: jest.fn(),
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
-  }))
-}
-
 const renderHeader = () => {
   return render(
     <IntlProvider messages={enMessages} locale="en">
@@ -29,12 +15,9 @@ const renderHeader = () => {
 describe('Header', () => {
   beforeEach(() => {
     jest.clearAllMocks()
-    // Default to non-PWA mode
-    window.matchMedia = createMockMatchMedia(false)
   })
 
   it('should render brand name correctly', () => {
-    window.matchMedia = createMockMatchMedia(false)
     renderHeader()
     
     expect(screen.getByText('Miracle')).toBeInTheDocument()
@@ -193,24 +176,10 @@ describe('Header', () => {
     expect(menuButton).toHaveAttribute('aria-label', '메뉴 열기')
   })
 
-  it('should not render when in PWA mode', () => {
-    // Mock window.matchMedia to return true (PWA mode)
-    window.matchMedia = createMockMatchMedia(true)
-    
-    const { container } = renderHeader()
-    
-    // Header should not be rendered in PWA mode
-    expect(container.firstChild).toBeNull()
-    expect(screen.queryByRole('banner')).not.toBeInTheDocument()
-  })
-
-  it('should have pwa-hide class for CSS-based hiding', () => {
-    // Mock window.matchMedia to return false (not PWA mode)
-    window.matchMedia = createMockMatchMedia(false)
-    
+  it('should always render the header', () => {
     renderHeader()
-    
+
     const header = screen.getByRole('banner')
-    expect(header).toHaveClass('pwa-hide')
+    expect(header).toBeInTheDocument()
   })
 })

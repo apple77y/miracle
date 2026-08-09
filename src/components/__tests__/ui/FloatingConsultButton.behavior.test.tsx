@@ -4,14 +4,6 @@ import { IntlProvider } from 'react-intl'
 import FloatingConsultButton from '../../ui/FloatingConsultButton'
 import enMessages from '../../../../messages/en.json'
 
-jest.mock('../../../hooks/useIsPWA', () => ({
-  useIsPWA: jest.fn(),
-}))
-
-const { useIsPWA } = jest.requireMock('../../../hooks/useIsPWA') as {
-  useIsPWA: jest.Mock
-}
-
 const renderButton = () =>
   render(
     <IntlProvider messages={enMessages} locale="en">
@@ -25,7 +17,6 @@ describe('FloatingConsultButton behavior branches', () => {
 
   beforeEach(() => {
     jest.clearAllMocks()
-    useIsPWA.mockReturnValue(false)
     window.open = jest.fn()
   })
 
@@ -35,12 +26,6 @@ describe('FloatingConsultButton behavior branches', () => {
       configurable: true,
       value: originalUA,
     })
-  })
-
-  it('returns null in PWA mode', () => {
-    useIsPWA.mockReturnValue(true)
-    const { container } = renderButton()
-    expect(container.firstChild).toBeNull()
   })
 
   it('mobile path opens instagram web fallback after deep-link attempt', async () => {

@@ -4,14 +4,6 @@ import { IntlProvider } from 'react-intl'
 import BackgroundMusic from '../../ui/BackgroundMusic'
 import enMessages from '../../../../messages/en.json'
 
-jest.mock('../../../hooks/useIsPWA', () => ({
-  useIsPWA: jest.fn(),
-}))
-
-const { useIsPWA } = jest.requireMock('../../../hooks/useIsPWA') as {
-  useIsPWA: jest.Mock
-}
-
 const renderMusic = () =>
   render(
     <IntlProvider messages={enMessages} locale="en">
@@ -28,8 +20,6 @@ describe('BackgroundMusic behavior branches', () => {
 
   beforeEach(() => {
     jest.clearAllMocks()
-    useIsPWA.mockReturnValue(false)
-
     Object.defineProperty(HTMLMediaElement.prototype, 'play', {
       configurable: true,
       value: play,
@@ -48,12 +38,6 @@ describe('BackgroundMusic behavior branches', () => {
     console.log = originalConsoleLog
     console.error = originalConsoleError
     jest.useRealTimers()
-  })
-
-  it('returns null in PWA mode', () => {
-    useIsPWA.mockReturnValue(true)
-    const { container } = renderMusic()
-    expect(container.firstChild).toBeNull()
   })
 
   it('logs autoplay failure when play is rejected', async () => {

@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react';
 import { useI18n } from './I18nProvider';
-import PWALayout from './PWALayout';
 import { getJsonLd } from '../utils/metadata';
 
 interface DynamicLayoutProps {
@@ -105,5 +104,5 @@ export default function DynamicLayout({ children }: DynamicLayoutProps) {
     };
   }, [locale]);
 
-  return <PWALayout>{children}</PWALayout>;
+  return <>{children}</>;
 }

@@ -52,7 +52,6 @@ src/
 ├── app/                    # App Router pages
 │   ├── guide/             # Flower care guide page
 │   ├── occasion/          # Event occasion guide page  
-│   ├── offline/           # Offline fallback page
 │   ├── layout.tsx         # Root layout (metadata, resource hints, analytics)
 │   ├── page.tsx           # Home page
 │   ├── sitemap.ts         # Sitemap generation
@@ -104,7 +103,6 @@ messages/                  # i18n message files (ko/en)
 - **Typed Routes**: Enabled via `next.config.ts` + `next typegen`
 - **Path Aliases**: `@/*` maps to `./src/*`
 - **i18n Testing**: Test both Korean and English language variants
-- **Offline Testing**: Disable network in DevTools to verify `/offline`
 
 ### Testing Policy (Mandatory)
 - Any functional change (new feature, behavior change, refactor with behavior impact, bug fix) must include or update automated tests in the same PR.

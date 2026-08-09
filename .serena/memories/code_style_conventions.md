@@ -13,9 +13,9 @@ src/
 ```
 
 ## 네이밍 컨벤션
-- **컴포넌트**: PascalCase (예: `BackgroundSyncIndicator`)
+- **컴포넌트**: PascalCase (예: `FloatingConsultButton`)
 - **파일명**: PascalCase for components, camelCase for others
-- **훅**: useXxx pattern (예: `useBackgroundSync`, `useIsPWA`)
+- **훅**: useXxx pattern (예: `useI18n`)
 - **변수/함수**: camelCase
 - **상수**: UPPER_SNAKE_CASE
 

@@ -41,11 +41,6 @@ yarn-error.log*
 next-env.d.ts
 /.claude/
 
-# PWA generated files
-/public/sw.js
-/public/workbox-*.js
-/public/fallback-*.js
-
 # local workspace metadata
 .idea/
 .serena/project.yml

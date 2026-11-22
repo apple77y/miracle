@@ -6,7 +6,10 @@ on:
     - cron: "17 0 * * 1"
   workflow_dispatch:
 if: github.ref == 'refs/heads/main'
-engine: copilot
+engine:
+  id: copilot
+  model: gpt-6.2-sol
+  args: ["--reasoning-effort", "medium"]
 permissions:
   contents: read
   pull-requests: read

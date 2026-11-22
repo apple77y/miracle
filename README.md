@@ -96,11 +96,13 @@ Next.js App Router 기반이며, 정적 배포(`output: 'export'`)를 사용합�
 
 ## 개발 문서 동기화
 
-[Weekly documentation sync](.github/workflows/weekly-doc-sync.yml)는 매주 월요일 오전 9시 17분(한국 시간)에 `main`을 확인합니다. 패키지 버전, npm 스크립트, Git에 등록된 소스 경로가 위 표와 목록에서 달라지면 `automation/weekly-doc-sync` 브랜치로 검토용 PR을 생성하거나 기존 PR을 갱신합니다.
+[Weekly documentation sync](.github/workflows/weekly-doc-sync.md)는 매주 월요일 오전 9시 17분(한국 시간)에 실행됩니다. GitHub Copilot이 `main`의 구현과 README, CLAUDE.md, 스킬 문서, Serena 메모의 설명을 비교합니다. 수정할 내용이 있으면 근거가 된 코드 경로를 본문에 적어 검토용 PR을 올립니다.
 
-수동으로 확인하려면 GitHub **Actions → Weekly documentation sync → Run workflow**에서 `main`을 선택합니다. 로컬에서는 저장소 루트에서 `node scripts/sync-docs.cjs`를 실행합니다.
+수동으로 확인하려면 GitHub **Actions → Weekly documentation sync → Run workflow**에서 `main`을 선택합니다. README의 버전, npm 명령, 소스 경로만 갱신하려면 로컬에서 `node scripts/sync-docs.cjs`를 실행합니다.
 
-PR을 생성하려면 저장소 **Settings → Actions → General → Workflow permissions**에서 **Allow GitHub Actions to create and approve pull requests**가 켜져 있어야 합니다. 생성된 PR의 CI가 승인 대기 상태이면 PR에서 **Approve and run workflows**를 선택합니다.
+Copilot을 실행하려면 **Settings → Secrets and variables → Actions**에 `COPILOT_GITHUB_TOKEN` 시크릿을 등록합니다. Copilot 사용 권한이 있는 계정에서 발급하고 **Copilot Requests: Read** 권한이 있는 fine-grained personal access token을 사용합니다. [GitHub 인증 안내](https://docs.github.com/en/actions/tutorials/develop-agentic-workflows-in-github-actions)
+
+PR 생성에는 **Settings → Actions → General → Workflow permissions**의 **Allow GitHub Actions to create and approve pull requests** 설정이 필요합니다. 생성된 PR의 CI가 승인 대기 상태이면 PR에서 **Approve and run workflows**를 선택합니다.
 
 ## 운영 체크리스트
 

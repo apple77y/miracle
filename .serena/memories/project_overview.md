@@ -9,10 +9,12 @@
 - **Framework**: Next.js 16 (App Router)
 - **Frontend**: React 19, TypeScript 5
 - **Styling**: Tailwind CSS 4
-- **Internationalization**: react-intl 7.1.11
-- **Testing**: Jest 30.0.5, React Testing Library
+- **Internationalization**: react-intl
+- **Testing**: Jest, React Testing Library
 - **Linting**: ESLint 9, Next.js ESLint config
 - **Analytics**: Vercel Analytics & Speed Insights
+
+현재 패키지 버전은 [README.md의 개발 환경](../../README.md#개발-환경-및-기술-스택)에서 확인합니다.
 
 ## 주요 기능
 - 다국어 지원

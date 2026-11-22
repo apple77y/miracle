@@ -24,11 +24,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Development server**: `npm run dev` (uses Turbopack for faster builds)
 - **Production build**: `npm run build`
 - **Static export**: `npm run export` (builds and exports to static files)
-- **Start production server**: `npm start`
-- **Serve static build**: `npm run serve` (serves exported static files)
+- **Preview the static build locally**: `npm run build`, then `npm run serve` (serves `out/`)
 - **Lint code**: `npm run lint` / `npm run lint:fix`
 - **Type generation**: `npm run typegen`
-- **Type checking**: `npm run type-check`
+- **Type checking**: `npm run type-check` (generates route types and runs TypeScript)
 - **Testing**: `npm run test` / `npm run test:watch` / `npm run test:coverage`
 
 ## Project Architecture
@@ -64,10 +63,11 @@ src/
 │   ├── DynamicLayout.tsx  # Dynamic metadata and JSON-LD management
 │   ├── ResourceHints.tsx  # prefetchDNS/preconnect/preload hints
 │   └── __tests__/         # Comprehensive component tests
-├── hooks/                 # Custom React hooks
 ├── utils/                 # Utility functions (metadata, SEO)
 messages/                  # i18n message files (ko/en)
 ```
+
+See [the development reference in README.md](README.md#개발-환경-및-기술-스택) for package versions, script definitions, and tracked source paths.
 
 ### Key Features
 

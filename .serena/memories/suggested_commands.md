@@ -7,17 +7,16 @@ npm run dev  # 개발 서버 시작 (Turbopack 사용)
 
 ## 빌드 및 배포
 ```bash
-npm run build     # 프로덕션 빌드 (린트 + 타입체크 + 빌드)
+npm run build     # 프로덕션 빌드 및 정적 파일 생성
 npm run export    # 정적 사이트 빌드 및 export
-npm run start     # 프로덕션 서버 시작
-npm run serve     # 정적 파일 서빙
+npm run serve     # 빌드 후 out/의 정적 파일 서빙
 ```
 
 ## 코드 품질 관리
 ```bash
 npm run lint         # ESLint 실행
 npm run lint:fix     # ESLint 자동 수정
-npm run type-check   # TypeScript 타입 검사
+npm run type-check   # Next.js 라우트 타입 생성 및 TypeScript 타입 검사
 ```
 
 ## 테스팅

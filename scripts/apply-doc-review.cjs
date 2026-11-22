@@ -8,8 +8,11 @@ const tracked = new Set(
 );
 
 const response = readFileSync(process.argv[2], 'utf8').trim();
-const fenced = response.match(/^```(?:json)?\r?\n([\s\S]*)\r?\n```$/);
-const review = JSON.parse(fenced ? fenced[1] : response);
+const marked = response.match(/^BEGIN_DOC_REVIEW\r?\n([\s\S]*?)\r?\nEND_DOC_REVIEW$/m);
+const payload = marked?.[1] ?? response;
+const fenced = [...payload.matchAll(/^```(?:json)?[ \t]*\r?\n([\s\S]*?)\r?\n```[ \t]*$/gm)].at(-1);
+const start = payload.search(/^\{/m);
+const review = JSON.parse(fenced?.[1] ?? payload.slice(Math.max(start, 0)));
 if (!Array.isArray(review?.edits) || !Array.isArray(review?.findings) ||
     !review.findings.every((finding) => typeof finding === 'string')) {
   throw new Error('Expected a documentation review with edits and findings arrays.');

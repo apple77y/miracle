@@ -12,8 +12,8 @@ function write(path, content) {
   writeFileSync(target, content);
 }
 
-function apply(edits, findings = []) {
-  write('review.json', JSON.stringify({ edits, findings }));
+function apply(edits, findings = [], format = (json) => json) {
+  write('review.json', format(JSON.stringify({ edits, findings })));
   return spawnSync(process.execPath, [script, 'review.json'], { cwd: root, encoding: 'utf8' });
 }
 
@@ -60,4 +60,14 @@ test('refuses a correction when the quoted text has multiple matches', () => {
   const result = apply([correction]);
   expect(result.status).toBe(1);
   expect(result.stderr).toContain('does not match exactly once');
+});
+
+test.each([
+  (json) => `I’ll verify the documents.\n\n${json}`,
+  (json) => `I’ll verify the documents.\n\n\`\`\`json\n${json}\n\`\`\``,
+  (json) => `I’ll verify the documents.\nBEGIN_DOC_REVIEW\n${json}\nEND_DOC_REVIEW\nDone.`,
+])('accepts the final JSON even when Copilot emits progress text', (format) => {
+  const result = apply([correction], [], format);
+  expect(result.status).toBe(0);
+  expect(readFileSync(join(root, correction.path), 'utf8')).toContain(correction.after);
 });

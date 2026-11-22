@@ -1,0 +1,102 @@
+name: Weekly documentation sync
+
+on:
+  schedule:
+    - cron: '17 0 * * 1'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: weekly-doc-sync
+  cancel-in-progress: false
+
+jobs:
+  review:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    outputs:
+      has_changes: ${{ steps.changes.outputs.has_changes }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+      - name: Refresh the generated README reference
+        run: node scripts/sync-docs.cjs
+      - name: Install Copilot CLI
+        run: npm install --global @github/copilot@1.0.103
+      - name: Review tracked Markdown with Copilot Free
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+        run: |
+          if [ -z "$COPILOT_GITHUB_TOKEN" ]; then
+            echo "::error::Register COPILOT_GITHUB_TOKEN as a repository secret with Copilot Requests: Read."
+            exit 1
+          fi
+
+          prompt=$(cat .github/workflows/weekly-doc-sync.md)
+          tracked=$(git ls-files -- '*.md')
+          copilot --model auto --disable-builtin-mcps --no-custom-instructions \
+            --no-auto-update --no-ask-user --no-color --silent --allow-tool=read \
+            --deny-tool=shell --deny-tool=write --deny-tool=url \
+            --prompt "$prompt"$'\n\nTracked Markdown paths:\n'"$tracked" > "$RUNNER_TEMP/docs-review.json"
+      - name: Validate the proposed corrections
+        id: changes
+        run: |
+          node scripts/apply-doc-review.cjs "$RUNNER_TEMP/docs-review.json" >> "$GITHUB_STEP_SUMMARY"
+          if git diff --quiet; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: steps.changes.outputs.has_changes == 'true'
+        with:
+          name: docs-review
+          path: ${{ runner.temp }}/docs-review.json
+          if-no-files-found: error
+          retention-days: 1
+
+  publish:
+    needs: review
+    if: needs.review.outputs.has_changes == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: docs-review
+          path: ${{ runner.temp }}
+      - name: Reapply validated Markdown changes
+        run: |
+          node scripts/sync-docs.cjs
+          node scripts/apply-doc-review.cjs "$RUNNER_TEMP/docs-review.json" >> "$GITHUB_STEP_SUMMARY"
+          git diff --check
+      - name: Open or update the documentation pull request
+        uses: peter-evans/create-pull-request@3ffccacd46053766916f087ce41d627c0b8cf2d1 # v8.1.3
+        with:
+          base: main
+          branch: automation/weekly-doc-sync
+          delete-branch: true
+          commit-message: 'docs: sync Markdown with main'
+          title: '[docs-sync] main 기준 문서 갱신'
+          body: |
+            Copilot이 `main`의 코드와 Markdown을 대조해 제안한 변경입니다.
+            수정 근거는 [Actions 실행 요약](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})에서 확인할 수 있습니다.
+            변경 내용을 검토한 뒤 머지해 주세요.

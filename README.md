@@ -96,11 +96,11 @@ Next.js App Router 기반이며, 정적 배포(`output: 'export'`)를 사용합�
 
 ## 개발 문서 동기화
 
-[Weekly documentation sync](.github/workflows/weekly-doc-sync.md)는 매주 월요일 오전 9시 17분(한국 시간)에 실행됩니다. OpenAI Codex가 `main`에서 Git으로 추적하는 모든 `.md` 파일을 코드와 대조합니다. 수정할 내용이 있으면 근거가 된 코드 경로를 본문에 적어 검토용 PR을 올립니다. `.github/workflows/` 아래의 Markdown에서 발견한 사항은 사람이 워크플로와 생성 파일을 함께 고칠 수 있도록 실행 결과에 기록합니다.
+[Weekly documentation sync](.github/workflows/weekly-doc-sync.yml)는 매주 월요일 오전 9시 17분(한국 시간)에 실행됩니다. GitHub Copilot CLI가 `auto`로 실행되어 `main`에서 Git으로 추적하는 모든 `.md` 파일을 코드와 대조합니다. 수정할 내용이 있으면 검토용 PR을 올립니다. 수정 근거는 PR에서 연결한 Actions 실행 요약에 기록합니다. `.github/workflows/` 아래의 Markdown에서 발견한 사항은 사람이 워크플로와 생성 파일을 함께 고칠 수 있도록 실행 결과에 기록합니다.
 
 수동으로 확인하려면 GitHub **Actions → Weekly documentation sync → Run workflow**에서 `main`을 선택합니다. README의 버전, npm 명령, 소스 경로만 갱신하려면 로컬에서 `node scripts/sync-docs.cjs`를 실행합니다.
 
-Codex를 실행하려면 [OpenAI Platform](https://platform.openai.com/api-keys)에서 발급한 API 키를 **Settings → Secrets and variables → Actions**에 `OPENAI_API_KEY` 시크릿으로 등록합니다. 워크플로는 GPT‑6.2 Sol과 `medium` 추론 수준을 사용하며, 사용량은 OpenAI API 프로젝트에 청구됩니다. [Codex 자동화 인증 안내](https://github.github.com/gh-aw/engines/codex/)
+Copilot을 실행하려면 **Settings → Secrets and variables → Actions**에서 `COPILOT_GITHUB_TOKEN`을 저장소 시크릿으로 등록합니다. Copilot 계정에서 **Copilot Requests: Read** 권한의 fine-grained personal access token을 발급해 사용합니다. [GitHub Copilot CLI 인증 안내](https://docs.github.com/en/copilot/how-tos/copilot-cli/automate-copilot-cli/automate-with-actions)
 
 PR 생성에는 **Settings → Actions → General → Workflow permissions**의 **Allow GitHub Actions to create and approve pull requests** 설정이 필요합니다. 생성된 PR의 CI가 승인 대기 상태이면 PR에서 **Approve and run workflows**를 선택합니다.
 

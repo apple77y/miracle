@@ -8,8 +8,7 @@ on:
 if: github.ref == 'refs/heads/main'
 engine:
   id: copilot
-  model: gpt-6.2-sol
-  args: ["--reasoning-effort", "medium"]
+  model: auto
 permissions:
   contents: read
   pull-requests: read

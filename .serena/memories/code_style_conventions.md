@@ -22,7 +22,7 @@ src/
 - Strict mode 활성화
 - 인터페이스 사용 (interface 키워드)
 - 타입 어노테이션 명시적 작성
-- JSX는 preserve 모드
+- JSX는 react-jsx 모드
 
 ## React 패턴
 - 함수형 컴포넌트 사용

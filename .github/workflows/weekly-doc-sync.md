@@ -1,22 +1,21 @@
 ---
 name: Weekly documentation sync
-description: Review documentation against the code on main with GitHub Copilot.
+description: Review documentation against the code on main with OpenAI Codex.
 on:
   schedule:
     - cron: "17 0 * * 1"
   workflow_dispatch:
 if: github.ref == 'refs/heads/main'
 engine:
-  id: copilot
-  model: auto
+  id: codex
+  model: gpt-6.2-sol
+  args: ["-c", 'model_reasoning_effort="medium"']
 permissions:
   contents: read
   pull-requests: read
-  copilot-requests: none
 network: defaults
 timeout-minutes: 20
 tools:
-  bash: ["git status", "git diff:*", "git ls-files:*", "node scripts/sync-docs.cjs"]
   github:
     toolsets: [pull_requests]
 safe-outputs:

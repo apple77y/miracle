@@ -96,7 +96,7 @@ Next.js App Router 기반이며, 정적 배포(`output: 'export'`)를 사용합�
 
 ## 개발 문서 동기화
 
-[Weekly documentation sync](.github/workflows/weekly-doc-sync.md)는 매주 월요일 오전 9시 17분(한국 시간)에 실행됩니다. GitHub Copilot이 `main`의 구현과 README, CLAUDE.md, 스킬 문서, Serena 메모의 설명을 비교합니다. 수정할 내용이 있으면 근거가 된 코드 경로를 본문에 적어 검토용 PR을 올립니다.
+[Weekly documentation sync](.github/workflows/weekly-doc-sync.md)는 매주 월요일 오전 9시 17분(한국 시간)에 실행됩니다. GitHub Copilot이 `main`에서 Git으로 추적하는 모든 `.md` 파일을 코드와 대조합니다. 수정할 내용이 있으면 근거가 된 코드 경로를 본문에 적어 검토용 PR을 올립니다. `.github/workflows/` 아래의 Markdown에서 발견한 사항은 사람이 워크플로와 생성 파일을 함께 고칠 수 있도록 실행 결과에 기록합니다.
 
 수동으로 확인하려면 GitHub **Actions → Weekly documentation sync → Run workflow**에서 `main`을 선택합니다. README의 버전, npm 명령, 소스 경로만 갱신하려면 로컬에서 `node scripts/sync-docs.cjs`를 실행합니다.
 

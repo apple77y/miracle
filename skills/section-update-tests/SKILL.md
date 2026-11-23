@@ -9,13 +9,14 @@
 
 ## Workflow
 1. Identify impacted section component and behavior.
-2. Update or add tests in `src/components/__tests__/`.
+2. Update or add tests in `src/components/__tests__/` or `src/app/__tests__/`, depending on the changed surface.
 3. Prefer role/text queries to verify user-visible content.
 4. If adding new strings, verify i18n variants if applicable.
 
 ## Files to check
 - `src/components/sections/**`
 - `src/components/__tests__/**`
+- `src/app/__tests__/**`
 - `messages/ko.json`
 - `messages/en.json`
 
